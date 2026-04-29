@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-29T10:16:52",
+  "project_name": "fabrica-conhecimento-sociologico",
+  "system": {
+    "os": "Linux x86_64 (WSL2)",
+    "user": "sergio_farias",
+    "hostname": "DESKTOP-CMMQBSU"
+  },
+  "cli_tools": {
+    "git": { "installed": true, "version": "2.43.0" },
+    "gh": { "installed": true, "version": "2.45.0", "authenticated": true, "account": "48cork" },
+    "node": { "installed": true, "version": "20.20.2" },
+    "npm": { "installed": true, "version": "10.8.2" },
+    "supabase": { "installed": false },
+    "railway": { "installed": false },
+    "docker": { "installed": false },
+    "coderabbit": { "installed": false }
+  },
+  "repository": {
+    "initialized": true,
+    "remote_url": null,
+    "branch": "main",
+    "mode": "local-only"
+  },
+  "user_profile": "bob",
+  "validation": {
+    "essential_complete": true,
+    "ready_for_development": true
+  }
+}
