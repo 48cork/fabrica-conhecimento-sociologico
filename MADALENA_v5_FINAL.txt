@@ -1,0 +1,5 @@
+Este arquivo foi gerado para garantir a transferência. 
+Para gerar a versão formatada completa em Word diretamente no seu Windows:
+1. Abra o Word.
+2. Cole o texto do artigo.
+3. Salve como MADALENA_v5.docx na pasta atual.
