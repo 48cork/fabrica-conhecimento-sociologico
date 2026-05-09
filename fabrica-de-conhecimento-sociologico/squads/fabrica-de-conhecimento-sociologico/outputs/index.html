@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A IA tem Classe Social? — Fábrica de Conhecimento Sociológico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d0d14;
+      --surface:   #14141e;
+      --surface-2: #1c1c2a;
+      --border:    #28283c;
+      --text:      #e8e8f4;
+      --muted:     #7a7a9a;
+      --sans:      'Inter', system-ui, sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 100px 32px 80px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 100% 60% at 20% 0%, #3b0764 0%, transparent 55%),
+        radial-gradient(ellipse 80% 50% at 80% 0%, #1e3a5f 0%, transparent 55%),
+        linear-gradient(180deg, #0a0a12 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(124, 58, 237, .15);
+      border: 1px solid rgba(124, 58, 237, .4);
+      border-radius: 6px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a78bfa;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      font-family: var(--mono);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      color: #ffffff;
+      letter-spacing: -.03em;
+      position: relative;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #4ade80 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .hero-sub strong {
+      color: #c4b5fd;
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .hero-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .hero-stat span {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── GRID ──────────────────────────────────────────────────── */
+    .grid-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── CARD ──────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+    }
+
+    .card-top {
+      height: 6px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 28px 28px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .1em;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 10px;
+    }
+
+    .card-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      border-radius: 4px;
+      padding: 3px 10px;
+    }
+
+    .card-name {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .card-area {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .card-desc {
+      font-size: .92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 24px;
+    }
+
+    .card-concepts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .concept-chip {
+      font-size: 11px;
+      font-weight: 500;
+      font-family: var(--mono);
+      border-radius: 4px;
+      padding: 3px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .card-footer {
+      padding: 0 28px 24px;
+    }
+
+    .card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+      font-family: var(--sans);
+    }
+
+    .card-btn:hover {
+      opacity: .9;
+      transform: scale(.98);
+    }
+
+    .card-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── COLOUR THEMES PER CARD ────────────────────────────────── */
+    /* Durkheim — violet */
+    .theme-violet .card-top      { background: #7c6af7; }
+    .theme-violet:hover           { border-color: rgba(124, 106, 247, .4); box-shadow: 0 20px 60px rgba(124, 106, 247, .12); }
+    .theme-violet .card-name      { color: #c4b5fd; }
+    .theme-violet .card-tag       { background: rgba(124,106,247,.15); color: #a78bfa; border: 1px solid rgba(124,106,247,.3); }
+    .theme-violet .card-btn       { background: linear-gradient(135deg, #7c6af7 0%, #a78bfa 100%); color: #fff; }
+    .theme-violet .concept-chip   { border-color: rgba(124,106,247,.25); color: #a78bfa; }
+
+    /* Marx — red */
+    .theme-red .card-top         { background: #f87171; }
+    .theme-red:hover              { border-color: rgba(248, 113, 113, .4); box-shadow: 0 20px 60px rgba(248, 113, 113, .12); }
+    .theme-red .card-name         { color: #fca5a5; }
+    .theme-red .card-tag          { background: rgba(248,113,113,.15); color: #f87171; border: 1px solid rgba(248,113,113,.3); }
+    .theme-red .card-btn          { background: linear-gradient(135deg, #ef4444 0%, #f87171 100%); color: #fff; }
+    .theme-red .concept-chip      { border-color: rgba(248,113,113,.25); color: #f87171; }
+
+    /* Bourdieu — lavender */
+    .theme-lavender .card-top    { background: #a78bfa; }
+    .theme-lavender:hover         { border-color: rgba(167, 139, 250, .4); box-shadow: 0 20px 60px rgba(167, 139, 250, .12); }
+    .theme-lavender .card-name    { color: #c4b5fd; }
+    .theme-lavender .card-tag     { background: rgba(167,139,250,.15); color: #c4b5fd; border: 1px solid rgba(167,139,250,.3); }
+    .theme-lavender .card-btn     { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); color: #fff; }
+    .theme-lavender .concept-chip { border-color: rgba(167,139,250,.25); color: #c4b5fd; }
+
+    /* Weber — amber */
+    .theme-amber .card-top       { background: #f59e0b; }
+    .theme-amber:hover            { border-color: rgba(245, 158, 11, .4); box-shadow: 0 20px 60px rgba(245, 158, 11, .12); }
+    .theme-amber .card-name       { color: #fcd34d; }
+    .theme-amber .card-tag        { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+    .theme-amber .card-btn        { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); color: #fff; }
+    .theme-amber .concept-chip    { border-color: rgba(245,158,11,.25); color: #fbbf24; }
+
+    /* Ghiraldelli — emerald */
+    .theme-emerald .card-top     { background: #10b981; }
+    .theme-emerald:hover          { border-color: rgba(16, 185, 129, .4); box-shadow: 0 20px 60px rgba(16, 185, 129, .12); }
+    .theme-emerald .card-name     { color: #6ee7b7; }
+    .theme-emerald .card-tag      { background: rgba(16,185,129,.15); color: #34d399; border: 1px solid rgba(16,185,129,.3); }
+    .theme-emerald .card-btn      { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #fff; }
+    .theme-emerald .concept-chip  { border-color: rgba(16,185,129,.25); color: #34d399; }
+
+    /* Frankfurt — orange */
+    .theme-orange .card-top      { background: #fb923c; }
+    .theme-orange:hover           { border-color: rgba(251, 146, 60, .4); box-shadow: 0 20px 60px rgba(251, 146, 60, .12); }
+    .theme-orange .card-name      { color: #fdba74; }
+    .theme-orange .card-tag       { background: rgba(251,146,60,.15); color: #fb923c; border: 1px solid rgba(251,146,60,.3); }
+    .theme-orange .card-btn       { background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%); color: #fff; }
+    .theme-orange .concept-chip   { border-color: rgba(251,146,60,.25); color: #fdba74; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    footer a { color: #7c6af7; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero { padding: 64px 20px 56px; }
+      .grid-section { padding: 48px 20px 64px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">Fábrica de Conhecimento Sociológico · Sociologia2026.1</div>
+    <h1>A IA tem <span class="gradient-text">Classe Social?</span></h1>
+    <p class="hero-sub">
+      Uma série de aulas que convoca os grandes clássicos da sociologia e filosofia para analisar
+      a inteligência artificial. <strong>Durkheim, Marx, Bourdieu, Weber, Ghiraldelli e a Escola de Frankfurt</strong>
+      como lentes críticas para entender poder, desigualdade e dominação na era dos algoritmos.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span>6</span> aulas</div>
+      <div class="hero-stat"><span>~100 min</span> cada</div>
+      <div class="hero-stat"><span>6</span> teóricos</div>
+      <div class="hero-stat"><span>Design</span> dark</div>
+    </div>
+  </header>
+
+  <!-- CARDS GRID -->
+  <main class="grid-section">
+    <p class="section-label">// selecione um teórico para começar</p>
+
+    <div class="cards-grid">
+
+      <!-- 002 · Durkheim -->
+      <div class="card theme-violet">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 02</span>
+            <span class="card-tag">@durkheim</span>
+          </div>
+          <h2 class="card-name">Durkheim</h2>
+          <p class="card-area">Sociologia Clássica · Positivismo</p>
+          <p class="card-desc">
+            Fato social, anomia digital e solidariedade nas bolhas algorítmicas.
+            Como os algoritmos criam coerção coletiva, fragmentam o tecido social e
+            geram nova efervescência coletiva nas redes.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">fato social</span>
+            <span class="concept-chip">anomia digital</span>
+            <span class="concept-chip">solidariedade</span>
+            <span class="concept-chip">bolhas</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/002/aula-durkheim-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 003 · Marx -->
+      <div class="card theme-red">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 03</span>
+            <span class="card-tag">@marx</span>
+          </div>
+          <h2 class="card-name">Marx</h2>
+          <p class="card-area">Materialismo Histórico · Crítica ao Capital</p>
+          <p class="card-desc">
+            Mais-valia dos dados, alienação digital e luta de classes no capitalismo
+            de plataformas. Quem controla os meios de produção algorítmica controla
+            o mundo digital.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">mais-valia</span>
+            <span class="concept-chip">alienação</span>
+            <span class="concept-chip">plataformas</span>
+            <span class="concept-chip">classes</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/003/aula-marx-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 004 · Bourdieu -->
+      <div class="card theme-lavender">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 04</span>
+            <span class="card-tag">@bourdieu</span>
+          </div>
+          <h2 class="card-name">Bourdieu</h2>
+          <p class="card-area">Sociologia Crítica · Campo e Habitus</p>
+          <p class="card-desc">
+            Habitus digital, capital algorítmico e dominação simbólica nas plataformas.
+            A distinção digital reproduz hierarquias e a violência simbólica dos
+            sistemas de IA naturaliza desigualdades.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">habitus</span>
+            <span class="concept-chip">capital</span>
+            <span class="concept-chip">distinção</span>
+            <span class="concept-chip">campo</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/004/aula-bourdieu-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 005 · Weber -->
+      <div class="card theme-amber">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 05</span>
+            <span class="card-tag">@weber</span>
+          </div>
+          <h2 class="card-name">Weber</h2>
+          <p class="card-area">Sociologia Compreensiva · Dominação</p>
+          <p class="card-desc">
+            A gaiola de ferro algorítmica como nova dominação racional-legal. A ética
+            do Vale do Silício como nova ética protestante e o desencantamento do
+            mundo pela inteligência artificial.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">gaiola de ferro</span>
+            <span class="concept-chip">burocracia</span>
+            <span class="concept-chip">racionalização</span>
+            <span class="concept-chip">dominação</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/005/aula-weber-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 006 · Ghiraldelli -->
+      <div class="card theme-emerald">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 06</span>
+            <span class="card-tag">@ghiraldelli</span>
+          </div>
+          <h2 class="card-name">Ghiraldelli</h2>
+          <p class="card-area">Filosofia da Educação · Pragmatismo</p>
+          <p class="card-desc">
+            Pragmatismo, narrativa do poder e educação democrática contra o
+            determinismo técnico. Dewey e Rorty como ferramentas para pensar
+            a IA além do determinismo algorítmico.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">pragmatismo</span>
+            <span class="concept-chip">Dewey</span>
+            <span class="concept-chip">Rorty</span>
+            <span class="concept-chip">narrativa</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/006/aula-ghiraldelli-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 007 · Escola de Frankfurt -->
+      <div class="card theme-orange">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-num">AULA 07</span>
+            <span class="card-tag">@frankfurt</span>
+          </div>
+          <h2 class="card-name">Escola de Frankfurt</h2>
+          <p class="card-area">Teoria Crítica · Filosofia Social</p>
+          <p class="card-desc">
+            Adorno, Horkheimer, Marcuse e Benjamin diante dos algoritmos.
+            Indústria cultural algorítmica, razão instrumental, homem unidimensional
+            digital e a dialética do esclarecimento na era da IA.
+          </p>
+          <div class="card-concepts">
+            <span class="concept-chip">Adorno</span>
+            <span class="concept-chip">Marcuse</span>
+            <span class="concept-chip">indústria cultural</span>
+            <span class="concept-chip">Benjamin</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="tickets/007/aula-frankfurt-ia-classe.html" class="card-btn">
+            Acessar aula
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Fábrica de Conhecimento Sociológico · <a href="#">Sociologia2026.1</a> · 6 aulas · A IA tem Classe Social?</p>
+  </footer>
+
+</body>
+</html>
