@@ -1,9 +1,9 @@
 name: fabrica-de-conhecimento-sociologico
 version: 1.0.0
 description: >
-  Squad de agentes sociologicos com Weber, Marx, Durkheim, Bourdieu e
-  Ghiraldelli para criar aulas criativas e extrair o maximo dos teoricos
-  para entender a sociedade de plataformas
+  Squad de agentes sociologicos com Weber, Marx, Durkheim, Bourdieu,
+  Ghiraldelli e a Escola de Frankfurt para criar aulas criativas e extrair
+  o maximo dos teoricos para entender a sociedade de plataformas
 author: Sergio Farias
 license: MIT
 slashPrefix: fabrica-soc
@@ -20,6 +20,7 @@ components:
     - durkheim.md
     - bourdieu.md
     - ghiraldelli.md
+    - frankfurt.md
   tasks:
     - example-agent-task.md
     - criar-aula-ia-classe.md

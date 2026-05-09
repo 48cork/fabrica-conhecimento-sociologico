@@ -1,11 +1,11 @@
 ---
 task: Criar Aula — A IA tem Classe Social?
-responsavel: "@weber | @marx | @durkheim | @bourdieu | @ghiraldelli"
+responsavel: "@weber | @marx | @durkheim | @bourdieu | @ghiraldelli | @frankfurt"
 responsavel_type: agent
 atomic_layer: task
 status: active
 Entrada: |
-  - teorico: Nome do teórico que executará a task (Weber | Marx | Durkheim | Bourdieu | Ghiraldelli)
+  - teorico: Nome do teórico que executará a task (Weber | Marx | Durkheim | Bourdieu | Ghiraldelli | Frankfurt)
   - publico: Público-alvo da aula (graduação | pós | extensão)
   - enfase: Aspecto a aprofundar (opcional — ver seção de conceitos por agente)
 Saida: |
@@ -41,6 +41,7 @@ desigualdades de classe.
 @durkheim *criar-aula-ia-classe --enfase exclusao-digital
 @bourdieu *criar-aula-ia-classe --publico pos
 @ghiraldelli *criar-aula-ia-classe --enfase determinismo-tecnico
+@frankfurt *criar-aula-ia-classe --enfase industria-cultural-algoritmica
 ```
 
 ## Pergunta Central
@@ -83,6 +84,13 @@ do squad oferece um ângulo distinto para revelar essas dinâmicas.
 - **Campo tecnológico**: disputa de poder entre BigTechs, Estado e usuários
 - Algoritmos que reconhecem e privilegiam o **gosto de classe dominante** nos dados
 - A IA como reprodutora da **violência simbólica** disfarçada de objetividade técnica
+
+### @frankfurt — Indústria Cultural Algorítmica e Razão Instrumental
+- **Indústria cultural algorítmica**: o algoritmo como substituto da indústria fonográfica, cinematográfica e televisiva de Adorno e Horkheimer — agora personalizado e invisível
+- **Razão instrumental vs. razão emancipatória**: a IA otimiza meios sem questionar fins — a quem serve essa eficiência?
+- **O homem unidimensional digital**: Marcuse via TikTok, filtros e câmaras de eco que eliminam a negação crítica
+- **Aura e reprodutibilidade técnica da IA**: Benjamin e a geração de imagens, textos e músicas por IA — o que se perde e o que se democratiza
+- **Dialética do Esclarecimento aplicada à IA**: a promessa de libertação que entrega vigilância, padronização e consentimento administrado
 
 ### @ghiraldelli — Crítica Filosófica ao Determinismo Técnico
 - O **mito da neutralidade técnica**: a IA não é apenas uma ferramenta
