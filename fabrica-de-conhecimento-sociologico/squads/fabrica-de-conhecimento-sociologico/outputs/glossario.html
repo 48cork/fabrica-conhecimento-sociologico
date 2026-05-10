@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossário — Conceitos Fundamentais · Fábrica de Conhecimento Sociológico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #0d0d14;
+      --surface:     #14141e;
+      --surface-2:   #1c1c2a;
+      --border:      #28283c;
+      --accent:      #38bdf8;
+      --teal:        #38bdf8;
+      --green:       #4ade80;
+      --amber:       #fbbf24;
+      --red:         #f87171;
+      --violet:      #a78bfa;
+      --violet-dark: #5b3fd4;
+      --pink:        #f472b6;
+      --orange:      #fb923c;
+      --text:        #e8e8f4;
+      --muted:       #7a7a9a;
+      --sans:        'Inter', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 32px 64px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 100% 60% at 20% 0%, #0c2a3b 0%, transparent 55%),
+        radial-gradient(ellipse 80% 50% at 80% 0%, #071e38 0%, transparent 55%),
+        linear-gradient(180deg, #080d14 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, .1);
+      border: 1px solid rgba(56, 189, 248, .35);
+      border-radius: 6px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      font-family: var(--mono);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 900px;
+      margin: 0 auto 16px;
+      color: #ffffff;
+      letter-spacing: -.02em;
+      position: relative;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s, border-color .2s;
+      position: relative;
+    }
+
+    .back-link:hover { color: var(--text); border-color: var(--teal); }
+
+    .back-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; stroke-width: 2;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── MAIN ──────────────────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 32px 100px;
+    }
+
+    /* ── CARD ──────────────────────────────────────────────────── */
+    .glossary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+
+    .card-header {
+      padding: 36px 40px 28px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(56,189,248,.06) 0%, transparent 60%);
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(56, 189, 248, .12);
+      border: 1px solid rgba(56, 189, 248, .3);
+      border-radius: 5px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      margin-bottom: 16px;
+    }
+
+    .card-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.02em;
+      margin-bottom: 10px;
+    }
+
+    .card-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 680px;
+    }
+
+    /* ── SECTIONS INSIDE CARD ──────────────────────────────────── */
+    .card-body {
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-bottom: 14px;
+    }
+
+    .section-title .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .section-text {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .section-text strong {
+      color: #fff;
+    }
+
+    /* ── DIVIDER ───────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PRO / CONTRA GRID ─────────────────────────────────────── */
+    .pro-contra {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .pro-contra { grid-template-columns: 1fr; }
+      .card-header, .card-body { padding: 24px; }
+    }
+
+    .pro-box, .contra-box {
+      background: var(--surface-2);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .pro-box { border: 1px solid rgba(74, 222, 128, .2); }
+    .contra-box { border: 1px solid rgba(248, 113, 113, .2); }
+
+    .box-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pro-box .box-label { color: var(--green); }
+    .contra-box .box-label { color: var(--red); }
+
+    .box-label .icon { font-size: 14px; }
+
+    ul.arg-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    ul.arg-list li {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+    }
+
+    ul.arg-list li::before {
+      content: '›';
+      color: var(--muted);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── THEORISTS GRID ────────────────────────────────────────── */
+    .theorists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .theorist-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+      transition: border-color .2s;
+    }
+
+    .theorist-chip:hover { border-color: var(--teal); }
+
+    .theorist-chip .name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .theorist-chip .connection {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── HIGHLIGHT BOX ─────────────────────────────────────────── */
+    .highlight-box {
+      background: rgba(56, 189, 248, .05);
+      border: 1px solid rgba(56, 189, 248, .2);
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+
+    .highlight-box p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .highlight-box p + p { margin-top: 12px; }
+
+    /* ── CONCEPTS ROW ──────────────────────────────────────────── */
+    .concept-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .concept-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">Fábrica de Conhecimento Sociológico · Referência</div>
+    <h1>Glossário — <span>Conceitos Fundamentais</span></h1>
+    <p class="hero-sub">Definições, debates e conexões teóricas para o estudo da sociologia do trabalho e das plataformas digitais.</p>
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Voltar para o índice
+    </a>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- CARD: GIG ECONOMY -->
+    <article class="glossary-card" id="gig-economy">
+
+      <div class="card-header">
+        <div class="card-tag">Economia · Trabalho · Plataformas</div>
+        <h2>Gig Economy</h2>
+        <p>Modelo econômico baseado em trabalhos temporários, flexíveis e sob demanda, impulsionado pelo capitalismo de plataforma e pela digitalização das relações de trabalho.</p>
+      </div>
+
+      <div class="card-body">
+
+        <!-- DEFINIÇÃO -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--teal);"></span>
+            Definição e Origem
+          </div>
+          <div class="section-text">
+            <p>A expressão <strong>Gig Economy</strong> se refere a um modelo econômico baseado em trabalhos temporários, flexíveis e sob demanda, em vez de empregos tradicionais de longo prazo. O termo <em>"gig"</em> vem do inglês e era usado originalmente para descrever apresentações rápidas de músicos, como um "show" ou "bico". Com o tempo, passou a designar qualquer trabalho pontual.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- COMO FUNCIONA -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--violet);"></span>
+            Como Funciona
+          </div>
+          <div class="section-text">
+            <p>Na Gig Economy, as pessoas trabalham por tarefa, projeto ou serviço específico. Em vez de serem contratadas como funcionários fixos de uma empresa, atuam frequentemente como <strong>autônomos, freelancers ou prestadores de serviço independentes</strong>. Esse modelo cresceu fortemente com o avanço das plataformas digitais.</p>
+            <div class="concept-row" style="margin-top: 16px;">
+              <span class="concept-chip">Uber / motoristas</span>
+              <span class="concept-chip">iFood / entregadores</span>
+              <span class="concept-chip">Fiverr / freelancers</span>
+              <span class="concept-chip">Upwork / projetos digitais</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- PRO E CONTRA -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--amber);"></span>
+            Argumentos em Debate
+          </div>
+          <div class="pro-contra">
+            <div class="pro-box">
+              <div class="box-label">
+                <span class="icon">✓</span> Argumentos favoráveis
+              </div>
+              <ul class="arg-list">
+                <li>Flexibilidade de horário e autonomia individual</li>
+                <li>Possibilidade de múltiplas fontes de renda simultâneas</li>
+                <li>Facilidade de entrada no mercado de trabalho</li>
+                <li>Independência em relação a um único empregador</li>
+              </ul>
+            </div>
+            <div class="contra-box">
+              <div class="box-label">
+                <span class="icon">✗</span> Argumentos críticos
+              </div>
+              <ul class="arg-list">
+                <li>Precarização do trabalho e ausência de direitos trabalhistas</li>
+                <li>Insegurança financeira e instabilidade de renda</li>
+                <li>Dependência algorítmica das plataformas digitais</li>
+                <li>Jornadas extensas para obtenção de renda mínima</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- CONTEXTO SOCIOLÓGICO -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--orange);"></span>
+            Contexto Sociológico e Histórico
+          </div>
+          <div class="highlight-box">
+            <p>Autores da sociologia do trabalho frequentemente relacionam a Gig Economy ao avanço do <strong>neoliberalismo</strong>, da digitalização e da <strong>uberização do trabalho</strong>. A Gig Economy também está ligada ao <strong>capitalismo de plataforma</strong>, no qual empresas digitais controlam mercados por meio de algoritmos, avaliações e intermediação tecnológica.</p>
+            <p>Em termos históricos, muitos pesquisadores enxergam a Gig Economy como uma característica central do <strong>capitalismo contemporâneo pós-fordista</strong>. Por isso, é hoje um dos temas centrais nos debates sobre o futuro do trabalho, inteligência artificial, automação e desigualdade social.</p>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- CONEXÃO COM O SQUAD -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--pink);"></span>
+            Conexão com os Teóricos do Squad
+          </div>
+          <div class="theorists-grid">
+            <div class="theorist-chip">
+              <div class="name">Marx</div>
+              <div class="connection">Mais-valia algorítmica e trabalho alienado nas plataformas</div>
+            </div>
+            <div class="theorist-chip">
+              <div class="name">Bourdieu</div>
+              <div class="connection">Capital cultural e habitus na disputa por posições no mercado gig</div>
+            </div>
+            <div class="theorist-chip">
+              <div class="name">Weber</div>
+              <div class="connection">Racionalização, burocracia algorítmica e dominação legal-racional digital</div>
+            </div>
+            <div class="theorist-chip">
+              <div class="name">Durkheim</div>
+              <div class="connection">Anomia do trabalho precário e enfraquecimento da solidariedade orgânica</div>
+            </div>
+            <div class="theorist-chip">
+              <div class="name">Frankfurt</div>
+              <div class="connection">Indústria cultural, razão instrumental e o trabalhador unidimensional digital</div>
+            </div>
+            <div class="theorist-chip">
+              <div class="name">Ghiraldelli</div>
+              <div class="connection">Filosofia do sujeito e crise da identidade no trabalho fragmentado</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- CONCEITOS RELACIONADOS -->
+        <section>
+          <div class="section-title">
+            <span class="dot" style="background: var(--green);"></span>
+            Conceitos Relacionados
+          </div>
+          <div class="concept-row">
+            <span class="concept-chip">Capitalismo de Plataforma</span>
+            <span class="concept-chip">Uberização do Trabalho</span>
+            <span class="concept-chip">Pós-Fordismo</span>
+            <span class="concept-chip">Neoliberalismo</span>
+            <span class="concept-chip">Algoritmos de Controle</span>
+            <span class="concept-chip">Trabalho Precário</span>
+            <span class="concept-chip">Automação</span>
+            <span class="concept-chip">Freelancer</span>
+            <span class="concept-chip">Desigualdade Digital</span>
+          </div>
+        </section>
+
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>Fábrica de Conhecimento Sociológico · <a href="index.html">← Voltar ao índice</a> · Glossário: Conceitos Fundamentais</p>
+  </footer>
+
+</body>
+</html>
