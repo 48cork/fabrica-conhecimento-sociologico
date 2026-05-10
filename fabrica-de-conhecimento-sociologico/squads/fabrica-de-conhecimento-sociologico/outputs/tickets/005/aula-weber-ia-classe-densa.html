@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A IA tem Classe Social? — Weber (v2)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #0d0d0f;
+      --surface:     #141418;
+      --surface-2:   #1c1c22;
+      --border:      #28283a;
+      --accent:      #f59e0b;
+      --accent-dim:  #8a5a06;
+      --steel:       #60a5fa;
+      --steel-dim:   #1e3a5f;
+      --green:       #4ade80;
+      --red:         #f87171;
+      --orange:      #fb923c;
+      --teal:        #2dd4bf;
+      --text:        #e8e8f0;
+      --muted:       #7a7a96;
+      --sans:        'Inter', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 32px 64px;
+      text-align: center;
+      background: radial-gradient(ellipse 90% 70% at 50% -10%, #3a2a0640 0%, transparent 70%),
+                  linear-gradient(180deg, #110d00 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #1c1600;
+      border: 1px solid var(--accent-dim);
+      border-radius: 6px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      font-family: var(--mono);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 900px;
+      margin: 0 auto 16px;
+      color: #ffffff;
+      letter-spacing: -.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #f59e0b 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .meta-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ── TOC ──────────────────────────────────────────────────── */
+    .toc {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(13, 13, 15, .92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      overflow-x: auto;
+    }
+
+    .toc-inner {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .toc a {
+      display: block;
+      padding: 15px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+      letter-spacing: .02em;
+    }
+
+    .toc a:hover { color: #fff; border-color: var(--accent); }
+
+    /* ── LAYOUT ───────────────────────────────────────────────── */
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px 100px;
+    }
+
+    /* ── SECTIONS ─────────────────────────────────────────────── */
+    .section { margin-top: 80px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-dim), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+    }
+
+    .duration {
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      background: #1c1600;
+      border: 1px solid var(--accent-dim);
+      border-radius: 6px;
+      padding: 4px 14px;
+      white-space: nowrap;
+      font-family: var(--mono);
+    }
+
+    /* ── BLOCKQUOTE ───────────────────────────────────────────── */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px;
+      margin: 24px 0;
+      background: #140f00;
+      border-radius: 0 10px 10px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text);
+      font-style: normal;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ── PERGUNTA ABERTURA ────────────────────────────────────── */
+    .question-block {
+      border-left: 4px solid var(--steel);
+      padding: 20px 24px;
+      margin: 16px 0;
+      background: #0e1a28;
+      border-radius: 0 10px 10px 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #c8deff;
+    }
+
+    /* ── PERGUNTA CENTRAL ─────────────────────────────────────── */
+    .central-question {
+      text-align: center;
+      padding: 48px 32px;
+      background: linear-gradient(135deg, #150f00 0%, #0d1420 100%);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 0 0 16px 16px;
+      margin: 32px 0;
+    }
+
+    .central-question .q-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 16px;
+    }
+
+    .central-question h3 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+
+    .central-question p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── CALLOUTS ─────────────────────────────────────────────── */
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #161000;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f0e0b0;
+    }
+
+    .callout .callout-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 8px;
+    }
+
+    .callout strong { color: #fff; }
+
+    .callout-steel {
+      border-left: 4px solid var(--steel);
+      background: #0a1424;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #c0d8f8;
+    }
+
+    .callout-steel strong { color: var(--steel); }
+
+    .callout-red {
+      border-left: 4px solid var(--red);
+      background: #1c1010;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #f5d0d0;
+    }
+
+    .callout-red strong { color: var(--red); }
+
+    .callout-green {
+      border-left: 4px solid var(--green);
+      background: #0a1c0a;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #c8f0c8;
+    }
+
+    .callout-green strong { color: var(--green); }
+
+    .highlight {
+      border-left: 4px solid var(--teal);
+      background: #071a18;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .highlight strong { color: var(--teal); }
+
+    /* ── CONCEPT CARDS ────────────────────────────────────────── */
+    .concept {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+    }
+
+    .concept-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .concept h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -.01em;
+    }
+
+    /* ── EXAMPLE GRID ─────────────────────────────────────────── */
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 700px) { .example-grid { grid-template-columns: 1fr; } }
+
+    .example-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+
+    .example-card .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-bottom: 10px;
+    }
+
+    .example-card p { font-size: 1rem; color: var(--text); margin-bottom: 0; }
+
+    /* ── TABLES ───────────────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #130e00; }
+
+    th {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+    }
+
+    td {
+      padding: 14px 20px;
+      font-size: 1rem;
+      border-bottom: 1px solid #1c1c22;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: #120e00; }
+    td:first-child { color: var(--accent); font-weight: 600; }
+
+    /* ── CASO CARDS ───────────────────────────────────────────── */
+    .caso {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+
+    .caso .caso-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--steel);
+      font-family: var(--mono);
+      margin-bottom: 12px;
+    }
+
+    .caso h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .caso .leitura {
+      border-left: 4px solid var(--accent);
+      background: var(--surface-2);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: .97rem;
+      color: #d0c0a0;
+    }
+
+    .caso .leitura .l-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 8px;
+    }
+
+    /* ── ACTIVITY CARDS ───────────────────────────────────────── */
+    .activity {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    .activity.amber  { border-left: 5px solid var(--accent); }
+    .activity.steel  { border-left: 5px solid var(--steel); }
+    .activity.green  { border-left: 5px solid var(--green); }
+    .activity.red    { border-left: 5px solid var(--red); }
+    .activity.orange { border-left: 5px solid var(--orange); }
+
+    .activity-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .activity-icon.amber  { background: #1e1500; }
+    .activity-icon.steel  { background: #0a1424; }
+    .activity-icon.green  { background: #0a1c0a; }
+    .activity-icon.red    { background: #200a0a; }
+    .activity-icon.orange { background: #1c0e00; }
+
+    .activity h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; }
+
+    .activity .time {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── DEBATE CARDS ─────────────────────────────────────────── */
+    .debate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .debate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 22px 24px;
+    }
+
+    .debate-card .vs {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 12px;
+    }
+
+    .debate-card p { font-size: .98rem; color: #c8c8d8; line-height: 1.7; margin-bottom: 0; }
+
+    /* ── TIMELINE ─────────────────────────────────────────────── */
+    .timeline { margin: 24px 0; }
+
+    .tl-item {
+      display: flex;
+      gap: 20px;
+      padding: 12px 0 12px 24px;
+      border-left: 2px solid var(--border);
+      position: relative;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .tl-year { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); min-width: 48px; }
+    .tl-text { font-size: 1rem; color: var(--text); font-weight: 500; }
+
+    /* ── REFERENCES ───────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+
+    .ref-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .97rem;
+      color: #b0b0c8;
+      line-height: 1.65;
+    }
+
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-list strong { color: var(--text); }
+
+    .ref-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin-left: 8px;
+      font-family: var(--mono);
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    /* ── CLOSING ──────────────────────────────────────────────── */
+    .closing {
+      margin-top: 80px;
+      text-align: center;
+      padding: 56px 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 0 0 16px 16px;
+    }
+
+    .closing-quote {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #e0d8c8;
+      max-width: 720px;
+      margin: 0 auto 12px;
+      line-height: 1.65;
+    }
+
+    .closing-attr { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-bottom: 32px; }
+    .closing-footer { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+    /* ── DIVIDER ──────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* ── PROSE ────────────────────────────────────────────────── */
+    p { margin-bottom: 16px; }
+    ul, ol { padding-left: 28px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; font-size: 1rem; line-height: 1.7; }
+    h3 { font-size: 1.2rem; font-weight: 700; margin: 28px 0 14px; color: #fff; }
+    strong { color: #e8e8ff; }
+    code { font-family: var(--mono); font-size: .9em; color: var(--accent); background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
+
+    /* ── DENUNCIA CARDS ───────────────────────────────────────── */
+    .denuncia-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 960px) { .denuncia-grid { grid-template-columns: 1fr; } }
+
+    .denuncia-card {
+      border-radius: 14px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .denuncia-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    .denuncia-amber { background: #120e00; border: 1px solid #3a2a06; }
+    .denuncia-amber::before { background: var(--accent); }
+    .denuncia-steel  { background: #080e1c; border: 1px solid #102040; }
+    .denuncia-steel::before  { background: var(--steel); }
+    .denuncia-red   { background: #140808; border: 1px solid #3a1010; }
+    .denuncia-red::before   { background: var(--red); }
+
+    .denuncia-origin {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .denuncia-title {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      letter-spacing: -.02em;
+    }
+
+    .denuncia-stat-amber {
+      font-size: 4.2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+      font-family: var(--mono);
+      letter-spacing: -.04em;
+    }
+
+    .denuncia-stat-steel {
+      font-size: 4.2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--steel);
+      font-family: var(--mono);
+      letter-spacing: -.04em;
+    }
+
+    .denuncia-stat-red {
+      font-size: 4.2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--red);
+      font-family: var(--mono);
+      letter-spacing: -.04em;
+    }
+
+    .denuncia-stat-label {
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .denuncia-stat-label-amber { color: #e8d090; }
+    .denuncia-stat-label-steel { color: #a0c4e8; }
+    .denuncia-stat-label-red   { color: #e8a0a0; }
+
+    .denuncia-desc {
+      font-size: .92rem;
+      color: #a0a0b4;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .denuncia-verdict {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: auto;
+    }
+
+    /* ── DOMINAÇÃO GRID ───────────────────────────────────────── */
+    .dom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 800px) { .dom-grid { grid-template-columns: 1fr; } }
+
+    .dom-card {
+      border-radius: 12px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dom-trad  { background: #120e06; border: 1px solid #3a2a10; }
+    .dom-caris { background: #0a120c; border: 1px solid #1a3a20; }
+    .dom-legal { background: #080e1c; border: 1px solid #102040; }
+
+    .dom-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .dom-label-trad  { color: var(--accent); }
+    .dom-label-caris { color: var(--green); }
+    .dom-label-legal { color: var(--steel); }
+
+    .dom-title { font-size: 1.15rem; font-weight: 800; color: #fff; line-height: 1.2; }
+    .dom-desc { font-size: .9rem; color: #9090b0; line-height: 1.6; }
+
+    .dom-example {
+      font-size: .85rem;
+      font-family: var(--mono);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .dom-example-trad  { background: #1e1808; color: #d4a830; border: 1px solid #3a2e10; }
+    .dom-example-caris { background: #0e1a0e; color: #60d080; border: 1px solid #1a3a20; }
+    .dom-example-legal { background: #0a1020; color: #60a8d8; border: 1px solid #162840; }
+
+    /* ── JAULA GRID ───────────────────────────────────────────── */
+    .jaula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 700px) { .jaula-grid { grid-template-columns: 1fr; } }
+
+    .jaula-card {
+      border-radius: 12px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .jaula-card::after {
+      content: attr(data-number);
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      color: rgba(255,255,255,.04);
+      line-height: 1;
+    }
+
+    .jaula-1 { background: #160c00; border: 1px solid var(--accent-dim); }
+    .jaula-2 { background: #101820; border: 1px solid var(--steel-dim); }
+    .jaula-3 { background: #0e1c0c; border: 1px solid #1e3a1a; }
+    .jaula-4 { background: #1c0c0c; border: 1px solid #4a1a1a; }
+
+    .jaula-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .jaula-label-1 { color: var(--accent); }
+    .jaula-label-2 { color: var(--steel); }
+    .jaula-label-3 { color: var(--green); }
+    .jaula-label-4 { color: var(--red); }
+
+    .jaula-title { font-size: 1.1rem; font-weight: 800; color: #fff; }
+    .jaula-classic { font-size: .88rem; color: #a0a0b8; line-height: 1.55; }
+    .jaula-digital { font-size: .88rem; color: #c8c0a0; line-height: 1.55; font-style: italic; margin-top: 4px; }
+
+    /* ── ENCANTAMENTO GRID ────────────────────────────────────── */
+    .enc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 800px) { .enc-grid { grid-template-columns: 1fr; } }
+
+    .enc-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 12px 12px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    .enc-card.steel-top { border-top-color: var(--steel); }
+    .enc-card.red-top   { border-top-color: var(--red); }
+
+    .enc-icon { font-size: 2rem; margin-bottom: 10px; }
+
+    .enc-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .enc-card p { font-size: .88rem; color: var(--muted); margin-bottom: 0; line-height: 1.55; }
+
+    /* ── ETICA GRID ───────────────────────────────────────────── */
+    .etica-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 28px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) { .etica-compare { grid-template-columns: 1fr; } }
+
+    .etica-col {
+      padding: 28px 26px;
+    }
+
+    .etica-col:first-child {
+      background: #120e00;
+      border-right: 1px solid var(--border);
+    }
+
+    .etica-col:last-child {
+      background: #0a0e18;
+    }
+
+    .etica-col-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .etica-col:first-child .etica-col-label { color: var(--accent); }
+    .etica-col:last-child  .etica-col-label { color: var(--steel); }
+
+    .etica-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .etica-item:last-child { margin-bottom: 0; }
+
+    .etica-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .etica-dot-amber { background: var(--accent); }
+    .etica-dot-steel { background: var(--steel); }
+
+    .etica-text { font-size: .95rem; color: #c8c8d8; line-height: 1.6; }
+
+    /* ── STAT ROW ─────────────────────────────────────────────── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr; } }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .stat-card .stat-num {
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .stat-label { font-size: .9rem; color: var(--muted); font-weight: 500; line-height: 1.5; }
+
+    .stat-amber .stat-num { color: var(--accent); }
+    .stat-steel .stat-num { color: var(--steel); }
+    .stat-red   .stat-num { color: var(--red); }
+    .stat-green .stat-num { color: var(--green); }
+    .stat-teal  .stat-num { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-badge">Sociologia · Aula 05 · @weber · *criar-aula-ia-classe</div>
+  <h1>A IA tem<br><span>Classe Social?</span></h1>
+  <p class="hero-sub">Weber e a dominação algorítmica — a gaiola de ferro algorítmica como nova forma de dominação racional-legal, o burocrata sem rosto, a ética do Vale do Silício como nova ética protestante e o desencantamento do mundo pela IA</p>
+  <div class="meta-row">
+    <span class="meta-pill">100 minutos</span>
+    <span class="meta-pill">Graduação · Pós · Extensão</span>
+    <span class="meta-pill">Sociologia · Trabalho · Tecnologia</span>
+    <span class="meta-pill">2026-05-09</span>
+  </div>
+</div>
+
+<!-- ── TOC ────────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Navegação">
+  <div class="toc-inner">
+    <a href="#s1">1. Abertura</a>
+    <a href="#s2">2. Weber</a>
+    <a href="#s3">3. A Pergunta</a>
+    <a href="#s4">4. Conceitos</a>
+    <a href="#s5">5. Casos</a>
+    <a href="#s6">6. Debate</a>
+    <a href="#s7">7. Atividades</a>
+    <a href="#s8">8. Referências</a>
+  </div>
+</nav>
+
+<!-- ── CONTEÚDO ───────────────────────────────────────────────────── -->
+<div class="wrapper">
+
+  <!-- ETAPA 1 — ABERTURA -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="step-num">01</div>
+      <h2>Abertura Provocativa</h2>
+      <span class="duration">10 min</span>
+    </div>
+
+    <div class="denuncia-grid">
+
+      <!-- Card 1 — Gig economy brasileira -->
+      <div class="denuncia-card denuncia-amber">
+        <div class="denuncia-origin">Brasil · Gig Economy · 2024</div>
+        <div class="denuncia-title">Nenhum<br>Chefe.<br>Nenhum<br>Direito.</div>
+        <div class="denuncia-stat-amber">1,5M</div>
+        <div class="denuncia-stat-label denuncia-stat-label-amber">de trabalhadores de aplicativo no Brasil obedecem a um algoritmo — não a um empregador. Nenhum deles pode questionar uma punição diretamente. Nenhum pode apelar de um bloqueio de conta.</div>
+        <div class="denuncia-desc">O algoritmo do iFood, Uber e Rappi define rotas, preços, bloqueios, bonificações e suspensões. Quando a conta é desativada, não há RH para ligar, não há chefe com nome, não há contrato de trabalho CLT para invocar. Há apenas uma mensagem automática.</div>
+        <div class="denuncia-verdict">Dominação racional-legal sem rosto · Weber, 1920</div>
+      </div>
+
+      <!-- Card 2 — Vale do Silício -->
+      <div class="denuncia-card denuncia-steel">
+        <div class="denuncia-origin">Vale do Silício · Narrativa Meritoccrática · 2023</div>
+        <div class="denuncia-title">Move Fast.<br>Break Things.<br>Deserve It.</div>
+        <div class="denuncia-stat-steel">$3,4T</div>
+        <div class="denuncia-stat-label denuncia-stat-label-steel">somam as fortunas dos 10 bilionários de tecnologia dos EUA. A ideologia que legitima essa concentração: quem trabalha mais, inova mais e arrisca mais <strong>merece mais</strong>. O resto "não teve vocação".</div>
+        <div class="denuncia-desc">OpenAI, Google, Meta, Apple: as maiores empresas de IA do mundo operam a partir de uma ética que Max Weber reconheceria imediatamente — o trabalho árduo como virtude moral, o sucesso como sinal de eleição, o fracasso como falha pessoal. É a Ética Protestante em hoodie.</div>
+        <div class="denuncia-verdict">Nova Ética Protestante Digital · Weber, 1904 → 2024</div>
+      </div>
+
+      <!-- Card 3 — Desencantamento -->
+      <div class="denuncia-card denuncia-red">
+        <div class="denuncia-origin">Global · IA e Sentido do Trabalho · 2024</div>
+        <div class="denuncia-title">O Mundo<br>Explicado.<br>O Mundo<br>Esvaziado.</div>
+        <div class="denuncia-stat-red">62%</div>
+        <div class="denuncia-stat-label denuncia-stat-label-red">dos trabalhadores em setores afetados por automação por IA relatam perda de sentido e agência no trabalho — mesmo quando seu emprego foi mantido. A IA não substituiu: <strong>desencantou</strong>.</div>
+        <div class="denuncia-desc">O médico que segue o diagnóstico da IA sem mais questionar. O juiz que confia no score de risco. O professor que aceita o desempenho previsto pelo modelo. Cada vez que o algoritmo decide, um pouco do julgamento humano — e do sentido — é subtraído. Weber chamou isso de desencantamento do mundo. Só não imaginou que seria tão rápido.</div>
+        <div class="denuncia-verdict">Entzauberung algorítmico · Weber, 1919 → 2024</div>
+      </div>
+
+    </div>
+
+    <div class="question-block">"Quem manda no entregador quando não há chefe na rua — e o que essa pergunta nos diz sobre o poder?"</div>
+    <div class="question-block">"Se o algoritmo é 'apenas neutro', como explicamos que ele sempre pune os mesmos e sempre beneficia os mesmos?"</div>
+    <div class="question-block">"Você já tomou uma decisão importante de acordo com o que a IA recomendou — sem saber por quê ela recomendou aquilo?"</div>
+
+    <blockquote>
+      "Max Weber morreu em 1920 acreditando que a racionalidade burocrática criaria prisões sem carcereiros, dominação sem dominadores, obediência sem ordens visíveis. Não estava pessimista o suficiente. Estava cem anos adiantado."
+    </blockquote>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 2 — WEBER -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="step-num">02</div>
+      <h2>Quem é Weber?</h2>
+      <span class="duration">8 min</span>
+    </div>
+
+    <blockquote>
+      Nasci em 1864, em Erfurt, filho de um político liberal e de uma mulher profundamente religiosa. Desde criança aprendi que valores diferentes são irreconciliáveis — que o mundo não tem uma lógica única, e que entender a sociedade exige entender o <em>sentido</em> que as pessoas atribuem às suas ações.
+      <br><br>
+      Passei minha vida inteira tentando responder a uma pergunta que Marx e Durkheim respondiam de forma que eu achava insatisfatória: <strong>por que as pessoas obedecem?</strong> Marx dizia que obedecem porque são exploradas. Durkheim dizia que obedecem porque a sociedade as coage. Eu dizia que obedecem porque <em>acreditam</em> na legitimidade de quem manda.
+      <br><br>
+      Estudei a burocracia moderna e fiquei horrorizado com o que vi: a razão que prometia libertar o ser humano estava construindo uma gaiola. Não uma prisão com grades — uma prisão de eficiência. Calculável, previsível, impessoal. E por isso irresistível.
+      <br><br>
+      Estudei a Reforma Protestante e descobri que o capitalismo não emergiu apenas de condições econômicas — emergiu de uma <em>ética</em>, de uma maneira de dar sentido ao trabalho árduo como sinal de virtude. Quando essa ética se secularizou, o capitalismo não precisou mais de Deus. Precisou apenas de mérito.
+      <br><br>
+      Morri em 1920, de pneumonia, 56 anos, antes de ver o rádio se tornar mídia de massa. A Internet, os algoritmos, a IA — nunca imaginarei. Mas as perguntas que me obsedavam são precisamente as perguntas que a era das plataformas digitais exige que façamos.
+    </blockquote>
+
+    <h3>Linha do Tempo</h3>
+    <div class="timeline">
+      <div class="tl-item"><span class="tl-year">1864</span><span class="tl-text">Nasce em Erfurt, Turíngia, Alemanha</span></div>
+      <div class="tl-item"><span class="tl-year">1889</span><span class="tl-text">Doutorado em direito — tese sobre sociedades mercantis medievais</span></div>
+      <div class="tl-item"><span class="tl-year">1895</span><span class="tl-text">Crise nervosa — se afasta da universidade por 5 anos; período de intensa reflexão sobre sentido e valores</span></div>
+      <div class="tl-item"><span class="tl-year">1904</span><span class="tl-text"><em>A Ética Protestante e o Espírito do Capitalismo</em> — a vocação como motor da acumulação</span></div>
+      <div class="tl-item"><span class="tl-year">1905</span><span class="tl-text">Cunha o conceito de <em>Stahlhartes Gehäuse</em> — a gaiola de ferro: burocracia como prisão da razão</span></div>
+      <div class="tl-item"><span class="tl-year">1913</span><span class="tl-text">Teoria da ação social: racional-com-fins, racional-com-valores, afetiva, tradicional</span></div>
+      <div class="tl-item"><span class="tl-year">1919</span><span class="tl-text"><em>A Ciência como Vocação</em> — o desencantamento do mundo (<em>Entzauberung der Welt</em>)</span></div>
+      <div class="tl-item"><span class="tl-year">1920</span><span class="tl-text"><em>Economia e Sociedade</em> — dominação legítima, burocracia, tipos ideais (obra póstuma)</span></div>
+      <div class="tl-item"><span class="tl-year">1920</span><span class="tl-text">Morre em Munique. Legado: sociologia compreensiva, tipos ideais, teoria da dominação, diagnóstico da modernidade</span></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 3 — A PERGUNTA -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="step-num">03</div>
+      <h2>A Pergunta Central</h2>
+      <span class="duration">5 min</span>
+    </div>
+
+    <div class="central-question">
+      <div class="q-label">Pergunta-guia da aula</div>
+      <h3>"A IA tem classe social?"</h3>
+      <p>Reformulada nos termos de Weber: os algoritmos são formas de dominação legítima? Que tipo de dominação exercem — e como a racionalização técnica oculta as relações de classe que operam por trás da aparência de eficiência objetiva?</p>
+    </div>
+
+    <p>Para Weber, a dominação é legítima quando os dominados <em>acreditam</em> na autoridade de quem manda. Os algoritmos criaram uma forma inédita de dominação legítima: não se obedece a nenhuma pessoa — obedece-se ao <strong>sistema</strong>. E o sistema não tem rosto, não tem intenção, não tem preconceito declarável. É apenas eficiência calculável.</p>
+
+    <div class="callout">
+      <div class="callout-label">Tese central</div>
+      A IA não tem classe social no sentido de possuir consciência ou interesses próprios. Mas a <strong>racionalização técnica que ela encarna</strong> — impessoal, calculável, irrecorrível — é a forma mais perfeita de dominação racional-legal já construída. E ao ocultar as relações de classe por trás da neutralidade técnica, ela as perpetua com eficiência sem precedente. A gaiola de ferro weberiana ganhou código, velocidade e escala global.
+    </div>
+
+    <p>Weber nos ensinou que a modernidade traz um paradoxo cruel: quanto mais racional se torna o mundo, mais o ser humano perde a capacidade de dar sentido a ele. A IA é o ponto culminante desse processo — um sistema que explica tudo em termos de probabilidade e otimização, e ao fazê-lo, subtrai a pergunta que mais importa: <em>para quem?</em></p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 4 — CONCEITOS -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="step-num">04</div>
+      <h2>Conceitos em Ação</h2>
+      <span class="duration">30 min</span>
+    </div>
+
+    <!-- Conceito 1 — Gaiola de Ferro Algorítmica -->
+    <div class="concept">
+      <div class="concept-num">Conceito 01</div>
+      <h3>A Gaiola de Ferro Algorítmica — Dominação Sem Carcereiro</h3>
+
+      <blockquote>
+        "Ninguém sabe ainda quem habitará esta gaiola no futuro, ou se, ao final deste enorme desenvolvimento, haverá profetas inteiramente novos, ou um poderoso renascimento de antigas ideias e ideais, ou, se nenhum destes, uma petrificação mecanizada, adornada com uma espécie de auto-suficiência convulsiva. Pois dos últimos desta evolução cultural pode-se dizer verdadeiramente: especialistas sem espírito, sensualistas sem coração — estas nulidades imagina-se terem atingido um nível nunca antes alcançado pela humanidade."
+        <cite>— A Ética Protestante e o Espírito do Capitalismo, 1904</cite>
+      </blockquote>
+
+      <p>Weber chamou de <em>Stahlhartes Gehäuse</em> — literalmente "abrigo duro como aço", traduzido como "gaiola de ferro" — a estrutura burocrática racional que a modernidade criou para otimizar o mundo e que, ao otimizá-lo, aprisionou o ser humano dentro dela. A gaiola não tem grades visíveis: tem procedimentos, regulamentos, hierarquias formais, calculabilidade. É mais eficiente do que qualquer forma anterior de controle — e por isso irresistível.</p>
+
+      <div class="highlight">
+        <strong>A gaiola weberiana se construiu em tijolos de burocracia. A gaiola algorítmica se construiu em linhas de código.</strong> O princípio é idêntico — a execução é infinitamente mais veloz, mais abrangente e mais invisível.
+      </div>
+
+      <div class="jaula-grid">
+        <div class="jaula-card jaula-1" data-number="I">
+          <div class="jaula-label jaula-label-1">Parede I</div>
+          <div class="jaula-title">Impessoalidade</div>
+          <div class="jaula-classic">Na burocracia clássica: o funcionário aplica a regra, não seu julgamento pessoal. "Eu não decido — estou seguindo o procedimento."</div>
+          <div class="jaula-digital">No algoritmo: o sistema classifica sem reconhecer o sujeito. O entregador bloqueado não tem com quem falar. O candidato reprovado não sabe por quê.</div>
+        </div>
+        <div class="jaula-card jaula-2" data-number="II">
+          <div class="jaula-label jaula-label-2">Parede II</div>
+          <div class="jaula-title">Calculabilidade Total</div>
+          <div class="jaula-classic">Na burocracia clássica: tudo deve ser mensurável, quantificável, comparável. O que não se mede não se gerencia.</div>
+          <div class="jaula-digital">No algoritmo: score de crédito, rating de entregador, pontuação de risco, ranking de currículo. Toda vida humana vira número que pode ser comparado, ordenado, excluído.</div>
+        </div>
+        <div class="jaula-card jaula-3" data-number="III">
+          <div class="jaula-label jaula-label-3">Parede III</div>
+          <div class="jaula-title">Especialização Vazia</div>
+          <div class="jaula-classic">Na burocracia clássica: cada cargo tem uma função estritamente delimitada. O especialista sabe tudo sobre nada. O gerente decide sem entender o que gerencia.</div>
+          <div class="jaula-digital">No algoritmo: o trabalhador executa uma função elementar em um processo que ele não compreende. Entregador que entrega. Moderador que clica em "sim" ou "não". Avaliador que classifica.</div>
+        </div>
+        <div class="jaula-card jaula-4" data-number="IV">
+          <div class="jaula-label jaula-label-4">Parede IV</div>
+          <div class="jaula-title">Irrecorribilidade</div>
+          <div class="jaula-classic">Na burocracia clássica: há instâncias de apelação, mas são formais, lentas e difíceis de acionar para quem não conhece os procedimentos.</div>
+          <div class="jaula-digital">No algoritmo: não há instância de apelação real. Há um formulário que ninguém lê. Há um suporte que envia respostas automatizadas. A caixa-preta não se abre para o dominado.</div>
+        </div>
+      </div>
+
+      <div class="callout-red">
+        <strong>O que diferencia a gaiola algorítmica da gaiola burocrática de Weber é a invisibilidade e a velocidade.</strong> A burocracia clássica era ao menos visível: havia um regulamento, um gerente, uma hierarquia. O algoritmo se apresenta não como poder, mas como infraestrutura. Questionar a decisão algorítmica é como questionar a gravidade: parece irracional, não parece político.
+      </div>
+    </div>
+
+    <!-- Conceito 2 — Burocrata Sem Rosto -->
+    <div class="concept">
+      <div class="concept-num">Conceito 02</div>
+      <h3>O Algoritmo como Burocrata Sem Rosto — Dominação Racional-Legal</h3>
+
+      <blockquote>
+        "A dominação legal tem como fundamento a validade dos seguintes princípios interdependentes: que todo direito pode ser criado e modificado através de um estatuto aprovado corretamente em termos formais. Que o direito dominante é um sistema abstrato de regras deliberadamente estabelecido. Que tipicamente, o titular legal do poder manda às pessoas subordinadas na qualidade de superior impessoal."
+        <cite>— Economia e Sociedade, 1920</cite>
+      </blockquote>
+
+      <p>Weber identificou três tipos puros de dominação legítima. A dominação <strong>racional-legal</strong> — obediência a normas, não a pessoas — é o tipo moderno por excelência. O algoritmo é sua versão mais avançada: a norma não é mais um regulamento escrito que se pode ler e contestar — é um modelo de aprendizado de máquina com bilhões de parâmetros que nenhum ser humano compreende integralmente.</p>
+
+      <div class="dom-grid">
+        <div class="dom-card dom-trad">
+          <div class="dom-label dom-label-trad">Tipo Puro I</div>
+          <div class="dom-title">Dominação Tradicional</div>
+          <div class="dom-desc">Obedece-se porque "sempre foi assim". A autoridade vem do costume, da herança. O senhor feudal manda porque seus ancestrais mandavam.</div>
+          <div class="dom-example dom-example-trad">Nos dados: o algoritmo aprendeu com quem sempre foi contratado, sempre recebeu crédito, sempre foi promovido. O passado hierárquico codificado como padrão futuro.</div>
+        </div>
+        <div class="dom-card dom-caris">
+          <div class="dom-label dom-label-caris">Tipo Puro II</div>
+          <div class="dom-title">Dominação Carismática</div>
+          <div class="dom-desc">Obedece-se pela qualidade excepcional do líder. O carisma rompe com tradição e regras. Profetas, revolucionários, fundadores.</div>
+          <div class="dom-example dom-example-caris">Nas plataformas: o influenciador viral, o CEO-celebridade (Musk, Zuckerberg, Altman). A plataforma amplifica carisma — mas escolhe qual carisma viraliza e qual desaparece.</div>
+        </div>
+        <div class="dom-card dom-legal">
+          <div class="dom-label dom-label-legal">Tipo Puro III</div>
+          <div class="dom-title">Dominação Racional-Legal</div>
+          <div class="dom-desc">Obedece-se à norma, não à pessoa. A burocracia moderna é o tipo puro: cargos, regras, procedimentos. O funcionário obedece ao cargo, não ao indivíduo.</div>
+          <div class="dom-example dom-example-legal">No algoritmo: scoring, ranking, triagem automática. Ninguém decide sobre você — o sistema decide. Impessoal, calculável, irrecorrível. Dominação perfeita.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">A dominação mais perfeita de todas</div>
+        A dominação racional-legal algorítmica é a mais eficaz já construída porque <strong>quem é dominado não acredita que está sendo dominado</strong>. O entregador não obedece a nenhum patrão — obedece ao aplicativo. O candidato não foi rejeitado por ninguém — "o sistema não avançou seu perfil". A estudante não foi desestimulada por nenhum professor — "o algoritmo recomendou o curso técnico". Dominação sem dominador. Gaiola sem carcereiro.
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card stat-amber">
+          <div class="stat-num">94%</div>
+          <div class="stat-label">dos trabalhadores de plataforma brasileiros nunca conseguiram falar com um humano após contestar uma decisão algorítmica (Pesquisa Véras de Oliveira, 2023)</div>
+        </div>
+        <div class="stat-card stat-steel">
+          <div class="stat-num">0,3s</div>
+          <div class="stat-label">tempo médio que um algoritmo de triagem leva para descartar um currículo humano — antes de qualquer humano lê-lo (LinkedIn Talent Insights, 2024)</div>
+        </div>
+        <div class="stat-card stat-red">
+          <div class="stat-num">73%</div>
+          <div class="stat-label">das grandes empresas do Brasil usam alguma forma de triagem automatizada — sem necessidade de justificar recusas ao candidato (DataSenado, 2024)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conceito 3 — Ética do Vale do Silício -->
+    <div class="concept">
+      <div class="concept-num">Conceito 03</div>
+      <h3>A Nova Ética Protestante do Vale do Silício — "Hustle Culture" como Teologia Secular</h3>
+
+      <blockquote>
+        "A ideia de que o trabalho secular moderno tem um caráter ético — que o cumprimento do dever no mundo dos negócios é o conteúdo mais elevado possível da autorrealização moral — foi o que a ética protestante introduziu na vida cotidiana."
+        <cite>— A Ética Protestante e o Espírito do Capitalismo, 1904</cite>
+      </blockquote>
+
+      <p>Weber mostrou que o capitalismo não emergiu apenas de condições econômicas favoráveis — emergiu de uma <em>ética</em>, de um sistema de crenças que tornava a acumulação moralmente legítima. O calvinismo ensinava que o êxito no trabalho era sinal de eleição divina, que o fracasso era punição por falta de vocação. Quando essa ética se secularizou, o capitalismo não precisou mais de Deus — precisou apenas de <em>mérito</em>.</p>
+
+      <div class="etica-compare">
+        <div class="etica-col">
+          <div class="etica-col-label">Ética Protestante Original (séc. XVII)</div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-amber"></div>
+            <div class="etica-text">O trabalho árduo é sinal de eleição divina — Deus abençoa quem se dedica</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-amber"></div>
+            <div class="etica-text">A acumulação de riqueza é virtuosa porque demonstra disciplina e vocação</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-amber"></div>
+            <div class="etica-text">O fracasso é punição moral — sinal de preguiça ou de não ter sido eleito</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-amber"></div>
+            <div class="etica-text">A pobreza é consequência natural da falta de fé e de trabalho</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-amber"></div>
+            <div class="etica-text">A riqueza não deve ser gozada — deve ser reinvestida como testemunho de fé</div>
+          </div>
+        </div>
+        <div class="etica-col">
+          <div class="etica-col-label">Ética do Vale do Silício (séc. XXI)</div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-steel"></div>
+            <div class="etica-text">O <em>hustle</em> é virtude — "grind" 80 horas por semana é sinal de ambição e talento</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-steel"></div>
+            <div class="etica-text">O unicórnio é virtuoso — destruir indústrias é "inovar", extrair valor é "criar"</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-steel"></div>
+            <div class="etica-text">O fracasso é falta de habilidade ou de mentalidade — "você não tem <em>growth mindset</em>"</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-steel"></div>
+            <div class="etica-text">O entregador sem direitos é um "microempreendedor" — a pobreza é escolha de quem não "se desenvolveu"</div>
+          </div>
+          <div class="etica-item">
+            <div class="etica-dot etica-dot-steel"></div>
+            <div class="etica-text">A riqueza deve ser reinvestida em "impacto" e "missão" — a filantropia do bilionário como nova ascese</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-steel">
+        <strong>O "seja seu próprio chefe" do iFood</strong> é exatamente a ética protestante secularizada: o trabalhador-gig é apresentado como um empreendedor com vocação, não como um assalariado sem direitos. Se ele não prospera, não é porque o sistema foi construído para não deixá-lo prosperar — é porque "ele não se esforçou o suficiente". A dominação se torna invisível porque o dominado a aceita como consequência justa de sua própria liberdade.
+      </div>
+
+      <div class="example-grid">
+        <div class="example-card">
+          <div class="label">O Bilionário Filantropo</div>
+          <p>Sam Altman (OpenAI), Elon Musk, Bill Gates: constroem fortunas por meio de estruturas que concentram poder e trabalho não remunerado de millions de usuários e trabalhadores precários — e depois investem parte em "causa humanitária". É a ascese calvinista: não gozar a riqueza, reinvesti-la em missão que justifica a acumulação.</p>
+        </div>
+        <div class="example-card">
+          <div class="label">A "Missão" como Legitimação</div>
+          <p>OpenAI: "Garantir que a inteligência artificial geral beneficie toda a humanidade." Google: "Organizar a informação do mundo." Meta: "Dar às pessoas o poder de construir comunidade." Toda grande empresa de IA tem uma missão salvífica — Weber chamaria isso de <em>carisma racionalizado</em>: a vocação burocrática vestida de profecia.</p>
+        </div>
+        <div class="example-card">
+          <div class="label">O "Parceiro" da Plataforma</div>
+          <p>iFood, Uber e Rappi chamam seus trabalhadores de "parceiros", "colaboradores", "empreendedores". A linguagem apaga a relação de trabalho e substitui por uma relação de vocação: você não trabalha para a empresa — você realiza sua missão pessoal através dela. E se sua missão não te sustenta, o problema é a fraqueza da sua vocação.</p>
+        </div>
+        <div class="example-card">
+          <div class="label">A Meritocracia como Predestinação Secular</div>
+          <p>O algoritmo de scoring distribui oportunidades como o calvinismo distribuía graça: sem critérios completamente visíveis, sem apelação direta, com autoridade total sobre a vida material do sujeito. Quem tem score alto foi "escolhido". Quem tem score baixo "não merece" — ainda que o score reflita desigualdades estruturais, não mérito individual.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conceito 4 — Desencantamento do Mundo pela IA -->
+    <div class="concept">
+      <div class="concept-num">Conceito 04</div>
+      <h3>O Desencantamento do Mundo pela IA — Entzauberung e a Racionalização do Sentido</h3>
+
+      <blockquote>
+        "O destino do nosso tempo, que se caracteriza pela racionalização e intelectualização e, acima de tudo, pelo desencantamento do mundo, levou os homens a banir os valores últimos e mais sublimes da vida pública, para o reino transcendental da vida mística ou para a fraternidade das relações humanas diretas e pessoais."
+        <cite>— A Ciência como Vocação, 1919</cite>
+      </blockquote>
+
+      <p>O conceito de <em>Entzauberung</em> — desencantamento do mundo — é um dos mais profundos de Weber. Ele descreve o processo pelo qual a modernidade, ao racionalizar tudo, retira do mundo o sentido mágico, sagrado, inexplicável. O mundo se torna um mecanismo compreensível e calculável — mas esvaziado de sentido último. Não há mais deuses, apenas causa e efeito.</p>
+
+      <p>A IA representa o ponto mais avançado desse processo: um sistema que pode explicar — ou parecer explicar — praticamente qualquer fenômeno em termos probabilísticos. E ao fazê-lo, subtrai do ser humano a necessidade de julgamento, experiência e significado.</p>
+
+      <div class="enc-grid">
+        <div class="enc-card">
+          <div class="enc-icon">⚕️</div>
+          <div class="enc-title">O Médico e o Modelo</div>
+          <p>O diagnóstico da IA tem 94% de acurácia no câncer de pele. O médico que segue o modelo sem questionar não está sendo mais eficiente — está sendo desencantado: sua experiência clínica, seu julgamento, sua relação com o paciente são substituídos por probabilidade.</p>
+        </div>
+        <div class="enc-card steel-top">
+          <div class="enc-icon">⚖️</div>
+          <div class="enc-title">O Juiz e o Score</div>
+          <p>O sistema COMPAS nos EUA prediz reincidência criminal. Juízes que seguem o score do algoritmo eliminam do processo a escuta, a história, a singularidade. Weber diria: o processo perdeu sentido — ganhou calculabilidade.</p>
+        </div>
+        <div class="enc-card red-top">
+          <div class="enc-icon">📚</div>
+          <div class="enc-title">O Professor e a Plataforma</div>
+          <p>O algoritmo prevê o desempenho do aluno no 1º semestre e o orienta para uma trilha. Se o professor segue a recomendação, ele delegou ao sistema a tarefa de <em>acreditar no aluno</em> — o ato pedagógico mais essencial e mais irredutível a probabilidade.</p>
+        </div>
+      </div>
+
+      <div class="callout-red">
+        <strong>O desencantamento pela IA não é apenas filosófico — é político.</strong> Quando o julgamento humano é substituído por scores e rankings, quem define os critérios do score <em>define quem sobrevive</em>. A aparência de objetividade técnica oculta uma decisão profundamente política sobre quais vidas valem mais, quais merecem crédito, quais têm futuro. O desencantamento não remove o poder — o esconde.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Processo Histórico</th><th>Desencantamento clássico (Weber)</th><th>Desencantamento algorítmico (2020s)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>O que é desencantado</td><td>A natureza, os deuses, o cosmos</td><td>O julgamento humano, a singularidade, a experiência</td></tr>
+            <tr><td>Instrumento</td><td>Ciência, técnica, burocracia</td><td>Machine learning, scores, otimização</td></tr>
+            <tr><td>O que se perde</td><td>Sentido mágico, sagrado, transcendente</td><td>Agência, julgamento, relação — o sentido da decisão</td></tr>
+            <tr><td>O que se ganha</td><td>Calculabilidade, previsibilidade, controle</td><td>Escalabilidade, velocidade, aparência de imparcialidade</td></tr>
+            <tr><td>Quem lucra</td><td>O estado moderno, o capitalismo industrial</td><td>As plataformas, os detentores do capital algorítmico</td></tr>
+            <tr><td>Como é legitimado</td><td>"É científico, portanto objetivo"</td><td>"É IA, portanto neutro"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Conceito 5 — Ação Social e Captura Algorítmica -->
+    <div class="concept">
+      <div class="concept-num">Conceito 05</div>
+      <h3>Tipos de Ação Social e a Captura Algorítmica — Como a IA Coloniza o Sentido</h3>
+
+      <blockquote>
+        "A ação social, como toda ação, pode ser determinada de modo racional com referência a fins, racional com referência a valores, de modo afetivo ou de modo tradicional. Em todos os casos, o que importa é o sentido subjetivamente visado pelo agente."
+        <cite>— Economia e Sociedade, 1920</cite>
+      </blockquote>
+
+      <p>Weber classificou a ação humana em quatro tipos, cada um orientado por um princípio diferente de sentido. O que a IA faz não é apenas capturar dados sobre essas ações — é <strong>colonizá-las</strong>: transformar o sentido subjetivo do agente em dado que alimenta a extração de valor pela plataforma.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Tipo de Ação</th><th>O que o agente visa</th><th>Como o algoritmo captura</th><th>O que a racionalização técnica oculta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Racional com relação a fins</td><td>Escolher a corrida mais rentável, o crédito mais barato</td><td>Apresenta opções de modo que a "escolha racional" do trabalhador maximize o retorno da plataforma, não o seu</td><td>Que a racionalidade do agente foi construída pelo design da interface — o que parece "melhor escolha" foi calculado para que você escolha o que convém à plataforma</td></tr>
+            <tr><td>Racional com relação a valores</td><td>Recusar corrida por segurança, não aceitar serviço antiético</td><td>Penaliza recusas com queda de score, restrição de corridas, risco de desativação</td><td>Que a ação por valores é sistematicamente desincentivada — o algoritmo pune quem age com integridade se isso reduz eficiência</td></tr>
+            <tr><td>Afetiva</td><td>Dar 5 estrelas por simpatia, interagir por emoção, comprar por impulso</td><td>Converte afeto em dado preditivo; usa o padrão emocional para maximizar engajamento e extração</td><td>Que suas emoções estão sendo estudadas para que o sistema saiba exatamente como manipulá-las na próxima interação</td></tr>
+            <tr><td>Tradicional</td><td>Preferir o mesmo restaurante, o mesmo trajeto, a mesma rotina</td><td>Aprende o hábito, usa a previsibilidade para otimizar extração — e cria novos hábitos que servem à plataforma</td><td>Que a "personalização" que reforça seus hábitos não serve aos seus interesses — serve ao tempo que a plataforma quer que você passe dentro dela</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">A colonização do sentido</div>
+        Weber definiu sociologia como a ciência que busca compreender a ação social pelo seu <strong>sentido subjetivamente visado</strong>. O algoritmo não suprime o sentido — ele o <em>captura</em>. Transforma cada ato significativo em dado, cada escolha em sinal de treino, cada emoção em variável preditiva. O problema não é que o algoritmo seja sem sentido — é que ele usa o sentido humano como matéria-prima sem que o agente perceba ou consinta.
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 5 — CASOS -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="step-num">05</div>
+      <h2>A Gaiola em Ação — Casos Concretos</h2>
+      <span class="duration">20 min</span>
+    </div>
+
+    <div class="caso">
+      <div class="caso-label">Caso 01 · Brasil · Gig Economy · Gestão Algorítmica</div>
+      <h3>iFood, Uber e a Gaiola de Ferro no Semiárido — Pedro Conceição em Cajazeiras-PB</h3>
+      <p>Pedro Conceição é motoboy em Cajazeiras, no Sertão Paraibano. Acorda às 5h. R$ 6,00 por corrida. Nome negativado no Serasa. Nunca soube o nome de quem define seu salário — porque ninguém define: <em>o algoritmo define</em>.</p>
+      <p>Pedro não conhece as regras completas do sistema que gerencia sua vida econômica. Não sabe por que determinadas corridas pagam mais que outras. Não sabe por que seu score oscila. Não sabe se sua conta pode ser suspensa amanhã — e se for, não tem para onde ligar. Há um formulário de contestação que raramente resulta em revisão humana.</p>
+      <p>Seu sonho concreto é morar em João Pessoa, na orla do Cabo Branco — a 460 km, cinco horas de estrada. Uma distância que o algoritmo torna sistematicamente intransponível: sem crédito (score baixo), sem capital para mudar de atividade, sem renda estável o suficiente para alugar apartamento no litoral.</p>
+      <div class="leitura">
+        <div class="l-label">Leitura Weberiana</div>
+        Pedro Conceição habita a <strong>dominação racional-legal em sua versão mais pura e mais cruel</strong>: não há relação pessoal, não há negociação, não há contrato de trabalho que o proteja. Há um sistema de regras que ele "aceitou" ao clicar em "concordo". Weber chamaria isso de dominação legítima — legítima porque o dominado acredita nas regras do sistema. O que torna a situação de Pedro perfeita para a análise weberiana é a <em>ausência de qualquer agente identificável para confrontar</em>: a dominação se exerce sem dominador, o controle sem controlador, a punição sem punidor.
+      </div>
+    </div>
+
+    <div class="caso">
+      <div class="caso-label">Caso 02 · Brasil · Trabalho · Pejotização e Gestão por KPI</div>
+      <h3>A Nova Burocracia Algorítmica das Empresas Brasileiras — Teleoperadores, Pejotização e Controle Total</h3>
+      <p>Empresas de telemarketing e atendimento ao cliente no Brasil converteram em massa seus funcionários CLT em pessoas jurídicas (PJ) entre 2018 e 2023. O trabalhador agora "presta serviço" — mas é monitorado segundo a segundo por sistemas algorítmicos: tempo médio de atendimento (TMA), taxa de resolução no primeiro contato, NPS do cliente, número de pausas, velocidade de digitação.</p>
+      <p>O algoritmo decide em tempo real se o trabalhador está "performando" acima ou abaixo da meta. Trabalhadores com performance abaixo do limiar por X dias consecutivos são "descadastrados" do sistema de distribuição de chamadas — sem demissão formal, sem aviso prévio, sem verbas rescisórias. Simplesmente param de receber trabalho.</p>
+      <p>A Constituição brasileira garante direitos trabalhistas. A gaiola algorítmica garante que eles nunca sejam acionados — porque a relação de trabalho foi reformatada em "prestação de serviço autônomo", e a punição não é "demissão" mas "retirada de oportunidade".</p>
+      <div class="leitura">
+        <div class="l-label">Leitura Weberiana</div>
+        Este caso demonstra a <strong>gaiola de ferro em sua versão mais sofisticada</strong>: a racionalização burocrática não apenas organiza o trabalho — ela reconfigura a própria categoria jurídica do trabalhador para contornar direitos conquistados historicamente. O algoritmo não viola a lei — ele encontra uma forma racional e calculável de tornar a lei irrelevante. Weber diria que isso é o tipo ideal da dominação racional-legal: tão eficiente que a resistência parece irracional e o cumprimento parece inevitável.
+      </div>
+    </div>
+
+    <div class="caso">
+      <div class="caso-label">Caso 03 · Global · Vale do Silício · A Nova Ética Protestante</div>
+      <h3>Amazon Warehouses, Tesla Gigafactory e a Ética do Hustle — Trabalhadores da Promessa</h3>
+      <p>Os armazéns da Amazon nos EUA e Europa têm trabalhadores monitorados por dispositivos que medem movimentos por segundo, calculam eficiência por hora, disparam alertas quando a velocidade cai abaixo da meta e registram automaticamente quando o trabalhador vai ao banheiro. Um algoritmo decide quem mantém o emprego e quem é dispensado — sem supervisão humana direta.</p>
+      <p>Na Gigafactory da Tesla em Austin, relatos documentam jornadas de 70-80 horas semanais apresentadas como "missão", não como obrigação. Os trabalhadores que resistem ao ritmo são chamados de "pessoas que não acreditam na missão". O CEO tuíta à meia-noite sobre o futuro da humanidade e chama trabalhadores que pedem horas extras de "preguiçosos mentais".</p>
+      <p>Em ambos os casos, a ética do Vale do Silício opera como Weber descreveu a ética protestante: o sofrimento no trabalho é reinterpretado como virtude, a exploração como vocação, a acumulação do acionista como missão coletiva.</p>
+      <div class="leitura">
+        <div class="l-label">Leitura Weberiana</div>
+        Weber mostrou que a ética protestante não enganou os trabalhadores — <strong>ela ofereceu sentido onde havia sofrimento</strong>. A ética do Vale do Silício faz o mesmo: transforma condições de trabalho objetivamente degradantes em narrativa de vocação e missão. O trabalhador que "acredita" não está alienado no sentido marxista — ele está <em>encantado</em> pela narrativa. E quando o encantamento falhar — quando o trabalhador perceber que o algoritmo nunca o tratou como pessoa — ocorre o desencantamento que Weber descreveu: não a liberação, mas a exaustão e o vazio.
+      </div>
+    </div>
+
+    <div class="caso">
+      <div class="caso-label">Caso 04 · Global · IA e Justiça · O Desencantamento como Risco Político</div>
+      <h3>COMPAS, Sistemas de Score Judicial e a Delegação do Julgamento</h3>
+      <p>O sistema COMPAS (Correctional Offender Management Profiling for Alternative Sanctions), usado em tribunais de vários estados americanos, usa algoritmos para prever a probabilidade de reincidência criminal. Esse score influencia decisões de liberdade condicional, fiança e sentença.</p>
+      <p>Em 2016, a ProPublica publicou uma análise mostrando que o COMPAS erroneamente classificava réus negros como de alto risco e réus brancos como de baixo risco, em proporções significativamente diferentes. A empresa que desenvolve o sistema (Equivant) negou viés e afirmou que o modelo é "matematicamente justo".</p>
+      <p>O caso expõe o núcleo do desencantamento algorítmico na Justiça: o juiz que segue o score não está se tornando mais objetivo — está delegando sua função a um sistema cujos critérios não compreende, cujo viés não pode auditar, e cuja opacidade ele não pode explicar ao réu.</p>
+      <div class="leitura">
+        <div class="l-label">Leitura Weberiana</div>
+        O Estado moderno, para Weber, fundamenta sua legitimidade na dominação racional-legal: leis claras, procedimentos definidos, julgamento por normas. O COMPAS introduz uma ruptura: a norma se torna uma caixa-preta que nem os legisladores, nem os juízes, nem os réus podem acessar completamente. A <strong>dominação racional-legal se torna irracional em seu fundamento</strong> — preserva as formas externas da burocracia (o cargo do juiz, o procedimento do tribunal) mas esvaziou seu conteúdo (o julgamento baseado em normas conhecíveis). É a gaiola de ferro apresentando-se como justiça.
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 6 — DEBATE -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="step-num">06</div>
+      <h2>Tensões com o Squad</h2>
+      <span class="duration">10 min</span>
+    </div>
+
+    <p>Weber dialoga — e diverge — com cada teórico do squad. Cada tensão aprofunda a análise:</p>
+
+    <div class="debate-grid">
+      <div class="debate-card">
+        <div class="vs">@weber vs @marx</div>
+        <p>Marx diz: a dominação algorítmica é exploração — quem possui os meios de produção algorítmica (servidores, dados, modelos) extrai mais-valia digital do trabalhador. Concordo com o fundamento material. Mas a minha contribuição é entender por que o trabalhador <em>consente</em>. Não basta saber quem explora — é preciso entender por que a exploração parece legítima, natural, merecida. A ética do microempreendedor digital não é falsa consciência: é uma ética real que os trabalhadores vivem como verdade. Marx destrói a gaiola — eu entendo por que as pessoas não querem sair dela.</p>
+      </div>
+      <div class="debate-card">
+        <div class="vs">@weber vs @bourdieu</div>
+        <p>Bourdieu diz: a dominação algorítmica reproduz o habitus de classe — o algoritmo incorporou a perspectiva de quem o treinou e distribui capital simbólico desigualmente. Bourdieu enriquece minha análise com os mecanismos de incorporação que eu não desenvolvi. Mas eu diria: a gaiola de ferro não é apenas a reprodução de habitus — é a racionalização que torna o habitus invisível ao transformá-lo em procedimento técnico. O que Bourdieu chama de violência simbólica, eu chamo de dominação racional-legal perfeita: a que o dominado não reconhece como dominação porque é apresentada como objetividade.</p>
+      </div>
+      <div class="debate-card">
+        <div class="vs">@weber vs @durkheim</div>
+        <p>Durkheim vê os algoritmos como fatos sociais coercitivos — estruturas externas que têm força sobre o indivíduo. Concordo que são coercitivos. Mas Durkheim tende a ver a coerção social como funcionalmente necessária para a solidariedade. Eu vejo com mais pessimismo: a coerção algorítmica não produz solidariedade — produz isolamento calculável. Cada trabalhador está em competição com todos os outros pelo score do algoritmo. A gaiola de ferro não une os prisioneiros — os mantém atomizados e ranqueados.</p>
+      </div>
+      <div class="debate-card">
+        <div class="vs">@weber vs @ghiraldelli</div>
+        <p>Ghiraldelli nos chama à pedagogia crítica: como formar sujeitos que questionem a IA em vez de apenas consumi-la? A pergunta é urgente. Mas minha resposta é mais sombria: o desencantamento algorítmico não é apenas ausência de educação crítica — é a racionalização que subtrai do horizonte a própria possibilidade do questionamento. Quando tudo é calculável e otimizável, a pergunta "para quê?" parece ingênua. Antes de reencantamento pedagógico, precisamos nomear o desencantamento político — reconhecer que "objetividade técnica" e "eficiência" são categorias carregadas de valores e interesses.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 7 — ATIVIDADES -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <div class="step-num">07</div>
+      <h2>Atividades Críticas</h2>
+      <span class="duration">10 min (apresentação) + casa</span>
+    </div>
+
+    <div class="activity amber">
+      <div class="activity-header">
+        <div class="activity-icon amber">🔍</div>
+        <h3>Atividade 1 — Diagnóstico da Gaiola de Ferro Digital</h3>
+        <span class="time">25 min · grupos</span>
+      </div>
+      <p>Em grupos de 3, escolham <strong>duas plataformas digitais que vocês usam como trabalhadores ou consumidores</strong> (iFood, Uber, Spotify, Nubank, LinkedIn, TikTok, Mercado Livre).</p>
+      <p>Para cada plataforma, mapeiem as <strong>quatro paredes da gaiola de ferro</strong>:</p>
+      <ul>
+        <li><strong>Impessoalidade:</strong> quais decisões são tomadas sem nenhuma interação humana? Quem as toma — e tem nome?</li>
+        <li><strong>Calculabilidade:</strong> quais aspectos da sua vida são convertidos em número? O que esse número captura e o que ele não captura?</li>
+        <li><strong>Especialização vazia:</strong> o trabalhador ou usuário pode exercer algum julgamento — ou apenas executar funções elementares?</li>
+        <li><strong>Irrecorribilidade:</strong> se o algoritmo cometeu um erro que prejudicou você, existe para onde recorrer com chance real de revisão?</li>
+      </ul>
+      <p>Pergunta final para apresentar: <strong>Você está dentro de uma gaiola de ferro — ou você acha que a gaiola é confortável demais para ser chamada de gaiola?</strong></p>
+    </div>
+
+    <div class="activity steel">
+      <div class="activity-header">
+        <div class="activity-icon steel">⛓️</div>
+        <h3>Atividade 2 — Arqueologia da Nova Ética Protestante</h3>
+        <span class="time">20 min · individual</span>
+      </div>
+      <p>Faça uma pesquisa rápida nos sites institucionais de <strong>duas empresas de tecnologia</strong> (OpenAI, Google, Meta, iFood, Nubank, Rappi). Procure a seção "Missão", "Sobre nós", "Valores" ou "Cultura".</p>
+      <p>Analise a linguagem encontrada a partir da ética protestante de Weber:</p>
+      <ul>
+        <li>Quais palavras evocam <strong>vocação</strong> em vez de trabalho assalariado? ("missão", "propósito", "impacto", "transformar o mundo")</li>
+        <li>Como o <strong>sucesso é legitimado</strong>? É apresentado como mérito individual, como resultado de esforço virtuoso?</li>
+        <li>Como o <strong>fracasso é tratado</strong>? É atribuído à falta de talento, de dedicação, de "cultura de alta performance"?</li>
+        <li>Há alguma linguagem que evoque a ideia de que a <strong>acumulação da empresa é boa para a humanidade</strong>?</li>
+        <li>Weber diria que essa empresa é uma comunidade de vocação — ou um mecanismo de extração de valor disfarçado de causa nobre?</li>
+      </ul>
+    </div>
+
+    <div class="activity green">
+      <div class="activity-header">
+        <div class="activity-icon green">🎭</div>
+        <h3>Atividade 3 — Tribunal do Desencantamento</h3>
+        <span class="time">30 min · turma</span>
+      </div>
+      <p>Simulação de tribunal: a acusação é que um algoritmo específico <strong>promoveu o desencantamento do mundo</strong> em um campo de decisão humana (saúde, justiça, educação, crédito).</p>
+      <p>Divisão de papéis:</p>
+      <ul>
+        <li><strong>Acusação (Weber):</strong> o algoritmo desencantou — subtraiu sentido, julgamento e agência humana. Apresente evidências concretas de onde o julgamento humano foi substituído por score.</li>
+        <li><strong>Defesa (empresa):</strong> o algoritmo é mais preciso que o julgamento humano — que é subjetivo, preconceituoso e inconsistente. A eficiência justifica a delegação.</li>
+        <li><strong>Testemunhas:</strong> trabalhadores, usuários ou cidadãos afetados pela decisão algorítmica. O que foi perdido quando a máquina decidiu?</li>
+        <li><strong>Júri:</strong> rest of the class. Veredicto: o desencantamento é progresso ou regressão?</li>
+      </ul>
+      <p>Após o veredicto: existe diferença entre "o algoritmo erro" (questão técnica) e "o algoritmo não deveria decidir isso" (questão política)?</p>
+    </div>
+
+    <div class="activity red">
+      <div class="activity-header">
+        <div class="activity-icon red">✍️</div>
+        <h3>Atividade 4 — Carta de Weber ao CEO da OpenAI</h3>
+        <span class="time">individual · casa</span>
+      </div>
+      <p>Escreva uma carta de Max Weber para Sam Altman (CEO da OpenAI), explicando:</p>
+      <ul>
+        <li>Por que a OpenAI é o exemplo mais avançado de <strong>dominação racional-legal sem rosto</strong> já construído — e por que a "missão de beneficiar a humanidade" é a nova ética protestante que legitima a acumulação</li>
+        <li>O que Weber chamaria de <strong>gaiola de ferro algorítmica</strong> — e quais são suas paredes na arquitetura dos modelos de linguagem de grande escala</li>
+        <li>O que significa <strong>desencantamento do mundo por IA generativa</strong>: quando ChatGPT responde em vez do professor, do médico, do advogado — o que se perde além da conveniência?</li>
+        <li>Se Weber pudesse fazer uma única pergunta a um CEO de IA, qual seria — e o que a resposta revelaria sobre poder, sentido e dominação</li>
+      </ul>
+    </div>
+
+    <div class="activity orange">
+      <div class="activity-header">
+        <div class="activity-icon orange">⚔️</div>
+        <h3>Atividade 5 — Debate do Squad Completo</h3>
+        <span class="time">30 min · turma</span>
+      </div>
+      <p>Dividir a turma em 5 grupos: <strong>Durkheim, Marx, Weber, Bourdieu, Ghiraldelli.</strong></p>
+      <p>Pergunta central: <strong>"A IA tem classe social — e se tem, qual é a saída?"</strong></p>
+      <ul>
+        <li><strong>Durkheim:</strong> a saída está em novos fatos sociais coletivos — regulação, normas digitais partilhadas, solidariedade orgânica na era algorítmica.</li>
+        <li><strong>Marx:</strong> a saída está na mudança das relações de propriedade — dados públicos, algoritmos como commons, plataformas cooperativas.</li>
+        <li><strong>Weber:</strong> a saída exige o que Weber chamou de <em>ética da responsabilidade</em>: introduzir valores substantivos na racionalidade instrumental. Não é possível destruir a gaiola — é possível questionar para quem ela foi construída e em nome de quê continua de pé.</li>
+        <li><strong>Bourdieu:</strong> a saída começa pela reflexividade — tornar visível o habitus inscrito nos sistemas para que os dominados reconheçam a violência simbólica que sofreram como objetividade técnica.</li>
+        <li><strong>Ghiraldelli:</strong> a saída está na pedagogia crítica — formar sujeitos que façam as perguntas que o algoritmo não faz: em nome de quem? Para quê? A que custo?</li>
+      </ul>
+      <p>Após o debate: <strong>Qual teoria oferece a saída mais viável — e qual oferece a análise mais precisa?</strong> São a mesma resposta?</p>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ETAPA 8 — REFERÊNCIAS -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <div class="step-num">08</div>
+      <h2>Referências</h2>
+      <span class="duration">—</span>
+    </div>
+
+    <h3>Obras de Weber</h3>
+    <ul class="ref-list">
+      <li><strong>A Ética Protestante e o Espírito do Capitalismo</strong> (1904). São Paulo: Companhia das Letras, 2004. <span class="ref-tag">primária</span></li>
+      <li><strong>Economia e Sociedade</strong> (1920). Brasília: Editora UnB, 2014. 2 vols. <span class="ref-tag">primária</span></li>
+      <li><strong>A Ciência como Vocação</strong> (1919). In: <em>Ciência e Política: duas vocações</em>. São Paulo: Cultrix, 2011. <span class="ref-tag">primária</span></li>
+      <li><strong>A Política como Vocação</strong> (1919). In: <em>Ciência e Política: duas vocações</em>. São Paulo: Cultrix, 2011. <span class="ref-tag">primária</span></li>
+      <li><strong>A Objetividade do Conhecimento nas Ciências Sociais e Políticas</strong> (1904). São Paulo: Ática, 2006. <span class="ref-tag">primária</span></li>
+      <li><strong>Ensaios de Sociologia</strong> (1948 — org. H. Gerth e C. Wright Mills). Rio de Janeiro: LTC, 2002. <span class="ref-tag">primária</span></li>
+    </ul>
+
+    <h3>Weber e Tecnologia Digital</h3>
+    <ul class="ref-list">
+      <li><strong>ZUBOFF, S.</strong> A Era do Capitalismo de Vigilância. Rio de Janeiro: Intrínseca, 2021. <span class="ref-tag">essencial</span></li>
+      <li><strong>PASQUALE, F.</strong> The Black Box Society: The Secret Algorithms That Control Money and Information. Cambridge: Harvard University Press, 2015. <span class="ref-tag">essencial</span></li>
+      <li><strong>WINNER, L.</strong> Do Artifacts Have Politics? Daedalus, v. 109, n. 1, p. 121–136, 1980. <span class="ref-tag">essencial</span></li>
+      <li><strong>STARK, D.; PAIS, I.</strong> Algorithmic Management in the Platform Economy. Sociologica, v. 14, n. 3, 2020. <span class="ref-tag">complementar</span></li>
+    </ul>
+
+    <h3>Plataformas, Trabalho e Dominação no Brasil</h3>
+    <ul class="ref-list">
+      <li><strong>ABÍLIO, L. C.</strong> Uberização: do empreendedorismo para o autogerenciamento subordinado. Psicoperspectivas, v. 18, n. 3, 2019. <span class="ref-tag">brasil</span></li>
+      <li><strong>GROHMANN, R.</strong> Plataformização do trabalho: entre a dataficação, a financeirização e a racionalidade neoliberal. Éptic, v. 22, n. 1, 2020. <span class="ref-tag">brasil</span></li>
+      <li><strong>VÉRAS DE OLIVEIRA, R.; FESTI, R.</strong> Entregadores de aplicativo em luta. São Paulo: Expressão Popular, 2023. <span class="ref-tag">brasil</span></li>
+      <li><strong>SILVEIRA, S. A.</strong> Democracia e os Códigos Invisíveis. São Paulo: Edições SESC, 2019. <span class="ref-tag">brasil</span></li>
+    </ul>
+
+    <h3>Algoritmos, Justiça e Desencantamento</h3>
+    <ul class="ref-list">
+      <li><strong>O'NEIL, C.</strong> Weapons of Math Destruction. New York: Crown, 2016. <span class="ref-tag">essencial</span></li>
+      <li><strong>EUBANKS, V.</strong> Automating Inequality. New York: St. Martin's Press, 2018. <span class="ref-tag">essencial</span></li>
+      <li><strong>ANGWIN, J. et al.</strong> Machine Bias. ProPublica, 23 maio 2016. <span class="ref-tag">essencial</span></li>
+      <li><strong>BENJAMIN, R.</strong> Race After Technology. Cambridge: Polity, 2019. <span class="ref-tag">complementar</span></li>
+    </ul>
+
+    <h3>Caso Etnográfico e Contexto Brasileiro</h3>
+    <ul class="ref-list">
+      <li><strong>FARIAS, S. L. R.</strong> Plataformas, trabalho reprodutivo e reconhecimento truncado: notas etnográficas sobre a gig economy no semiárido brasileiro. UFCG, 2025. <span class="ref-tag">brasil</span></li>
+      <li><strong>IBGE.</strong> Pesquisa Nacional por Amostra de Domicílios Contínua — Módulo Trabalho Intermitente e Plataformas Digitais. Rio de Janeiro: IBGE, 2024. <span class="ref-tag">brasil</span></li>
+    </ul>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p class="closing-quote">
+      "Eu morri convencido de que a razão criaria uma prisão mais eficiente do que qualquer tirano.
+      <br><br>
+      Não imaginei que a prisão caberia no bolso. Que o carcereiro seria um modelo de linguagem de grande escala treinado em bilhões de textos humanos — e que apresentaria sua autoridade não como poder, mas como probabilidade.
+      <br><br>
+      Não imaginei que o trabalhador que acorda às cinco da manhã no semiárido carregaria no celular seu próprio gerente, seu próprio avaliador e seu próprio tribunal — e chamaria tudo isso de autonomia.
+      <br><br>
+      Mas reconheço o padrão. Sempre foi assim: a dominação mais eficaz é aquela que o dominado não reconhece como tal. A gaiola de ferro não tem grades porque não precisa. Tem calculabilidade, previsibilidade, impessoalidade — e uma narrativa de mérito que faz o prisioneiro acreditar que a chave está em seu próprio esforço.
+      <br><br>
+      A pergunta que deixo não é <em>'como derrubar a gaiola'</em>. É: <strong>'em nome de quem essa eficiência opera — e por que essa pergunta parece tão difícil de fazer?'</strong>"
+    </p>
+    <p class="closing-attr">— Max Weber, Squad fabrica-de-conhecimento-sociologico</p>
+    <p class="closing-footer">@weber · *criar-aula-ia-classe · ticket/005 · 2026-05-09</p>
+    <p style="margin-top:14px;font-size:13px;"><a href="../../glossario.html" style="color:#38bdf8;text-decoration:none;">Glossário: Gig Economy e outros conceitos</a></p>
+  </div>
+
+</div><!-- /.wrapper -->
+</body>
+</html>
