@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema de Participação — Sociologia CFP/UFCG</title>
+<title>Bourdieu para Crianças — CFP/UFCG</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -13,7 +13,12 @@
     --ouro2:   #e8b96a;
     --creme:   #fdf6ec;
     --verde:   #1e6b3c;
-    --verm:    #8b1a1a;
+    --roxo:    #5c2d8a;
+    --roxo2:   #e8daef;
+    --rosa:    #8b1a4a;
+    --rosa2:   #fce4ee;
+    --laranja: #b85c1a;
+    --laranja2:#fde8d8;
     --texto:   #1a1a2e;
   }
 
@@ -32,7 +37,7 @@
   .card {
     background: var(--creme);
     width: 100%;
-    max-width: 620px;
+    max-width: 640px;
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.1);
@@ -81,11 +86,11 @@
 
   .titulo {
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 900;
     color: #fff;
     line-height: 1.15;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 1;
   }
@@ -97,12 +102,13 @@
     color: rgba(255,255,255,0.65);
     font-weight: 300;
     letter-spacing: .5px;
+    position: relative;
+    z-index: 1;
   }
 
   .linha-ouro {
     height: 3px;
     background: linear-gradient(90deg, var(--ouro), var(--ouro2), transparent);
-    margin: 0;
   }
 
   /* ── CORPO ── */
@@ -111,115 +117,164 @@
   .intro {
     font-size: 15px;
     color: var(--texto);
-    line-height: 1.7;
-    margin-bottom: 28px;
+    line-height: 1.75;
+    margin-bottom: 32px;
     font-weight: 400;
   }
 
   .intro strong { color: var(--azul); font-weight: 500; }
 
-  /* ── LEGENDA ── */
-  .sec-titulo {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--ouro);
-    margin-bottom: 14px;
-    font-weight: 700;
-  }
-
-  .legenda {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  /* ── CONCEITO ── */
+  .conceito {
     margin-bottom: 28px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    animation: fadeUp .6s ease both;
   }
 
-  .item {
+  .conceito:nth-child(1) { animation-delay: .1s; }
+  .conceito:nth-child(2) { animation-delay: .2s; }
+  .conceito:nth-child(3) { animation-delay: .3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .conceito-header {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .conceito-header.habitus   { background: var(--roxo);   }
+  .conceito-header.campos    { background: var(--laranja); }
+  .conceito-header.disp      { background: var(--rosa);    }
+
+  .conceito-icone {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .conceito-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .conceito-subtitulo {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    letter-spacing: .5px;
+    margin-top: 2px;
+  }
+
+  .conceito-body {
+    background: #fff;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--texto);
+    line-height: 1.75;
+  }
+
+  .conceito-body p { margin-bottom: 10px; }
+  .conceito-body p:last-child { margin-bottom: 0; }
+
+  .conceito-body strong { font-weight: 500; color: var(--azul); }
+
+  .exemplo-box {
+    margin-top: 12px;
     padding: 12px 14px;
     border-radius: 6px;
-    background: #fff;
-    border-left: 3px solid transparent;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    animation: fadeIn .5s ease both;
-  }
-
-  .item:nth-child(1) { border-color: var(--verde);  animation-delay:.1s }
-  .item:nth-child(2) { border-color: #888;           animation-delay:.2s }
-  .item:nth-child(3) { border-color: #b56a2a;        animation-delay:.3s }
-  .item:nth-child(4) { border-color: var(--verm);    animation-delay:.4s }
-  .item:nth-child(5) { border-color: #aaa; grid-column: span 2; animation-delay:.5s }
-
-  @keyframes fadeIn {
-    from { opacity:0; transform:translateX(-8px); }
-    to   { opacity:1; transform:translateX(0); }
-  }
-
-  .simbolo {
-    font-size: 20px;
-    line-height: 1;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .item-texto strong {
-    display: block;
     font-size: 13px;
-    font-weight: 500;
-    color: var(--texto);
-    margin-bottom: 2px;
+    line-height: 1.65;
   }
 
-  .item-texto span {
-    font-size: 11.5px;
-    color: #666;
-    line-height: 1.4;
+  .exemplo-box.roxo   { background: var(--roxo2);   border-left: 3px solid var(--roxo);   }
+  .exemplo-box.laranja{ background: var(--laranja2); border-left: 3px solid var(--laranja);}
+  .exemplo-box.rosa   { background: var(--rosa2);   border-left: 3px solid var(--rosa);   }
+
+  .exemplo-box .label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+    opacity: .7;
   }
 
-  /* ── CÁLCULO ── */
-  .calculo-box {
+  .lista-exemplos {
+    list-style: none;
+    padding: 0;
+  }
+
+  .lista-exemplos li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .lista-exemplos li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--ouro);
+    font-weight: 600;
+  }
+
+  /* ── JUNTANDO TUDO ── */
+  .juntando {
     background: var(--azul);
     border-radius: 8px;
-    padding: 20px 22px;
+    padding: 22px 24px;
     margin-bottom: 28px;
     position: relative;
     overflow: hidden;
   }
 
-  .calculo-box::before {
-    content: "=";
+  .juntando::before {
+    content: "∑";
     position: absolute;
-    right: 16px; top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
+    right: 16px; top: 10px;
+    font-size: 90px;
     color: rgba(255,255,255,.04);
-    line-height: 1;
+    font-family: 'Playfair Display', serif;
   }
 
-  .calculo-box .sec-titulo { color: var(--ouro2); margin-bottom: 12px; }
+  .sec-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ouro2);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
 
-  .formula {
-    font-size: 13.5px;
+  .juntando-texto {
+    font-size: 14px;
     color: rgba(255,255,255,0.85);
     line-height: 1.8;
     font-weight: 300;
   }
 
-  .formula strong { color: #fff; font-weight: 500; }
-  .formula .dest  { color: var(--ouro2); font-weight: 500; }
+  .juntando-texto strong { color: #fff; font-weight: 500; }
+  .juntando-texto .dest  { color: var(--ouro2); font-weight: 500; }
 
-  .exemplo {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255,255,255,.1);
-    font-size: 12px;
-    color: rgba(255,255,255,0.55);
-    font-style: italic;
+  .juntando-exemplo {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,.07);
+    border-radius: 6px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    border-left: 3px solid var(--ouro);
   }
 
   /* ── MENSAGEM FINAL ── */
@@ -236,36 +291,6 @@
 
   .mensagem strong { color: var(--verde); }
 
-  /* ── TURMAS ── */
-  .turmas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 28px;
-  }
-
-  .turma-item {
-    padding: 10px 14px;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-
-  .turma-item strong {
-    display: block;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--azul);
-    margin-bottom: 2px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-  }
-
-  .turma-item span {
-    font-size: 11px;
-    color: #777;
-  }
-
   /* ── RODAPÉ ── */
   .rodape {
     border-top: 1px solid #e0d8cc;
@@ -276,17 +301,8 @@
     background: #f7f1e8;
   }
 
-  .prof {
-    font-size: 11.5px;
-    color: #555;
-  }
-
-  .prof strong {
-    display: block;
-    color: var(--azul);
-    font-size: 12.5px;
-    font-weight: 500;
-  }
+  .prof { font-size: 11.5px; color: #555; }
+  .prof strong { display: block; color: var(--azul); font-size: 12.5px; font-weight: 500; }
 
   .semestre {
     font-size: 10px;
@@ -298,8 +314,6 @@
 
   @media (max-width: 500px) {
     .topo, .corpo { padding-left: 24px; padding-right: 24px; }
-    .legenda, .turmas { grid-template-columns: 1fr; }
-    .item:nth-child(5) { grid-column: span 1; }
     .titulo { font-size: 26px; }
     .rodape { flex-direction: column; gap: 10px; text-align: center; }
   }
@@ -309,9 +323,9 @@
 <div class="card">
 
   <div class="topo">
-    <div class="inst">CFP · UFCG · Cajazeiras</div>
-    <h1 class="titulo">Participação que<br><span>faz diferença</span></h1>
-    <p class="subtitulo">Fundamentos do Pensamento Sociológico &amp; Introdução à Sociologia — 2026.1</p>
+    <div class="inst">CFP · UFCG · Cajazeiras · Sociologia</div>
+    <h1 class="titulo">Entendendo<br><span>Bourdieu</span></h1>
+    <p class="subtitulo">Habitus, Campos e Disposições — explicados de um jeito simples 😊</p>
   </div>
 
   <div class="linha-ouro"></div>
@@ -319,81 +333,88 @@
   <div class="corpo">
 
     <p class="intro">
-      Olá, turma! 👋 A partir de agora, vamos adotar um <strong>sistema simples de acompanhamento de participação</strong> em sala. A ideia é valorizar quem se engaja — sem pressão, sem competição. Cada aula é uma oportunidade.
+      Pierre Bourdieu foi um sociólogo francês que tentou explicar por que as pessoas agem do jeito que agem — e por que nem tudo na vida é só escolha individual. Veja os três conceitos principais dele:
     </p>
 
-    <div class="sec-titulo">Como funciona</div>
-    <div class="legenda">
-      <div class="item">
-        <div class="simbolo">✔</div>
-        <div class="item-texto">
-          <strong>Participou ativamente</strong>
-          <span>Respondeu, debateu ou contribuiu com a aula</span>
+    <!-- HABITUS -->
+    <div class="conceito">
+      <div class="conceito-header habitus">
+        <div class="conceito-icone">🧠</div>
+        <div>
+          <div class="conceito-titulo">1. Habitus</div>
+          <div class="conceito-subtitulo">O seu "jeitão" aprendido sem perceber</div>
         </div>
       </div>
-      <div class="item">
-        <div class="simbolo">P</div>
-        <div class="item-texto">
-          <strong>Presente</strong>
-          <span>Compareceu, mas sem participação ativa</span>
-        </div>
-      </div>
-      <div class="item">
-        <div class="simbolo">F</div>
-        <div class="item-texto">
-          <strong>Faltou</strong>
-          <span>Ausência registrada normalmente</span>
-        </div>
-      </div>
-      <div class="item">
-        <div class="simbolo">⚠️</div>
-        <div class="item-texto">
-          <strong>Advertência</strong>
-          <span>Perturbação que prejudica a turma</span>
-        </div>
-      </div>
-      <div class="item">
-        <div class="simbolo">—</div>
-        <div class="item-texto">
-          <strong>Não aplicável</strong>
-          <span>Aula sem registro ou atividade diferenciada</span>
+      <div class="conceito-body">
+        <p>O habitus é como os <strong>hábitos e gostos</strong> que as pessoas aprendem ao longo da vida — sem nem perceber. É como quando você cresce em uma casa onde todos gostam de cozinhar: provavelmente você também vai gostar, porque isso faz parte do seu ambiente.</p>
+        <p>Ele influencia como você <strong>age, pensa e decide</strong> as coisas. Não é algo que você escolhe conscientemente — você "pega" do lugar onde vive, da sua família, dos seus amigos.</p>
+        <div class="exemplo-box roxo">
+          <div class="label">Exemplo</div>
+          Se você cresceu em um bairro onde todo mundo valoriza estudar muito, você provavelmente também vai achar que estudar é importante — mesmo sem ninguém te obrigar.
         </div>
       </div>
     </div>
 
-    <div class="calculo-box">
-      <div class="sec-titulo">O cálculo</div>
-      <div class="formula">
-        <strong>Nota Final</strong> = <span class="dest">Nota da Avaliação</span> − (nº de advertências × 0,5)<br>
-        A nota nunca fica abaixo de <strong>zero</strong>.
+    <!-- CAMPOS -->
+    <div class="conceito">
+      <div class="conceito-header campos">
+        <div class="conceito-icone">⚽</div>
+        <div>
+          <div class="conceito-titulo">2. Campos</div>
+          <div class="conceito-subtitulo">As "arenas" onde as pessoas competem</div>
+        </div>
       </div>
-      <div class="exemplo">
-        Exemplo: tirou 7,5 na prova e teve 2 advertências → 7,5 − 1,0 = <strong style="color:#e8b96a">6,5</strong>
+      <div class="conceito-body">
+        <p>Os campos são lugares diferentes onde as pessoas <strong>competem por coisas importantes</strong>. Cada campo tem suas próprias regras e valores — e sua própria "moeda de troca".</p>
+        <div class="exemplo-box laranja">
+          <div class="label">Exemplos de campos</div>
+          <ul class="lista-exemplos">
+            <li><strong>Na escola:</strong> as pessoas competem por boas notas e reconhecimento.</li>
+            <li><strong>No futebol:</strong> as pessoas competem para marcar gols e ganhar partidas.</li>
+            <li><strong>Na música:</strong> as pessoas competem por sucesso, fãs e reconhecimento artístico.</li>
+          </ul>
+        </div>
+        <p style="margin-top:12px">Cada campo tem sua "moeda": na escola são as notas; no futebol, os gols; na música, o sucesso nas paradas.</p>
       </div>
     </div>
 
+    <!-- DISPOSIÇÕES -->
+    <div class="conceito">
+      <div class="conceito-header disp">
+        <div class="conceito-icone">🎯</div>
+        <div>
+          <div class="conceito-titulo">3. Disposições</div>
+          <div class="conceito-subtitulo">Suas tendências e preferências internas</div>
+        </div>
+      </div>
+      <div class="conceito-body">
+        <p>As disposições são <strong>tendências ou preferências</strong> que as pessoas têm dentro delas. Elas vêm do habitus, mas são mais específicas — são como "filtros" que nos fazem ver o mundo de um jeito particular.</p>
+        <div class="exemplo-box rosa">
+          <div class="label">Exemplos</div>
+          <ul class="lista-exemplos">
+            <li>Se você cresceu em uma família que adora livros → disposição para gostar de ler ou escrever.</li>
+            <li>Se você cresceu em um lugar que valoriza esportes → disposição para praticar ou assistir jogos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNTANDO TUDO -->
+    <div class="juntando">
+      <div class="sec-titulo">Juntando tudo</div>
+      <div class="juntando-texto">
+        O <span class="dest">habitus</span> é o conjunto de hábitos e gostos que você aprende com o tempo.<br>
+        Os <span class="dest">campos</span> são os lugares onde você usa esses hábitos para competir ou participar.<br>
+        As <span class="dest">disposições</span> são as tendências que te guiam dentro desses campos.
+      </div>
+      <div class="juntando-exemplo">
+        Se você cresceu em uma família que valoriza arte <strong>(habitus)</strong>, pode ter uma tendência para gostar de pintura <strong>(disposição)</strong>. Quando entra em um concurso de arte <strong>(campo)</strong>, usa tudo isso para criar algo legal.
+      </div>
+    </div>
+
+    <!-- MENSAGEM FINAL -->
     <div class="mensagem">
-      💡 <strong>O objetivo não é punir</strong> — é criar um ambiente onde todo mundo possa aprender. Quem não atrapalha e participa, sai ganhando. Quem prefere o celular ou conversar paralelo, assume a responsabilidade pela própria nota. Simples assim.
-    </div>
-
-    <div class="sec-titulo">Suas turmas</div>
-    <div class="turmas">
-      <div class="turma-item">
-        <strong>Fund. Pens. Sociológico</strong>
-        <span>Manhã — Seg &amp; Qua</span>
-      </div>
-      <div class="turma-item">
-        <strong>Fund. Pens. Sociológico</strong>
-        <span>Noite — Terças</span>
-      </div>
-      <div class="turma-item">
-        <strong>Introdução à Sociologia</strong>
-        <span>Noite — Segundas</span>
-      </div>
-      <div class="turma-item">
-        <strong>Introdução à Sociologia</strong>
-        <span>Manhã — Ter &amp; Qua</span>
-      </div>
+      💡 <strong>Bourdieu queria mostrar</strong> que a nossa vida não depende só das nossas escolhas individuais. Muitas vezes, somos influenciados pelo lugar onde crescemos, pelas pessoas ao nosso redor e pelas regras dos "jogos" em que estamos participando. Entendeu? 😊
     </div>
 
   </div>
