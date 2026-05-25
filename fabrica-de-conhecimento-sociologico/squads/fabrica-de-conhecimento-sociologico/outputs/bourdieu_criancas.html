@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Participação — Sociologia CFP/UFCG</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul:    #0f2d52;
+    --azul2:   #1a4a7a;
+    --ouro:    #c9973a;
+    --ouro2:   #e8b96a;
+    --creme:   #fdf6ec;
+    --verde:   #1e6b3c;
+    --verm:    #8b1a1a;
+    --texto:   #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e0d4;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .card {
+    background: var(--creme);
+    width: 100%;
+    max-width: 620px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.1);
+    animation: surgir 0.7s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes surgir {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TOPO ── */
+  .topo {
+    background: var(--azul);
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topo::before {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(201,151,58,.12);
+  }
+
+  .topo::after {
+    content: "";
+    position: absolute;
+    right: 30px; bottom: -60px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(201,151,58,.08);
+  }
+
+  .inst {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ouro2);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .titulo span { color: var(--ouro2); }
+
+  .subtitulo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    letter-spacing: .5px;
+  }
+
+  .linha-ouro {
+    height: 3px;
+    background: linear-gradient(90deg, var(--ouro), var(--ouro2), transparent);
+    margin: 0;
+  }
+
+  /* ── CORPO ── */
+  .corpo { padding: 32px 40px; }
+
+  .intro {
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .intro strong { color: var(--azul); font-weight: 500; }
+
+  /* ── LEGENDA ── */
+  .sec-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ouro);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .legenda {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    background: #fff;
+    border-left: 3px solid transparent;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    animation: fadeIn .5s ease both;
+  }
+
+  .item:nth-child(1) { border-color: var(--verde);  animation-delay:.1s }
+  .item:nth-child(2) { border-color: #888;           animation-delay:.2s }
+  .item:nth-child(3) { border-color: #b56a2a;        animation-delay:.3s }
+  .item:nth-child(4) { border-color: var(--verm);    animation-delay:.4s }
+  .item:nth-child(5) { border-color: #aaa; grid-column: span 2; animation-delay:.5s }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateX(-8px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+
+  .simbolo {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .item-texto strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto);
+    margin-bottom: 2px;
+  }
+
+  .item-texto span {
+    font-size: 11.5px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  /* ── CÁLCULO ── */
+  .calculo-box {
+    background: var(--azul);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calculo-box::before {
+    content: "=";
+    position: absolute;
+    right: 16px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: rgba(255,255,255,.04);
+    line-height: 1;
+  }
+
+  .calculo-box .sec-titulo { color: var(--ouro2); margin-bottom: 12px; }
+
+  .formula {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .formula strong { color: #fff; font-weight: 500; }
+  .formula .dest  { color: var(--ouro2); font-weight: 500; }
+
+  .exemplo {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+  }
+
+  /* ── MENSAGEM FINAL ── */
+  .mensagem {
+    background: #f0f7f3;
+    border-left: 4px solid var(--verde);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: #1a3a28;
+    line-height: 1.65;
+  }
+
+  .mensagem strong { color: var(--verde); }
+
+  /* ── TURMAS ── */
+  .turmas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .turma-item {
+    padding: 10px 14px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .turma-item strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--azul);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  .turma-item span {
+    font-size: 11px;
+    color: #777;
+  }
+
+  /* ── RODAPÉ ── */
+  .rodape {
+    border-top: 1px solid #e0d8cc;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f1e8;
+  }
+
+  .prof {
+    font-size: 11.5px;
+    color: #555;
+  }
+
+  .prof strong {
+    display: block;
+    color: var(--azul);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+
+  .semestre {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ouro);
+    font-weight: 500;
+  }
+
+  @media (max-width: 500px) {
+    .topo, .corpo { padding-left: 24px; padding-right: 24px; }
+    .legenda, .turmas { grid-template-columns: 1fr; }
+    .item:nth-child(5) { grid-column: span 1; }
+    .titulo { font-size: 26px; }
+    .rodape { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="topo">
+    <div class="inst">CFP · UFCG · Cajazeiras</div>
+    <h1 class="titulo">Participação que<br><span>faz diferença</span></h1>
+    <p class="subtitulo">Fundamentos do Pensamento Sociológico &amp; Introdução à Sociologia — 2026.1</p>
+  </div>
+
+  <div class="linha-ouro"></div>
+
+  <div class="corpo">
+
+    <p class="intro">
+      Olá, turma! 👋 A partir de agora, vamos adotar um <strong>sistema simples de acompanhamento de participação</strong> em sala. A ideia é valorizar quem se engaja — sem pressão, sem competição. Cada aula é uma oportunidade.
+    </p>
+
+    <div class="sec-titulo">Como funciona</div>
+    <div class="legenda">
+      <div class="item">
+        <div class="simbolo">✔</div>
+        <div class="item-texto">
+          <strong>Participou ativamente</strong>
+          <span>Respondeu, debateu ou contribuiu com a aula</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="simbolo">P</div>
+        <div class="item-texto">
+          <strong>Presente</strong>
+          <span>Compareceu, mas sem participação ativa</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="simbolo">F</div>
+        <div class="item-texto">
+          <strong>Faltou</strong>
+          <span>Ausência registrada normalmente</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="simbolo">⚠️</div>
+        <div class="item-texto">
+          <strong>Advertência</strong>
+          <span>Perturbação que prejudica a turma</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="simbolo">—</div>
+        <div class="item-texto">
+          <strong>Não aplicável</strong>
+          <span>Aula sem registro ou atividade diferenciada</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calculo-box">
+      <div class="sec-titulo">O cálculo</div>
+      <div class="formula">
+        <strong>Nota Final</strong> = <span class="dest">Nota da Avaliação</span> − (nº de advertências × 0,5)<br>
+        A nota nunca fica abaixo de <strong>zero</strong>.
+      </div>
+      <div class="exemplo">
+        Exemplo: tirou 7,5 na prova e teve 2 advertências → 7,5 − 1,0 = <strong style="color:#e8b96a">6,5</strong>
+      </div>
+    </div>
+
+    <div class="mensagem">
+      💡 <strong>O objetivo não é punir</strong> — é criar um ambiente onde todo mundo possa aprender. Quem não atrapalha e participa, sai ganhando. Quem prefere o celular ou conversar paralelo, assume a responsabilidade pela própria nota. Simples assim.
+    </div>
+
+    <div class="sec-titulo">Suas turmas</div>
+    <div class="turmas">
+      <div class="turma-item">
+        <strong>Fund. Pens. Sociológico</strong>
+        <span>Manhã — Seg &amp; Qua</span>
+      </div>
+      <div class="turma-item">
+        <strong>Fund. Pens. Sociológico</strong>
+        <span>Noite — Terças</span>
+      </div>
+      <div class="turma-item">
+        <strong>Introdução à Sociologia</strong>
+        <span>Noite — Segundas</span>
+      </div>
+      <div class="turma-item">
+        <strong>Introdução à Sociologia</strong>
+        <span>Manhã — Ter &amp; Qua</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rodape">
+    <div class="prof">
+      <strong>Prof. Dr. Sérgio Luis Rolemberg Farias</strong>
+      Unidade Acadêmica de Ciências Sociais · CFP/UFCG
+    </div>
+    <div class="semestre">2026.1</div>
+  </div>
+
+</div>
+</body>
+</html>
