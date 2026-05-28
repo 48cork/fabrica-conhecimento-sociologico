@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A IA Tem Classe Social? — Nietzsche</title>
+  <style>
+    :root {
+      --bg: #080711;
+      --panel: #11101d;
+      --panel-2: #171527;
+      --line: rgba(160, 135, 255, .22);
+      --line-strong: rgba(170, 125, 255, .56);
+      --text: #f7f4ff;
+      --muted: #a7a0c9;
+      --soft: #d8d2ff;
+      --violet: #9b78ff;
+      --pink: #ef71c5;
+      --cyan: #71ddff;
+      --green: #89f3c1;
+      --shadow: rgba(0, 0, 0, .38);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(120, 86, 255, .18), transparent 34rem),
+        radial-gradient(circle at 82% 20%, rgba(239, 113, 197, .13), transparent 32rem),
+        linear-gradient(180deg, #0b0918 0%, #080711 48%, #0b0a12 100%);
+      min-height: 100vh;
+    }
+
+    canvas#field {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .34;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      padding: 8rem 1.4rem 7rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .hero-inner {
+      width: min(var(--max), 100%);
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: .72rem 1.35rem;
+      color: #b49cff;
+      background: rgba(122, 90, 255, .08);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: clamp(.78rem, 1.3vw, 1rem);
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      box-shadow: 0 0 34px rgba(130, 95, 255, .1);
+    }
+
+    h1 {
+      margin: 3.1rem auto 1.4rem;
+      max-width: 980px;
+      font-size: clamp(3.8rem, 8vw, 7.6rem);
+      line-height: .94;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .gradient {
+      display: block;
+      margin-top: .18em;
+      color: transparent;
+      background: linear-gradient(95deg, #a985ff 12%, #ef71c5 82%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .subtitle {
+      max-width: 920px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.72;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin-top: 3.7rem;
+    }
+
+    .pill {
+      border: 1px solid rgba(165, 155, 215, .2);
+      border-radius: 8px;
+      padding: .7rem 1.15rem;
+      background: rgba(255, 255, 255, .035);
+      color: #aaa4cf;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 7, 17, .78);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .nav-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: .9rem 1.2rem;
+      display: flex;
+      gap: .45rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      padding: .58rem .9rem;
+      border-radius: 7px;
+      color: #918bad;
+      font-weight: 800;
+      transition: color .18s ease, background .18s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(155, 120, 255, .14);
+    }
+
+    main {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: 4rem 1.2rem 6rem;
+    }
+
+    section {
+      scroll-margin-top: 5.7rem;
+      padding: 3.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: 1.4rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    .num {
+      color: var(--violet);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: 1.15rem;
+      font-weight: 900;
+      padding-top: .34rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 .75rem;
+      color: var(--soft);
+      font-size: clamp(1.25rem, 2vw, 1.72rem);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: #d7d2ea;
+      font-size: 1.04rem;
+    }
+
+    .lead {
+      color: var(--soft);
+      font-size: clamp(1.16rem, 2vw, 1.38rem);
+      line-height: 1.72;
+      max-width: 930px;
+    }
+
+    .quote {
+      margin: 2rem 0;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--pink);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .035);
+      box-shadow: 0 18px 48px var(--shadow);
+      color: #f3eafd;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid rgba(165, 155, 215, .16);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .048), rgba(255, 255, 255, .026));
+      box-shadow: 0 16px 50px rgba(0, 0, 0, .18);
+    }
+
+    .card.accent {
+      border-color: rgba(239, 113, 197, .32);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(239, 113, 197, .12), transparent 13rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .052), rgba(255, 255, 255, .026));
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: .9rem;
+      padding: .28rem .55rem;
+      border-radius: 6px;
+      color: #b9a5ff;
+      background: rgba(155, 120, 255, .12);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .list {
+      margin: .4rem 0 0;
+      padding-left: 1.15rem;
+      color: #d7d2ea;
+    }
+
+    .list li { margin: .48rem 0; }
+
+    .split {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .big-question {
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(239, 113, 197, .28);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(155, 120, 255, .18), transparent 18rem),
+        rgba(255, 255, 255, .035);
+    }
+
+    .big-question p {
+      font-size: clamp(1.35rem, 2.3vw, 2rem);
+      color: var(--text);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .concept {
+      display: grid;
+      grid-template-columns: 12rem 1fr;
+      gap: 1.2rem;
+      padding: 1.35rem 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .concept:first-child { border-top: 0; }
+
+    .concept-name {
+      color: var(--pink);
+      font-weight: 900;
+      font-size: 1.08rem;
+    }
+
+    .case-label {
+      color: var(--cyan);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .activity {
+      counter-increment: activity;
+      position: relative;
+      padding-left: 4.6rem;
+    }
+
+    .activity::before {
+      content: counter(activity, decimal-leading-zero);
+      position: absolute;
+      left: 1.2rem;
+      top: 1.26rem;
+      color: var(--green);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-weight: 900;
+    }
+
+    .footer-note {
+      max-width: 850px;
+      margin: 2rem auto 0;
+      text-align: center;
+      color: #9d96bd;
+      font-size: .98rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero { padding: 5.5rem 1rem 5rem; min-height: 88vh; }
+      .section-head, .split, .concept { grid-template-columns: 1fr; }
+      .num { padding-top: 0; }
+      .grid, .cards-3 { grid-template-columns: 1fr; }
+      .activity { padding-left: 1.25rem; }
+      .activity::before { position: static; display: block; margin-bottom: .7rem; }
+      .pill { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="page">
+    <header class="hero" id="topo">
+      <div class="hero-inner">
+        <div class="eyebrow">Sociologia · Aula · @nietzsche · IA e classe social</div>
+        <h1>A IA tem <span class="gradient">Classe Social?</span></h1>
+        <p class="subtitle">Nietzsche e a genealogia dos valores algorítmicos — vontade de poder, moral de rebanho, último homem, niilismo, ressentimento e criação de valores.</p>
+        <div class="meta" aria-label="Informações da aula">
+          <span class="pill">100 minutos</span>
+          <span class="pill">Graduação · Pós · Extensão</span>
+          <span class="pill">Sociologia · Cultura · Tecnologia</span>
+          <span class="pill">2026</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Navegação da aula">
+      <div class="nav-inner">
+        <a href="#abertura">1. Abertura</a>
+        <a href="#nietzsche">2. Nietzsche</a>
+        <a href="#pergunta">3. Pergunta</a>
+        <a href="#conceitos">4. Conceitos</a>
+        <a href="#casos">5. Casos</a>
+        <a href="#debate">6. Debate</a>
+        <a href="#atividades">7. Atividades</a>
+        <a href="#fechamento">8. Fechamento</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="abertura">
+        <div class="section-head">
+          <div class="num">01</div>
+          <div>
+            <h2>Abertura Provocativa</h2>
+            <p class="lead">A IA promete responder tudo. Ela escreve por nós, resume por nós, recomenda caminhos por nós e sugere palavras antes que a gente termine de pensar.</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="big-question">
+            <p>Isso aumenta nossa potência ou nos torna mais fracos?</p>
+          </div>
+          <div>
+            <p>A IA pode parecer uma ferramenta de liberdade. Mas também pode funcionar como uma máquina de conforto: evita o esforço, suaviza o conflito, padroniza a linguagem, antecipa o desejo e transforma criação em repetição otimizada.</p>
+            <div class="quote">A pergunta nietzschiana não é: “a IA é inteligente?”. É: “a IA nos torna mais criadores ou mais obedientes?”</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="nietzsche">
+        <div class="section-head">
+          <div class="num">02</div>
+          <div>
+            <h2>Quem é Nietzsche?</h2>
+            <p class="lead">Friedrich Nietzsche nasceu em 1844, na Prússia, e morreu em 1900. Foi filósofo, filólogo e crítico radical da moral, da religião, da metafísica e da cultura moderna.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Crítica</span>
+            <h3>Desconfiança diante do universal</h3>
+            <p>Nietzsche desconfiava de tudo que se apresentava como verdade universal, moral superior ou progresso necessário. Para ele, muitas ideias nobres escondem medo, ressentimento, fraqueza, desejo de controle e vontade de domesticar a vida.</p>
+          </article>
+          <article class="card accent">
+            <span class="tag">Pergunta</span>
+            <h3>Que forças falam por trás disso?</h3>
+            <p>Se Marx pergunta quem explora, Durkheim pergunta o que integra, Weber pergunta o que racionaliza, Bourdieu pergunta o que reproduz e Foucault pergunta o que governa, Nietzsche pergunta: isso afirma ou nega a vida?</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="pergunta">
+        <div class="section-head">
+          <div class="num">03</div>
+          <div>
+            <h2>A Pergunta Central</h2>
+            <p class="lead">A pergunta da série permanece: a IA tem classe social? Com Nietzsche, ela vira uma genealogia dos valores que a IA carrega.</p>
+          </div>
+        </div>
+        <div class="grid cards-3">
+          <article class="card"><h3>Potência</h3><p>A IA aumenta a potência humana ou administra nossa fraqueza?</p></article>
+          <article class="card"><h3>Valores</h3><p>Ela cria novos valores ou repete valores dominantes?</p></article>
+          <article class="card"><h3>Rebanho</h3><p>Ela produz espíritos livres ou últimos homens?</p></article>
+        </div>
+        <div class="quote">A IA não tem vontade própria no sentido humano. Mas participa de uma cultura que busca previsão, conforto, eficiência, controle e redução do risco.</div>
+      </section>
+
+      <section id="conceitos">
+        <div class="section-head">
+          <div class="num">04</div>
+          <div>
+            <h2>Conceitos em Ação</h2>
+            <p class="lead">Nietzsche ajuda a perguntar não só o que a IA faz, mas que tipo de vida, moral e subjetividade ela fortalece.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Vontade de poder</div>
+          <div>
+            <p>Para Nietzsche, a vida é movida por impulso de expansão, criação, interpretação, superação e afirmação. A questão é se a IA amplia nossa vontade de poder ou a substitui.</p>
+            <p>Quando usamos IA para explorar ideias e expandir pensamento, ela pode aumentar potência. Quando usamos para não pensar, não escrever, não escolher e não enfrentar dificuldade, ela reduz potência.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Moral de rebanho</div>
+          <div>
+            <p>A moral de rebanho é a moral da conformidade, da segurança e da obediência. No digital, aparece em curtidas, notas, ranqueamentos, tendências, engajamento e respostas “adequadas”.</p>
+            <p>A IA aprende padrões dominantes e tende a reproduzir o mais provável, o mais aceito e o mais estatisticamente comum.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">O último homem</div>
+          <div>
+            <p>O último homem quer conforto, segurança, entretenimento e ausência de sofrimento. A IA pode servir a esse tipo humano quando promete não precisar pensar, escolher, lembrar, errar ou enfrentar silêncio.</p>
+            <p>Tudo fica mais fácil. Mas talvez tudo fique menor.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Niilismo</div>
+          <div>
+            <p>Niilismo é a crise dos valores. A IA pode intensificá-lo quando transforma conhecimento em resposta rápida, cultura em conteúdo, criação em automação e pensamento em otimização.</p>
+            <p>O problema não é apenas produzir respostas erradas. O problema é uma sociedade deixar de perguntar para que pensar.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Ressentimento</div>
+          <div>
+            <p>O ressentido não cria valores novos. Ele inverte valores: chama força de arrogância, grandeza de privilégio, diferença de ameaça e criação de perigo.</p>
+            <p>Feeds algorítmicos podem amplificar ressentimento quando privilegiam indignação, conflito moral, humilhação pública e comparação permanente.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Criação de valores</div>
+          <div>
+            <p>Para Nietzsche, espíritos fortes não apenas obedecem valores existentes. Eles criam valores novos. A IA pode repetir valores dominantes ou servir como ferramenta de experimentação.</p>
+            <p>A pergunta decisiva é: quem usa quem?</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="casos">
+        <div class="section-head">
+          <div class="num">05</div>
+          <div>
+            <h2>Casos Concretos</h2>
+            <p class="lead">A leitura nietzschiana observa se a IA amplia potência criadora ou aprofunda adaptação, conforto e moral dominante.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="case-label">Caso 01</span>
+            <h3>IA generativa e escrita acadêmica</h3>
+            <p>Estudantes usam IA para trabalhos, resumos e respostas. Isso pode organizar ideias, mas também produzir uma escrita sem autoria, sem risco e sem formação.</p>
+            <p><strong>Leitura:</strong> o problema é usar IA para evitar o sofrimento formativo da criação.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 02</span>
+            <h3>Recomendação e gosto</h3>
+            <p>Plataformas recomendam músicas, vídeos, filmes, livros e notícias com base no comportamento anterior.</p>
+            <p><strong>Leitura:</strong> o gosto vira repetição de si mesmo. A recomendação pode se tornar moral de rebanho personalizada.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 03</span>
+            <h3>Produtividade automatizada</h3>
+            <p>Empresas usam IA para aumentar produtividade, medir desempenho e reduzir tempo morto.</p>
+            <p><strong>Leitura:</strong> eficiência para quê? Fazer mais, mais rápido, pode ser niilismo organizado.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 04</span>
+            <h3>IA, beleza e corpo</h3>
+            <p>Geradores de imagem e filtros reforçam padrões visuais melhorados, previsíveis e socialmente desejáveis.</p>
+            <p><strong>Leitura:</strong> o corpo vira projeto de aprovação do rebanho, não afirmação de singularidade.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="debate">
+        <div class="section-head">
+          <div class="num">06</div>
+          <div>
+            <h2>Nietzsche em Debate</h2>
+            <p class="lead">O contraste com outros autores ajuda a mostrar o que Nietzsche acrescenta à pergunta sobre IA e classe social.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>vs. Marx</h3><p>Marx perguntaria quem possui os meios de produção da IA. Nietzsche perguntaria que tipo de humanidade essa tecnologia forma.</p></article>
+          <article class="card"><h3>vs. Durkheim</h3><p>Durkheim perguntaria como a IA afeta a coesão social. Nietzsche desconfiaria de uma integração que mata a diferença criadora.</p></article>
+          <article class="card"><h3>vs. Weber</h3><p>Weber veria racionalização extrema. Nietzsche perguntaria se uma vida totalmente calculada ainda pode ter grandeza.</p></article>
+          <article class="card"><h3>vs. Bourdieu</h3><p>Bourdieu perguntaria que capitais a IA distribui. Nietzsche perguntaria que forças criadoras ou reativas movem esses valores.</p></article>
+          <article class="card"><h3>vs. Foucault</h3><p>Foucault perguntaria como a IA produz sujeitos governáveis. Nietzsche perguntaria se esses sujeitos ainda criam valores próprios.</p></article>
+        </div>
+      </section>
+
+      <section id="atividades">
+        <div class="section-head">
+          <div class="num">07</div>
+          <div>
+            <h2>Atividades Críticas</h2>
+            <p class="lead">Cinco propostas para transformar a aula em prática de análise sociológica e filosófica.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card activity">
+            <h3>Genealogia de uma resposta da IA</h3>
+            <p>Peça à IA para definir “vida bem-sucedida”, “boa escola” ou “carreira ideal”. Analise que valores aparecem e quais classes sociais são favorecidas.</p>
+          </article>
+          <article class="card activity">
+            <h3>A moral de classe da IA</h3>
+            <p>Compare definições de sucesso, beleza, mérito, segurança e profissionalismo. Identifique a moral dominante escondida na resposta.</p>
+          </article>
+          <article class="card activity">
+            <h3>O último homem algorítmico</h3>
+            <p>Crie o perfil de um sujeito que usa IA para evitar risco, esforço e frustração. Compare com o sujeito criador nietzschiano.</p>
+          </article>
+          <article class="card activity">
+            <h3>Quem pode criar valores?</h3>
+            <p>Mapeie quem financia, treina, regula e define os critérios de segurança dos modelos de IA. Separe quem define valores e quem apenas os recebe.</p>
+          </article>
+          <article class="card activity">
+            <h3>Carta de Nietzsche à IA</h3>
+            <p>Escreva uma carta argumentando se a IA fortalece sujeitos criadores ou produz usuários bem adaptados à moral dominante.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="fechamento">
+        <div class="section-head">
+          <div class="num">08</div>
+          <div>
+            <h2>Fechamento</h2>
+            <p class="lead">Com Nietzsche, a pergunta “a IA tem classe social?” se transforma em uma pergunta sobre potência, domesticação e criação de valores.</p>
+          </div>
+        </div>
+        <div class="quote">O perigo não é apenas a máquina ficar inteligente. O perigo é o ser humano aceitar tornar-se menor porque a máquina tornou tudo mais fácil.</div>
+        <p>Em Bourdieu, a IA reproduz distinções sociais. Em Foucault, a IA produz sujeitos governáveis. Em Nietzsche, a IA testa nossa potência: somos criadores ou apenas usuários bem adaptados?</p>
+        <div class="quote">Estamos usando a IA para nos superar ou para evitar o trabalho de nos tornarmos alguém?</div>
+        <p class="footer-note">Aula de Sociologia · Nietzsche, IA e classe social · arquivo HTML estático</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("field");
+    const ctx = canvas.getContext("2d");
+    let points = [];
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.max(42, Math.floor(window.innerWidth * window.innerHeight / 26000));
+      points = Array.from({ length: count }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - .5) * .22,
+        vy: (Math.random() - .5) * .22
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (const p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
+      }
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const a = points[i], b = points[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 145) {
+            ctx.globalAlpha = (1 - dist / 145) * .3;
+            ctx.strokeStyle = "#a985ff";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = .42;
+      ctx.fillStyle = "#ef71c5";
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+  </script>
+</body>
+</html>
