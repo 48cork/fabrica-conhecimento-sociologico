@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A IA Tem Classe Social? — Foucault</title>
+  <style>
+    :root {
+      --bg: #080711;
+      --panel: #11101d;
+      --line: rgba(120, 210, 255, .22);
+      --line-strong: rgba(120, 210, 255, .52);
+      --text: #f7f4ff;
+      --muted: #a7a0c9;
+      --soft: #d8d2ff;
+      --blue: #78d2ff;
+      --violet: #9b78ff;
+      --pink: #ef71c5;
+      --green: #89f3c1;
+      --shadow: rgba(0, 0, 0, .38);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(120, 210, 255, .16), transparent 34rem),
+        radial-gradient(circle at 82% 16%, rgba(155, 120, 255, .16), transparent 32rem),
+        linear-gradient(180deg, #0b0918 0%, #080711 48%, #0b0a12 100%);
+      min-height: 100vh;
+    }
+
+    canvas#field {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .32;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .page { position: relative; z-index: 1; }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      padding: 8rem 1.4rem 7rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .hero-inner {
+      width: min(var(--max), 100%);
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: .72rem 1.35rem;
+      color: #a8e7ff;
+      background: rgba(120, 210, 255, .08);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: clamp(.78rem, 1.3vw, 1rem);
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      box-shadow: 0 0 34px rgba(120, 210, 255, .1);
+    }
+
+    h1 {
+      margin: 3.1rem auto 1.4rem;
+      max-width: 1000px;
+      font-size: clamp(3.5rem, 7.8vw, 7.35rem);
+      line-height: .94;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .gradient {
+      display: block;
+      margin-top: .18em;
+      color: transparent;
+      background: linear-gradient(95deg, #78d2ff 8%, #9b78ff 48%, #ef71c5 88%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .subtitle {
+      max-width: 940px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.72;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin-top: 3.7rem;
+    }
+
+    .pill {
+      border: 1px solid rgba(165, 155, 215, .2);
+      border-radius: 8px;
+      padding: .7rem 1.15rem;
+      background: rgba(255, 255, 255, .035);
+      color: #aaa4cf;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 7, 17, .78);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .nav-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: .9rem 1.2rem;
+      display: flex;
+      gap: .45rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      padding: .58rem .9rem;
+      border-radius: 7px;
+      color: #918bad;
+      font-weight: 800;
+      transition: color .18s ease, background .18s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(120, 210, 255, .14);
+    }
+
+    main {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: 4rem 1.2rem 6rem;
+    }
+
+    section {
+      scroll-margin-top: 5.7rem;
+      padding: 3.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: 1.4rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    .num {
+      color: var(--blue);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: 1.15rem;
+      font-weight: 900;
+      padding-top: .34rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 .75rem;
+      color: var(--soft);
+      font-size: clamp(1.25rem, 2vw, 1.72rem);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: #d7d2ea;
+      font-size: 1.04rem;
+    }
+
+    .lead {
+      color: var(--soft);
+      font-size: clamp(1.16rem, 2vw, 1.38rem);
+      line-height: 1.72;
+      max-width: 930px;
+    }
+
+    .quote {
+      margin: 2rem 0;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .035);
+      box-shadow: 0 18px 48px var(--shadow);
+      color: #f3eafd;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid rgba(165, 155, 215, .16);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .048), rgba(255, 255, 255, .026));
+      box-shadow: 0 16px 50px rgba(0, 0, 0, .18);
+    }
+
+    .card.accent {
+      border-color: rgba(120, 210, 255, .32);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(120, 210, 255, .12), transparent 13rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .052), rgba(255, 255, 255, .026));
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: .9rem;
+      padding: .28rem .55rem;
+      border-radius: 6px;
+      color: #a8e7ff;
+      background: rgba(120, 210, 255, .12);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .list {
+      margin: .4rem 0 0;
+      padding-left: 1.15rem;
+      color: #d7d2ea;
+    }
+
+    .list li { margin: .48rem 0; }
+
+    .split {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .big-question {
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(120, 210, 255, .28);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(120, 210, 255, .18), transparent 18rem),
+        rgba(255, 255, 255, .035);
+    }
+
+    .big-question p {
+      font-size: clamp(1.35rem, 2.3vw, 2rem);
+      color: var(--text);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .concept {
+      display: grid;
+      grid-template-columns: 13rem 1fr;
+      gap: 1.2rem;
+      padding: 1.35rem 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .concept:first-child { border-top: 0; }
+
+    .concept-name {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 1.08rem;
+    }
+
+    .case-label {
+      color: var(--green);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .activity {
+      counter-increment: activity;
+      position: relative;
+      padding-left: 4.6rem;
+    }
+
+    .activity::before {
+      content: counter(activity, decimal-leading-zero);
+      position: absolute;
+      left: 1.2rem;
+      top: 1.26rem;
+      color: var(--pink);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-weight: 900;
+    }
+
+    .footer-note {
+      max-width: 850px;
+      margin: 2rem auto 0;
+      text-align: center;
+      color: #9d96bd;
+      font-size: .98rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero { padding: 5.5rem 1rem 5rem; min-height: 88vh; }
+      .section-head, .split, .concept { grid-template-columns: 1fr; }
+      .num { padding-top: 0; }
+      .grid, .cards-3 { grid-template-columns: 1fr; }
+      .activity { padding-left: 1.25rem; }
+      .activity::before { position: static; display: block; margin-bottom: .7rem; }
+      .pill { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="page">
+    <header class="hero" id="topo">
+      <div class="hero-inner">
+        <div class="eyebrow">Sociologia · Aula · @foucault · IA e classe social</div>
+        <h1>A IA tem <span class="gradient">Classe Social?</span></h1>
+        <p class="subtitle">Foucault e o poder algorítmico — vigilância, disciplina, biopolítica, governamentalidade, dispositivo e regime de verdade na era da inteligência artificial.</p>
+        <div class="meta" aria-label="Informações da aula">
+          <span class="pill">100 minutos</span>
+          <span class="pill">Graduação · Pós · Extensão</span>
+          <span class="pill">Sociologia · Poder · Tecnologia</span>
+          <span class="pill">2026</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Navegação da aula">
+      <div class="nav-inner">
+        <a href="#abertura">1. Abertura</a>
+        <a href="#foucault">2. Foucault</a>
+        <a href="#pergunta">3. Pergunta</a>
+        <a href="#conceitos">4. Conceitos</a>
+        <a href="#casos">5. Casos</a>
+        <a href="#debate">6. Debate</a>
+        <a href="#atividades">7. Atividades</a>
+        <a href="#fechamento">8. Fechamento</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="abertura">
+        <div class="section-head">
+          <div class="num">01</div>
+          <div>
+            <h2>Abertura Provocativa</h2>
+            <p class="lead">O algoritmo não pergunta quem você é. Ele observa o que você faz. Depois diz quem você é.</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="big-question">
+            <p>Que tipo de sujeito a IA produz?</p>
+          </div>
+          <div>
+            <p>Um sistema de IA acompanha cliques, localização, tempo de tela, padrões de compra, rosto, voz, produtividade, saúde, risco de crédito e desempenho escolar.</p>
+            <p>Ele não precisa prender, censurar diretamente ou mandar obedecer. Ele cria um ambiente no qual as pessoas passam a se comportar como se estivessem permanentemente observadas, avaliadas e comparadas.</p>
+            <div class="quote">A pergunta foucaultiana não é apenas “a IA é justa?”. É: “que formas de poder se tornam possíveis quando a vida social vira dado?”</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="foucault">
+        <div class="section-head">
+          <div class="num">02</div>
+          <div>
+            <h2>Quem é Foucault?</h2>
+            <p class="lead">Michel Foucault nasceu em 1926, na França, e morreu em 1984. Foi filósofo, historiador das ideias e um dos pensadores centrais para compreender poder, saber, instituições e subjetividade.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Método</span>
+            <h3>Poder-saber</h3>
+            <p>Foucault não perguntava apenas quem manda. Ele perguntava como certas formas de saber tornam possível governar corpos, condutas e populações.</p>
+          </article>
+          <article class="card accent">
+            <span class="tag">Instituições</span>
+            <h3>Vigiar, classificar, normalizar</h3>
+            <p>Ele estudou prisões, hospitais, escolas, quartéis, manicômios, sexualidade, medicina, estatística, polícia e administração da vida.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="pergunta">
+        <div class="section-head">
+          <div class="num">03</div>
+          <div>
+            <h2>A Pergunta Central</h2>
+            <p class="lead">A IA tem classe social? Em Foucault, a pergunta muda de registro: ela passa a ser sobre dispositivos, verdades, vigilância e governo da conduta.</p>
+          </div>
+        </div>
+        <div class="grid cards-3">
+          <article class="card"><h3>Dispositivo</h3><p>A IA participa de quais redes de instituições, técnicas, saberes e práticas?</p></article>
+          <article class="card"><h3>Verdade</h3><p>Que regimes de verdade ela produz sobre indivíduos e populações?</p></article>
+          <article class="card"><h3>Conduta</h3><p>Que comportamentos ela vigia, normaliza, recompensa ou bloqueia?</p></article>
+        </div>
+        <div class="quote">A IA não apenas descreve o mundo. Ela ajuda a produzir o mundo que afirma apenas medir.</div>
+      </section>
+
+      <section id="conceitos">
+        <div class="section-head">
+          <div class="num">04</div>
+          <div>
+            <h2>Conceitos em Ação</h2>
+            <p class="lead">Foucault ajuda a ver a IA como parte de um dispositivo contemporâneo de poder-saber.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Poder-saber</div>
+          <div>
+            <p>Todo sistema de conhecimento organiza formas de intervenção. A medicina produz o doente; a criminologia produz o delinquente; a escola produz o aluno insuficiente.</p>
+            <p>A IA produz o usuário de risco, o perfil suspeito, o consumidor provável, o candidato adequado e o aluno com baixa performance.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Disciplina</div>
+          <div>
+            <p>A disciplina opera por vigilância, exame e normalização. A escola mede notas; a fábrica mede produtividade; a plataforma mede engajamento.</p>
+            <p>A IA intensifica esse processo porque torna a vigilância contínua, automatizada e personalizada.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Panoptismo algorítmico</div>
+          <div>
+            <p>O panóptico funciona porque o sujeito nunca sabe quando está sendo observado e passa a vigiar a si mesmo.</p>
+            <p>A IA cria um panoptismo distribuído: sensores, câmeras, bancos de dados, aplicativos, scores, logs e modelos preditivos.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Normalização</div>
+          <div>
+            <p>A lei diz permitido ou proibido. A norma diz normal ou anormal. A IA compara indivíduos com padrões estatísticos e identifica desvios.</p>
+            <p>O poder algorítmico pode dizer: baixo score, fora do perfil, comportamento suspeito, não recomendado.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Biopolítica</div>
+          <div>
+            <p>Biopolítica é o poder que governa populações: saúde, circulação, risco, segurança, produtividade e vida.</p>
+            <p>A IA prevê epidemias, calcula risco, distribui policiamento, classifica pacientes, prioriza benefícios sociais e segmenta propaganda política.</p>
+          </div>
+        </div>
+
+        <div class="concept">
+          <div class="concept-name">Governamentalidade</div>
+          <div>
+            <p>Governar não é apenas mandar. É organizar o campo de possibilidades dentro do qual as pessoas escolhem.</p>
+            <p>A IA recomenda, ranqueia, sugere, oculta, prioriza, acelera, bloqueia, monetiza e desmonetiza.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="casos">
+        <div class="section-head">
+          <div class="num">05</div>
+          <div>
+            <h2>Casos Concretos</h2>
+            <p class="lead">A leitura foucaultiana pergunta que dispositivo se amplia, quem se torna visível ao poder e que norma passa a operar como verdade.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="case-label">Caso 01</span>
+            <h3>Reconhecimento facial e policiamento</h3>
+            <p>Sistemas de reconhecimento facial prometem eficiência, mas podem reforçar a vigilância sobre populações historicamente policiadas.</p>
+            <p><strong>Leitura:</strong> a questão não é só reconhecer bem; é quem se torna reconhecível como ameaça.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 02</span>
+            <h3>Plataformas educacionais</h3>
+            <p>Plataformas medem ritmo, presença, cliques, erros e desempenho. O exame deixa de ser evento e vira ambiente.</p>
+            <p><strong>Leitura:</strong> o aluno aprende também a performar como bom usuário educacional.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 03</span>
+            <h3>Trabalho plataformizado</h3>
+            <p>Motoristas, entregadores e criadores são governados por avaliações, pontuações, ranqueamentos e regras opacas.</p>
+            <p><strong>Leitura:</strong> é disciplina sem supervisor direto.</p>
+          </article>
+          <article class="card">
+            <span class="case-label">Caso 04</span>
+            <h3>IA generativa e regime de verdade</h3>
+            <p>Modelos generativos organizam o que aparece como explicação plausível, resposta aceitável e conhecimento legítimo.</p>
+            <p><strong>Leitura:</strong> a IA estabiliza formas de dizer o verdadeiro.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="debate">
+        <div class="section-head">
+          <div class="num">06</div>
+          <div>
+            <h2>Foucault em Debate</h2>
+            <p class="lead">O contraste com outros autores mostra a especificidade da pergunta foucaultiana.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>vs. Marx</h3><p>Marx perguntaria quem possui os meios de produção da IA. Foucault perguntaria também quais saberes, classificações e dispositivos produzem sujeitos governáveis.</p></article>
+          <article class="card"><h3>vs. Durkheim</h3><p>Durkheim veria fatos sociais coercitivos. Foucault perguntaria que técnicas tornam essa coerção aceitável, científica e normal.</p></article>
+          <article class="card"><h3>vs. Weber</h3><p>Weber veria racionalização burocrática. Foucault veria disciplina, exame e biopolítica.</p></article>
+          <article class="card"><h3>vs. Bourdieu</h3><p>Bourdieu enfatiza reprodução social. Foucault enfatiza produção de subjetividade.</p></article>
+          <article class="card"><h3>vs. Nietzsche</h3><p>Nietzsche perguntaria que forças e valores falam pela IA. Foucault perguntaria que dispositivos tornam esses valores operacionais.</p></article>
+        </div>
+      </section>
+
+      <section id="atividades">
+        <div class="section-head">
+          <div class="num">07</div>
+          <div>
+            <h2>Atividades Críticas</h2>
+            <p class="lead">Cinco propostas para aplicar Foucault à análise cotidiana da inteligência artificial.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card activity">
+            <h3>Diário da vigilância algorítmica</h3>
+            <p>Registre por 24 horas situações em que plataformas coletam, classificam ou avaliam seus dados. Relacione com panoptismo.</p>
+          </article>
+          <article class="card activity">
+            <h3>O exame permanente</h3>
+            <p>Escolha uma plataforma e mapeie o que ela mede, que condutas recompensa e que tipo de usuário normal ela produz.</p>
+          </article>
+          <article class="card activity">
+            <h3>Tribunal do algoritmo</h3>
+            <p>Simule uma decisão automatizada: crédito negado, currículo descartado, conta bloqueada ou benefício recusado.</p>
+          </article>
+          <article class="card activity">
+            <h3>Meu perfil segundo a máquina</h3>
+            <p>Compare quem você acha que é com quem um algoritmo poderia dizer que você é a partir dos seus dados.</p>
+          </article>
+          <article class="card activity">
+            <h3>Carta de Foucault para uma Big Tech</h3>
+            <p>Escreva uma carta explicando por que personalização, segurança e dados objetivos também são formas de governo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="fechamento">
+        <div class="section-head">
+          <div class="num">08</div>
+          <div>
+            <h2>Fechamento</h2>
+            <p class="lead">Com Foucault, a IA talvez não tenha classe como sujeito, mas tem poder: vigia, classifica, normaliza e governa condutas.</p>
+          </div>
+        </div>
+        <div class="quote">O perigo não é apenas a IA errar. O perigo é ela definir o que conta como normal, seguro, produtivo, confiável, inteligente e verdadeiro.</div>
+        <p>Em Bourdieu, a IA reproduz distinções sociais. Em Nietzsche, ela revela uma genealogia de valores. Em Foucault, ela produz sujeitos governáveis.</p>
+        <div class="quote">Quando a IA diz quem você é, quem tem o poder de discordar?</div>
+        <p class="footer-note">Aula de Sociologia · Foucault, IA e classe social · arquivo HTML estático</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("field");
+    const ctx = canvas.getContext("2d");
+    let points = [];
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.max(42, Math.floor(window.innerWidth * window.innerHeight / 26000));
+      points = Array.from({ length: count }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - .5) * .22,
+        vy: (Math.random() - .5) * .22
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      for (const p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
+      }
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const a = points[i], b = points[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 145) {
+            ctx.globalAlpha = (1 - dist / 145) * .3;
+            ctx.strokeStyle = "#78d2ff";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = .42;
+      ctx.fillStyle = "#9b78ff";
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+  </script>
+</body>
+</html>
