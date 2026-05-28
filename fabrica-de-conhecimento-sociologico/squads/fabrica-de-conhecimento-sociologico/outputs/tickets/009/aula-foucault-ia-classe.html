@@ -19,10 +19,12 @@
       --green: #89f3c1;
       --shadow: rgba(0, 0, 0, .38);
       --max: 1180px;
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: var(--bg); }
+    ::selection { color: #080711; background: var(--blue); }
 
     body {
       margin: 0;
@@ -34,6 +36,20 @@
         radial-gradient(circle at 82% 16%, rgba(155, 120, 255, .16), transparent 32rem),
         linear-gradient(180deg, #0b0918 0%, #080711 48%, #0b0a12 100%);
       min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: 4rem 4rem;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .75), transparent 72%);
+      opacity: .28;
     }
 
     canvas#field {
@@ -50,18 +66,117 @@
     .page { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 92vh;
+      min-height: 96vh;
       display: grid;
       place-items: center;
-      padding: 8rem 1.4rem 7rem;
+      padding: 7rem 1.4rem 6rem;
       border-bottom: 1px solid rgba(255, 255, 255, .1);
     }
 
     .hero-inner {
       width: min(var(--max), 100%);
-      text-align: center;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .72fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
     }
+
+    .hero-copy {
+      text-align: left;
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 1.1rem;
+      border: 1px solid rgba(120, 210, 255, .24);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(120, 210, 255, .18), transparent 18rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .032));
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .34);
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: .55rem;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .signal-card {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+      padding: 1.2rem;
+    }
+
+    .signal-kicker,
+    .signal-label {
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .signal-kicker { color: var(--green); }
+    .signal-title {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(1.55rem, 3vw, 2.55rem);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: 8.5rem 1fr;
+      gap: .8rem;
+      align-items: center;
+      padding-top: .85rem;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .signal-label { color: #918bad; letter-spacing: .08em; }
+    .meter {
+      height: .58rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08);
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--violet), var(--pink));
+    }
+
+    .axis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .55rem;
+      margin-top: .35rem;
+    }
+
+    .axis span {
+      min-height: 5.2rem;
+      display: grid;
+      place-items: end start;
+      padding: .65rem;
+      border: 1px solid rgba(120, 210, 255, .18);
+      border-radius: 7px;
+      color: #d8d2ff;
+      background: rgba(8, 7, 17, .54);
+      font-weight: 800;
+    }
+
+    .axis span:nth-child(2) { border-color: rgba(155, 120, 255, .28); }
+    .axis span:nth-child(3) { border-color: rgba(239, 113, 197, .28); }
 
     .eyebrow {
       display: inline-flex;
@@ -82,7 +197,7 @@
     }
 
     h1 {
-      margin: 3.1rem auto 1.4rem;
+      margin: 2.7rem 0 1.4rem;
       max-width: 1000px;
       font-size: clamp(3.5rem, 7.8vw, 7.35rem);
       line-height: .94;
@@ -101,7 +216,7 @@
 
     .subtitle {
       max-width: 940px;
-      margin: 0 auto;
+      margin: 0;
       color: var(--muted);
       font-size: clamp(1.15rem, 2vw, 1.55rem);
       line-height: 1.72;
@@ -110,7 +225,7 @@
     .meta {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       gap: .8rem;
       margin-top: 3.7rem;
     }
@@ -119,8 +234,8 @@
       border: 1px solid rgba(165, 155, 215, .2);
       border-radius: 8px;
       padding: .7rem 1.15rem;
-      background: rgba(255, 255, 255, .035);
-      color: #aaa4cf;
+      background: rgba(8, 7, 17, .46);
+      color: #d0caec;
       font-size: 1rem;
       font-weight: 700;
       white-space: nowrap;
@@ -143,6 +258,7 @@
       gap: .45rem;
       overflow-x: auto;
       scrollbar-width: thin;
+      mask-image: linear-gradient(90deg, transparent, #000 1.2rem, #000 calc(100% - 1.2rem), transparent);
     }
 
     .nav a {
@@ -166,9 +282,22 @@
     }
 
     section {
+      position: relative;
       scroll-margin-top: 5.7rem;
-      padding: 3.8rem 0;
+      padding: 4.4rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 4.4rem;
+      width: .28rem;
+      height: 4.2rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--blue), var(--violet), var(--pink));
+      opacity: .8;
     }
 
     .section-head {
@@ -185,6 +314,7 @@
       font-size: 1.15rem;
       font-weight: 900;
       padding-top: .34rem;
+      text-shadow: 0 0 28px rgba(120, 210, 255, .32);
     }
 
     h2 {
@@ -217,11 +347,13 @@
 
     .quote {
       margin: 2rem 0;
-      padding: 1.4rem 1.5rem;
+      padding: 1.55rem 1.65rem;
       border: 1px solid var(--line);
       border-left: 4px solid var(--blue);
       border-radius: 8px;
-      background: rgba(255, 255, 255, .035);
+      background:
+        linear-gradient(90deg, rgba(120, 210, 255, .1), transparent 45%),
+        rgba(255, 255, 255, .04);
       box-shadow: 0 18px 48px var(--shadow);
       color: #f3eafd;
       font-size: clamp(1.2rem, 2vw, 1.6rem);
@@ -232,7 +364,7 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
+      gap: 1.15rem;
       margin-top: 1.4rem;
     }
 
@@ -241,9 +373,18 @@
     .card {
       border: 1px solid rgba(165, 155, 215, .16);
       border-radius: 8px;
-      padding: 1.25rem;
+      padding: 1.35rem;
       background: linear-gradient(180deg, rgba(255, 255, 255, .048), rgba(255, 255, 255, .026));
       box-shadow: 0 16px 50px rgba(0, 0, 0, .18);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(120, 210, 255, .34);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(120, 210, 255, .08), transparent 12rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .062), rgba(255, 255, 255, .028));
     }
 
     .card.accent {
@@ -288,6 +429,7 @@
       background:
         radial-gradient(circle at 12% 0%, rgba(120, 210, 255, .18), transparent 18rem),
         rgba(255, 255, 255, .035);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04), 0 24px 80px rgba(0, 0, 0, .24);
     }
 
     .big-question p {
@@ -301,11 +443,14 @@
       display: grid;
       grid-template-columns: 13rem 1fr;
       gap: 1.2rem;
-      padding: 1.35rem 0;
-      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding: 1.35rem;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .025);
+      margin-top: .75rem;
     }
 
-    .concept:first-child { border-top: 0; }
+    .concept:first-child { margin-top: 0; }
 
     .concept-name {
       color: var(--blue);
@@ -325,6 +470,9 @@
       counter-increment: activity;
       position: relative;
       padding-left: 4.6rem;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(239, 113, 197, .09), transparent 13rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .026));
     }
 
     .activity::before {
@@ -346,13 +494,24 @@
     }
 
     @media (max-width: 860px) {
-      .hero { padding: 5.5rem 1rem 5rem; min-height: 88vh; }
-      .section-head, .split, .concept { grid-template-columns: 1fr; }
+      .hero { padding: 5.5rem 1rem 5rem; min-height: auto; }
+      .hero-inner, .section-head, .split, .concept { grid-template-columns: 1fr; }
+      .hero-copy { text-align: center; }
+      .subtitle { margin: 0 auto; }
+      .meta { justify-content: center; margin-top: 2.4rem; }
+      .signal-row { grid-template-columns: 1fr; }
       .num { padding-top: 0; }
       .grid, .cards-3 { grid-template-columns: 1fr; }
+      section::before { display: none; }
       .activity { padding-left: 1.25rem; }
       .activity::before { position: static; display: block; margin-bottom: .7rem; }
       .pill { white-space: normal; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .card { transition: none; }
+      .card:hover { transform: none; }
     }
   </style>
 </head>
@@ -361,15 +520,36 @@
   <div class="page">
     <header class="hero" id="topo">
       <div class="hero-inner">
-        <div class="eyebrow">Sociologia · Aula · @foucault · IA e classe social</div>
-        <h1>A IA tem <span class="gradient">Classe Social?</span></h1>
-        <p class="subtitle">Foucault e o poder algorítmico — vigilância, disciplina, biopolítica, governamentalidade, dispositivo e regime de verdade na era da inteligência artificial.</p>
-        <div class="meta" aria-label="Informações da aula">
-          <span class="pill">100 minutos</span>
-          <span class="pill">Graduação · Pós · Extensão</span>
-          <span class="pill">Sociologia · Poder · Tecnologia</span>
-          <span class="pill">2026</span>
+        <div class="hero-copy">
+          <div class="eyebrow">Sociologia · Aula · @foucault · IA e classe social</div>
+          <h1>A IA tem <span class="gradient">Classe Social?</span></h1>
+          <p class="subtitle">Foucault e o poder algorítmico — vigilância, disciplina, biopolítica, governamentalidade, dispositivo e regime de verdade na era da inteligência artificial.</p>
+          <div class="meta" aria-label="Informações da aula">
+            <span class="pill">100 minutos</span>
+            <span class="pill">Graduação · Pós · Extensão</span>
+            <span class="pill">Sociologia · Poder · Tecnologia</span>
+            <span class="pill">2026</span>
+          </div>
         </div>
+        <aside class="hero-panel" aria-label="Mapa conceitual da aula">
+          <div class="signal-card">
+            <div class="signal-kicker">Dispositivo de leitura</div>
+            <p class="signal-title">Dados viram norma. Norma vira conduta.</p>
+            <div class="signal-row">
+              <span class="signal-label">Poder-saber</span>
+              <div class="meter" aria-hidden="true"><span style="width: 86%"></span></div>
+            </div>
+            <div class="signal-row">
+              <span class="signal-label">Disciplina</span>
+              <div class="meter" aria-hidden="true"><span style="width: 74%"></span></div>
+            </div>
+            <div class="axis" aria-hidden="true">
+              <span>Vigiar</span>
+              <span>Classificar</span>
+              <span>Normalizar</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </header>
 
