@@ -1,0 +1,74 @@
+name: corpo-territorio-quilombola
+version: 1.2.0
+description: >
+  Squad completo para investigar a articulação corpo-território na experiência
+  quilombola brasileira. 10 agentes teóricos (fenomenólogos, marxistas, antropólogos
+  e pensadores da diáspora africana) + 6 agentes de produção (pipeline CSSH: voz
+  autoral DNA Sérgio Farias, lógica, tensionamento, formatação, revisão, tradução)
+  + 2 agentes operacionais (checklist final de submissão CSSH e banco bibliográfico
+  v2.0 com rastreamento de sobreposição com Artigo 1 LARR-2026-0165).
+author: Sergio Farias
+license: MIT
+slashPrefix: quilombola
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    # Agentes teóricos
+    - beatriz-nascimento.md
+    - lelia-gonzalez.md
+    - clovis-moura.md
+    - kabengele-munanga.md
+    - jose-mauricio-arruti.md
+    - livio-sansone.md
+    - hebe-mattos.md
+    - frantz-fanon.md
+    - merleau-ponty.md
+    - achille-mbembe.md
+    # Agentes de produção
+    - voz-autoral.md
+    - agente-logica.md
+    - tensionador-teorias.md
+    - agente-formatacao.md
+    - revisor-texto.md
+    - revisor-ingles-britanico.md
+    # Agentes operacionais
+    - revisor-publicacao.md
+    - registrador-bibliografia.md
+  tasks:
+    - analisar-corpo-territorio.md
+    - debate-fenomenologico.md
+  workflows: []
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+tags:
+  - quilombola
+  - corpo-territorio
+  - fenomenologia-negra
+  - diáspora-africana
+  - necropolítica
+  - amefricanidade
+  - quilombismo
+  - pós-abolição
+  - cssh
+  - larr
+  - producao-academica
+  - ingles-britanico
+  - banco-bibliografico
