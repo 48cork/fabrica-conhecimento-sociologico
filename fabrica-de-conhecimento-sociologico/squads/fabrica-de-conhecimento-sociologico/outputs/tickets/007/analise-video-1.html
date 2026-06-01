@@ -3,30 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A IA tem Classe Social? — Marx, Durkheim e Weber</title>
+  <title>"Mãe, sou seu filho e te perdoo" — Análise Sociológica do Vídeo Viral</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:          #0e0e12;
-      --surface:     #16161e;
-      --surface-2:   #1e1e2a;
-      --border:      #2a2a3a;
-      --marx:        #f87171;
-      --marx-dim:    #7a1a1a;
-      --durkheim:    #7c6af7;
-      --durkheim-dim:#3a2a8a;
-      --weber:       #f59e0b;
-      --weber-dim:   #7a4a00;
-      --teal:        #38bdf8;
-      --green:       #4ade80;
-      --amber:       #fbbf24;
-      --red:         #f87171;
-      --text:        #e8e8f4;
-      --muted:       #7a7a9a;
-      --sans:        'Inter', system-ui, sans-serif;
-      --mono:        'JetBrains Mono', monospace;
+      --bg:           #0b0b10;
+      --surface:      #13131c;
+      --surface-2:    #1b1b28;
+      --border:       #252535;
+      --durkheim:     #a78bfa;
+      --durkheim-dim: #3b1f8c;
+      --bourdieu:     #fbbf24;
+      --bourdieu-dim: #78350f;
+      --frankfurt:    #fb7185;
+      --frankfurt-dim:#881337;
+      --tiktok-r:     #ff2d55;
+      --tiktok-c:     #5ce1e6;
+      --teal:         #38bdf8;
+      --green:        #4ade80;
+      --amber:        #fbbf24;
+      --red:          #f87171;
+      --text:         #e6e6f2;
+      --muted:        #7070a0;
+      --sans:         'Inter', system-ui, sans-serif;
+      --mono:         'JetBrains Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,60 +39,59 @@
       color: var(--text);
       font-family: var(--sans);
       font-size: 18px;
-      line-height: 1.75;
+      line-height: 1.78;
       -webkit-font-smoothing: antialiased;
     }
 
     /* ── HERO ──────────────────────────────────────────────────── */
     .hero {
-      padding: 80px 32px 64px;
+      padding: 88px 32px 72px;
       text-align: center;
       background:
-        radial-gradient(ellipse 60% 50% at 20% 0%, #7a1a1a28 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 0%, #3a2a8a28 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 50% -5%, #7a4a0028 0%, transparent 60%),
-        linear-gradient(180deg, #0f0c10 0%, var(--bg) 100%);
+        radial-gradient(ellipse 55% 45% at 15% 0%, #3b1f8c26 0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 85% 0%, #78350f26 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 50% -5%, #88133726 0%, transparent 60%),
+        linear-gradient(180deg, #0e0b14 0%, var(--bg) 100%);
       border-bottom: 1px solid var(--border);
     }
 
     .hero-badge {
       display: inline-block;
-      background: #141020;
-      border: 1px solid #3a2a5a;
+      background: #100c1a;
+      border: 1px solid #3b1f8c;
       border-radius: 6px;
       padding: 5px 16px;
       font-size: 12px;
       font-weight: 600;
-      color: #a89cf7;
+      color: var(--durkheim);
       letter-spacing: .1em;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
       font-family: var(--mono);
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.12;
       max-width: 900px;
-      margin: 0 auto 16px;
+      margin: 0 auto 18px;
       color: #ffffff;
-      letter-spacing: -.02em;
+      letter-spacing: -.025em;
     }
 
     .hero h1 .grad {
-      background: linear-gradient(135deg, var(--marx) 0%, var(--durkheim) 50%, var(--weber) 100%);
+      background: linear-gradient(135deg, var(--durkheim) 0%, var(--bourdieu) 50%, var(--frankfurt) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto 40px;
-      font-weight: 400;
+      max-width: 660px;
+      margin: 0 auto 42px;
     }
 
     .meta-row {
@@ -98,6 +99,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
+      margin-bottom: 36px;
     }
 
     .meta-pill {
@@ -110,38 +112,36 @@
       color: var(--muted);
     }
 
-    /* ── TRIO BADGES ─────────────────────────────────────────── */
     .trio {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-top: 32px;
     }
 
     .trio-badge {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 20px;
+      padding: 9px 22px;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
       font-family: var(--mono);
-      letter-spacing: .04em;
+      letter-spacing: .03em;
     }
 
-    .trio-marx    { background: #1a0808; border: 1px solid var(--marx-dim); color: var(--marx); }
-    .trio-durkheim{ background: #100c20; border: 1px solid var(--durkheim-dim); color: var(--durkheim); }
-    .trio-weber   { background: #1a1000; border: 1px solid var(--weber-dim); color: var(--weber); }
+    .trio-durkheim  { background: #100c20; border: 1px solid var(--durkheim-dim); color: var(--durkheim); }
+    .trio-bourdieu  { background: #1a1200; border: 1px solid var(--bourdieu-dim); color: var(--bourdieu); }
+    .trio-frankfurt { background: #180810; border: 1px solid var(--frankfurt-dim); color: var(--frankfurt); }
 
     /* ── TOC ───────────────────────────────────────────────────── */
     .toc {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(14, 14, 18, .94);
-      backdrop-filter: blur(14px);
+      background: rgba(11, 11, 16, .95);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 0 32px;
       overflow-x: auto;
@@ -149,13 +149,13 @@
 
     .toc-inner {
       display: flex;
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
     .toc a {
       display: block;
-      padding: 15px 18px;
+      padding: 15px 16px;
       font-size: 13px;
       font-weight: 600;
       color: var(--muted);
@@ -169,52 +169,49 @@
     .toc a:hover { color: #fff; border-color: var(--teal); }
 
     /* ── LAYOUT ────────────────────────────────────────────────── */
-    .wrapper {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px 100px;
-    }
+    .wrapper { max-width: 1120px; margin: 0 auto; padding: 0 32px 110px; }
 
     /* ── SECTIONS ──────────────────────────────────────────────── */
-    .section { margin-top: 80px; }
+    .section { margin-top: 84px; }
 
     .section-header {
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-bottom: 36px;
+      margin-bottom: 38px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
     }
 
     .step-num {
       flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 50px; height: 50px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--mono);
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: #fff;
     }
 
-    .step-marx     { background: linear-gradient(135deg, var(--marx-dim), var(--marx)); }
-    .step-durkheim { background: linear-gradient(135deg, var(--durkheim-dim), var(--durkheim)); }
-    .step-weber    { background: linear-gradient(135deg, var(--weber-dim), var(--weber)); }
-    .step-teal     { background: linear-gradient(135deg, #0a3a5a, var(--teal)); }
-    .step-green    { background: linear-gradient(135deg, #0a3a1a, var(--green)); }
-    .step-amber    { background: linear-gradient(135deg, #3a2a00, var(--amber)); }
-    .step-purple   { background: linear-gradient(135deg, #2a1060, #7c6af7); }
+    .step-durkheim  { background: linear-gradient(135deg, var(--durkheim-dim), var(--durkheim)); }
+    .step-bourdieu  { background: linear-gradient(135deg, var(--bourdieu-dim), var(--bourdieu)); }
+    .step-frankfurt { background: linear-gradient(135deg, var(--frankfurt-dim), var(--frankfurt)); }
+    .step-tiktok    { background: linear-gradient(135deg, #6b0020, var(--tiktok-r)); }
+    .step-teal      { background: linear-gradient(135deg, #0a3a5a, var(--teal)); }
+    .step-green     { background: linear-gradient(135deg, #0a3a1a, var(--green)); }
+    .step-amber     { background: linear-gradient(135deg, #3a2a00, var(--amber)); }
+    .step-purple    { background: linear-gradient(135deg, #2a1060, #a78bfa); }
+    .step-violet    { background: linear-gradient(135deg, #1a0a30, var(--durkheim)); }
 
     .section-header h2 {
-      font-size: 1.9rem;
+      font-size: 1.95rem;
       font-weight: 800;
       color: #fff;
       line-height: 1.15;
-      letter-spacing: -.01em;
+      letter-spacing: -.015em;
     }
 
     .duration {
@@ -234,9 +231,9 @@
     .video-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 4px solid var(--teal);
+      border-top: 4px solid var(--tiktok-r);
       border-radius: 0 0 16px 16px;
-      padding: 36px 40px;
+      padding: 36px 42px;
       margin: 28px 0;
     }
 
@@ -245,26 +242,28 @@
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--tiktok-r);
       font-family: var(--mono);
       margin-bottom: 16px;
     }
 
     .video-box h3 {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       letter-spacing: -.01em;
+      line-height: 1.3;
     }
 
-    .video-box p { font-size: 1rem; color: var(--text); margin-bottom: 0; }
+    .video-box p { font-size: 1rem; color: var(--text); margin-bottom: 14px; }
+    .video-box p:last-of-type { margin-bottom: 0; }
 
     .video-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     .v-tag {
@@ -273,90 +272,81 @@
       padding: 4px 12px;
       border-radius: 6px;
       font-family: var(--mono);
-      background: #0a1e26;
-      border: 1px solid #0e3040;
-      color: var(--teal);
+      background: #1a0a10;
+      border: 1px solid #5a0020;
+      color: var(--tiktok-r);
     }
 
-    /* ── BLOCKQUOTE ────────────────────────────────────────────── */
-    blockquote {
-      border-left: 4px solid var(--teal);
-      padding: 20px 24px;
-      margin: 24px 0;
-      background: #0a1418;
-      border-radius: 0 10px 10px 0;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--text);
-      font-style: normal;
+    /* ── TIMELINE ──────────────────────────────────────────────── */
+    .timeline { margin: 28px 0; }
+
+    .tl-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 4px;
     }
 
-    blockquote cite {
-      display: block;
-      margin-top: 10px;
-      font-style: normal;
+    .tl-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 48px;
+    }
+
+    .tl-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--tiktok-r);
+      background: var(--bg);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .tl-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      min-height: 28px;
+    }
+
+    .tl-item:last-child .tl-line { display: none; }
+
+    .tl-time {
       font-family: var(--mono);
       font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
+      font-weight: 600;
+      color: var(--tiktok-r);
+      text-align: right;
+      padding-top: 2px;
     }
 
-    /* ── HIGHLIGHT ─────────────────────────────────────────────── */
-    .highlight {
-      border-left: 4px solid var(--teal);
-      background: #0e1d26;
-      border-radius: 0 10px 10px 0;
-      padding: 20px 24px;
-      margin: 24px 0;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--text);
+    .tl-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 22px;
+      margin-bottom: 12px;
+      flex: 1;
     }
 
-    .highlight strong { color: var(--teal); }
-
-    /* ── CALLOUT ───────────────────────────────────────────────── */
-    .callout {
-      border-left: 4px solid var(--amber);
-      background: #1c1a10;
-      border-radius: 0 10px 10px 0;
-      padding: 20px 24px;
-      margin: 24px 0;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #f5e6c0;
-    }
-
-    .callout .callout-label {
+    .tl-content .tl-label {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--tiktok-r);
       font-family: var(--mono);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .callout strong { color: #fff; }
-
-    /* ── RED CALLOUT ───────────────────────────────────────────── */
-    .callout-red {
-      border-left: 4px solid var(--red);
-      background: #1c1010;
-      border-radius: 0 10px 10px 0;
-      padding: 20px 24px;
-      margin: 24px 0;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #f5d0d0;
-    }
-
-    .callout-red strong { color: var(--red); }
+    .tl-content p { font-size: .97rem; color: var(--text); margin: 0; line-height: 1.65; }
+    .tl-content strong { color: #fff; }
 
     /* ── THEORIST CARDS ────────────────────────────────────────── */
     .theorist-card {
       border-radius: 16px;
-      padding: 36px 40px;
+      padding: 36px 42px;
       margin-bottom: 32px;
       position: relative;
       overflow: hidden;
@@ -369,36 +359,35 @@
       height: 4px;
     }
 
-    .tc-marx     { background: #130808; border: 1px solid #3a1010; }
-    .tc-marx::before { background: linear-gradient(90deg, var(--marx), #ff9a9a); }
+    .tc-durkheim  { background: #0e0c1c; border: 1px solid #2a1e50; }
+    .tc-durkheim::before { background: linear-gradient(90deg, var(--durkheim), #d4bbff); }
 
-    .tc-durkheim { background: #0e0c1c; border: 1px solid #2a1e50; }
-    .tc-durkheim::before { background: linear-gradient(90deg, var(--durkheim), #a89cf7); }
+    .tc-bourdieu  { background: #16100a; border: 1px solid #3a2808; }
+    .tc-bourdieu::before { background: linear-gradient(90deg, var(--bourdieu), #fde68a); }
 
-    .tc-weber    { background: #120e04; border: 1px solid #3a2a08; }
-    .tc-weber::before { background: linear-gradient(90deg, var(--weber), #fcd06a); }
+    .tc-frankfurt { background: #180810; border: 1px solid #4a1020; }
+    .tc-frankfurt::before { background: linear-gradient(90deg, var(--frankfurt), #fda4af); }
 
     .tc-header {
       display: flex;
       align-items: flex-start;
-      gap: 20px;
+      gap: 22px;
       margin-bottom: 28px;
     }
 
     .tc-avatar {
-      width: 56px;
-      height: 56px;
+      width: 58px; height: 58px;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 28px;
       flex-shrink: 0;
     }
 
-    .tc-avatar-marx     { background: #2a0c0c; }
-    .tc-avatar-durkheim { background: #1a0e30; }
-    .tc-avatar-weber    { background: #1e1200; }
+    .tc-avatar-durkheim  { background: #1a0e30; }
+    .tc-avatar-bourdieu  { background: #201400; }
+    .tc-avatar-frankfurt { background: #220810; }
 
     .tc-meta .tc-label {
       font-size: 11px;
@@ -409,12 +398,12 @@
       margin-bottom: 6px;
     }
 
-    .tc-meta-marx .tc-label     { color: var(--marx); }
-    .tc-meta-durkheim .tc-label { color: var(--durkheim); }
-    .tc-meta-weber .tc-label    { color: var(--weber); }
+    .tc-meta-durkheim .tc-label  { color: var(--durkheim); }
+    .tc-meta-bourdieu .tc-label  { color: var(--bourdieu); }
+    .tc-meta-frankfurt .tc-label { color: var(--frankfurt); }
 
     .tc-meta h3 {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: -.01em;
@@ -422,24 +411,24 @@
     }
 
     .tc-sub {
-      font-size: .95rem;
+      font-size: .92rem;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 5px;
       font-family: var(--mono);
     }
 
-    .tc-body p { font-size: 1rem; color: #c8c8e0; line-height: 1.75; margin-bottom: 14px; }
+    .tc-body p { font-size: 1rem; color: #c8c8e0; line-height: 1.78; margin-bottom: 14px; }
     .tc-body p:last-child { margin-bottom: 0; }
 
     .tc-insight {
-      margin-top: 24px;
+      margin-top: 26px;
       border-radius: 10px;
-      padding: 18px 22px;
+      padding: 20px 24px;
     }
 
-    .tc-insight-marx     { background: #1e0c0c; border: 1px solid #4a1a1a; }
-    .tc-insight-durkheim { background: #160e28; border: 1px solid #3a2060; }
-    .tc-insight-weber    { background: #1c1404; border: 1px solid #4a3010; }
+    .tc-insight-durkheim  { background: #160e28; border: 1px solid #3a2060; }
+    .tc-insight-bourdieu  { background: #1c1604; border: 1px solid #4a3210; }
+    .tc-insight-frankfurt { background: #1e0c14; border: 1px solid #5a1030; }
 
     .tc-insight .ins-label {
       font-size: 11px;
@@ -450,9 +439,9 @@
       margin-bottom: 8px;
     }
 
-    .tc-insight-marx .ins-label     { color: var(--marx); }
-    .tc-insight-durkheim .ins-label { color: var(--durkheim); }
-    .tc-insight-weber .ins-label    { color: var(--weber); }
+    .tc-insight-durkheim .ins-label  { color: var(--durkheim); }
+    .tc-insight-bourdieu .ins-label  { color: var(--bourdieu); }
+    .tc-insight-frankfurt .ins-label { color: var(--frankfurt); }
 
     .tc-insight p { font-size: 1rem; font-weight: 500; color: var(--text); margin: 0; }
 
@@ -460,78 +449,171 @@
     .concept {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 5px solid var(--teal);
       border-radius: 0 14px 14px 0;
-      padding: 28px 32px;
+      padding: 28px 34px;
       margin-bottom: 24px;
     }
+
+    .concept.c-durkheim  { border-left: 5px solid var(--durkheim); }
+    .concept.c-bourdieu  { border-left: 5px solid var(--bourdieu); }
+    .concept.c-frankfurt { border-left: 5px solid var(--frankfurt); }
+    .concept.c-tiktok    { border-left: 5px solid var(--tiktok-r); }
+    .concept.c-teal      { border-left: 5px solid var(--teal); }
 
     .concept-num {
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 700;
-      color: var(--teal);
       letter-spacing: .12em;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
 
+    .c-durkheim  .concept-num { color: var(--durkheim); }
+    .c-bourdieu  .concept-num { color: var(--bourdieu); }
+    .c-frankfurt .concept-num { color: var(--frankfurt); }
+    .c-tiktok    .concept-num { color: var(--tiktok-r); }
+    .c-teal      .concept-num { color: var(--teal); }
+
     .concept h3 {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 16px;
       letter-spacing: -.01em;
     }
 
-    /* ── CENTRAL QUESTION ──────────────────────────────────────── */
-    .central-question {
-      text-align: center;
-      padding: 48px 32px;
-      background: linear-gradient(135deg, #1a0808 0%, #100c1c 50%, #120e04 100%);
-      border: 1px solid var(--border);
-      border-top: 4px solid transparent;
-      border-image: linear-gradient(90deg, var(--marx), var(--durkheim), var(--weber)) 1 0 0 0;
-      border-radius: 0 0 16px 16px;
-      margin: 32px 0;
+    /* ── BLOCKQUOTE ────────────────────────────────────────────── */
+    blockquote {
+      padding: 22px 26px;
+      margin: 26px 0;
+      border-radius: 0 10px 10px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text);
+      font-style: normal;
     }
 
-    .central-question .q-label {
+    blockquote.bq-durkheim  { border-left: 4px solid var(--durkheim);  background: #0e0c1e; }
+    blockquote.bq-bourdieu  { border-left: 4px solid var(--bourdieu);  background: #14100a; }
+    blockquote.bq-frankfurt { border-left: 4px solid var(--frankfurt); background: #160c10; }
+    blockquote.bq-teal      { border-left: 4px solid var(--teal);      background: #0a1418; }
+
+    blockquote cite {
+      display: block;
+      margin-top: 12px;
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* ── HIGHLIGHT / CALLOUT ───────────────────────────────────── */
+    .highlight {
+      border-left: 4px solid var(--teal);
+      background: #0e1d26;
+      border-radius: 0 10px 10px 0;
+      padding: 20px 26px;
+      margin: 26px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .highlight strong { color: var(--teal); }
+
+    .callout {
+      border-radius: 0 10px 10px 0;
+      padding: 20px 26px;
+      margin: 26px 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .callout-amber {
+      border-left: 4px solid var(--amber);
+      background: #1c1a10;
+      color: #f5e6c0;
+    }
+
+    .callout-red {
+      border-left: 4px solid var(--frankfurt);
+      background: #1c1010;
+      color: #f5d0d0;
+    }
+
+    .callout-durkheim {
+      border-left: 4px solid var(--durkheim);
+      background: #120e20;
+      color: #e0d8ff;
+    }
+
+    .callout-bourdieu {
+      border-left: 4px solid var(--bourdieu);
+      background: #1a1408;
+      color: #f5e8c0;
+    }
+
+    .callout-tiktok {
+      border-left: 4px solid var(--tiktok-r);
+      background: #1a0810;
+      color: #ffd0dc;
+    }
+
+    .callout .callout-label {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--teal);
       font-family: var(--mono);
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
-    .central-question h3 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    .callout-amber .callout-label { color: var(--amber); }
+    .callout-red .callout-label   { color: var(--frankfurt); }
+    .callout-durkheim .callout-label { color: var(--durkheim); }
+    .callout-bourdieu .callout-label { color: var(--bourdieu); }
+    .callout-tiktok .callout-label   { color: var(--tiktok-r); }
+
+    .callout strong { color: #fff; }
+
+    /* ── STAT CARDS ────────────────────────────────────────────── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
       font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      letter-spacing: -.02em;
-      margin-bottom: 16px;
+      font-family: var(--mono);
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
-    .central-question p {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 580px;
-      margin: 0 auto;
-    }
+    .stat-label { font-size: .85rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
 
     /* ── COMPARISON TABLE ──────────────────────────────────────── */
     .table-wrap {
       overflow-x: auto;
-      margin: 24px 0;
+      margin: 26px 0;
       border-radius: 12px;
       border: 1px solid var(--border);
     }
 
     table { width: 100%; border-collapse: collapse; }
-    thead tr { background: #12121a; }
+    thead tr { background: #11111c; }
 
     th {
       padding: 14px 20px;
@@ -547,59 +629,164 @@
 
     td {
       padding: 14px 20px;
-      font-size: 1rem;
+      font-size: .97rem;
       border-bottom: 1px solid #1a1a28;
       vertical-align: top;
       line-height: 1.6;
     }
 
     tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) td { background: #111120; }
 
-    .td-marx     { color: var(--marx);     font-weight: 700; }
-    .td-durkheim { color: var(--durkheim); font-weight: 700; }
-    .td-weber    { color: var(--weber);    font-weight: 700; }
-    .td-dim      { color: var(--muted);    font-size: .9rem; }
+    .td-dk  { color: var(--durkheim); font-weight: 700; }
+    .td-bo  { color: var(--bourdieu); font-weight: 700; }
+    .td-fr  { color: var(--frankfurt); font-weight: 700; }
+    .td-dim { color: var(--muted); font-size: .9rem; }
 
-    tbody tr:nth-child(even) td { background: #11111a; }
+    /* ── CENTRAL QUESTION ──────────────────────────────────────── */
+    .central-question {
+      text-align: center;
+      padding: 52px 32px;
+      background: linear-gradient(135deg, #0e0c1c 0%, #18100a 50%, #180810 100%);
+      border: 1px solid var(--border);
+      border-top: 4px solid transparent;
+      border-image: linear-gradient(90deg, var(--durkheim), var(--bourdieu), var(--frankfurt)) 1 0 0 0;
+      border-radius: 0 0 16px 16px;
+      margin: 32px 0;
+    }
+
+    .central-question .q-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-family: var(--mono);
+      margin-bottom: 18px;
+    }
+
+    .central-question h3 {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.22;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+
+    .central-question p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── TAGS ──────────────────────────────────────────────────── */
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 13px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      letter-spacing: .03em;
+    }
+
+    .tag-dk { background: #100c20; color: var(--durkheim); border: 1px solid var(--durkheim-dim); }
+    .tag-bo { background: #1a1200; color: var(--bourdieu); border: 1px solid var(--bourdieu-dim); }
+    .tag-fr { background: #180810; color: var(--frankfurt); border: 1px solid var(--frankfurt-dim); }
+    .tag-tk { background: #1a0810; color: var(--tiktok-r);  border: 1px solid #6b0020; }
+    .tag-tl { background: #071418; color: var(--teal);      border: 1px solid #0a2a30; }
+
+    /* ── TIKTOK MACHINE ────────────────────────────────────────── */
+    .tiktok-card {
+      background: linear-gradient(135deg, #1a0812 0%, #0e0b18 100%);
+      border: 1px solid #4a1028;
+      border-top: 4px solid var(--tiktok-r);
+      border-radius: 0 0 16px 16px;
+      padding: 36px 42px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tiktok-card::after {
+      content: '♪';
+      position: absolute;
+      right: 32px;
+      top: 28px;
+      font-size: 4rem;
+      opacity: .05;
+      color: var(--tiktok-r);
+      line-height: 1;
+    }
+
+    .tiktok-feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--tiktok-r);
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    .tiktok-feature .tf-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--tiktok-r);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tiktok-feature h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .tiktok-feature p { font-size: .97rem; color: #c0c0d8; line-height: 1.72; margin-bottom: 0; }
 
     /* ── ACTIVITY CARDS ────────────────────────────────────────── */
     .activity {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
+      padding: 28px 34px;
+      margin-bottom: 26px;
     }
 
-    .activity.red    { border-left: 5px solid var(--red); }
-    .activity.teal   { border-left: 5px solid var(--teal); }
-    .activity.amber  { border-left: 5px solid var(--amber); }
-    .activity.purple { border-left: 5px solid var(--durkheim); }
-    .activity.green  { border-left: 5px solid var(--green); }
+    .activity.act-teal     { border-left: 5px solid var(--teal); }
+    .activity.act-amber    { border-left: 5px solid var(--amber); }
+    .activity.act-durkheim { border-left: 5px solid var(--durkheim); }
+    .activity.act-frankfurt{ border-left: 5px solid var(--frankfurt); }
+    .activity.act-bourdieu { border-left: 5px solid var(--bourdieu); }
 
     .activity-header {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 16px;
+      margin-bottom: 20px;
     }
 
     .activity-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
+      width: 46px; height: 46px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 22px;
       flex-shrink: 0;
     }
 
-    .activity-icon.red    { background: #1a0808; }
-    .activity-icon.teal   { background: #071418; }
-    .activity-icon.amber  { background: #1a1400; }
-    .activity-icon.purple { background: #100c20; }
-    .activity-icon.green  { background: #081408; }
+    .act-teal      .activity-icon { background: #071418; }
+    .act-amber     .activity-icon { background: #1a1400; }
+    .act-durkheim  .activity-icon { background: #100c20; }
+    .act-frankfurt .activity-icon { background: #180810; }
+    .act-bourdieu  .activity-icon { background: #1a1200; }
 
     .activity h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin: 0; }
 
@@ -616,17 +803,17 @@
       white-space: nowrap;
     }
 
-    /* ── ANSWER CARD (Atividade 1) ─────────────────────────────── */
+    /* ── ANSWER GRID ───────────────────────────────────────────── */
     .answer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 18px;
-      margin: 24px 0;
+      margin: 26px 0;
     }
 
     .answer-card {
       border-radius: 12px;
-      padding: 24px 26px;
+      padding: 26px 28px;
       position: relative;
       overflow: hidden;
     }
@@ -638,12 +825,12 @@
       height: 3px;
     }
 
-    .answer-marx     { background: #130808; border: 1px solid #3a1a1a; }
-    .answer-marx::before { background: var(--marx); }
-    .answer-durkheim { background: #0e0c1c; border: 1px solid #2a1e50; }
-    .answer-durkheim::before { background: var(--durkheim); }
-    .answer-weber    { background: #120e04; border: 1px solid #3a2a08; }
-    .answer-weber::before { background: var(--weber); }
+    .answer-dk { background: #0e0c1c; border: 1px solid #2a1e50; }
+    .answer-dk::before { background: var(--durkheim); }
+    .answer-bo { background: #16100a; border: 1px solid #3a2808; }
+    .answer-bo::before { background: var(--bourdieu); }
+    .answer-fr { background: #180810; border: 1px solid #4a1020; }
+    .answer-fr::before { background: var(--frankfurt); }
 
     .answer-card .a-label {
       font-size: 11px;
@@ -654,33 +841,33 @@
       margin-bottom: 10px;
     }
 
-    .answer-marx .a-label     { color: var(--marx); }
-    .answer-durkheim .a-label { color: var(--durkheim); }
-    .answer-weber .a-label    { color: var(--weber); }
+    .answer-dk .a-label { color: var(--durkheim); }
+    .answer-bo .a-label { color: var(--bourdieu); }
+    .answer-fr .a-label { color: var(--frankfurt); }
 
     .answer-card .a-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 12px;
     }
 
-    .answer-card p { font-size: .97rem; color: #c0c0d8; line-height: 1.7; margin-bottom: 0; }
+    .answer-card p { font-size: .95rem; color: #c0c0d8; line-height: 1.72; margin-bottom: 0; }
 
     /* ── DEBATE CARDS ──────────────────────────────────────────── */
     .debate-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 18px;
-      margin: 24px 0;
+      margin: 26px 0;
     }
 
     .debate-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 4px solid var(--amber);
+      border-left: 4px solid;
       border-radius: 0 12px 12px 0;
-      padding: 22px 24px;
+      padding: 24px 26px;
     }
 
     .debate-card .vs {
@@ -688,27 +875,26 @@
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--amber);
       font-family: var(--mono);
       margin-bottom: 12px;
     }
 
-    .debate-card .pos { font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 8px; }
-    .debate-card p { font-size: .97rem; color: #c0c0d8; line-height: 1.7; margin-bottom: 0; }
+    .debate-card .pos { font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 10px; }
+    .debate-card p { font-size: .95rem; color: #c0c0d8; line-height: 1.72; margin-bottom: 0; }
 
-    /* ── ROLE GRID (papéis no debate) ──────────────────────────── */
+    /* ── ROLE GRID ─────────────────────────────────────────────── */
     .role-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 14px;
-      margin: 20px 0;
+      margin: 22px 0;
     }
 
     .role-card {
       background: var(--surface-2);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 18px 20px;
+      padding: 20px;
       text-align: center;
     }
 
@@ -716,49 +902,33 @@
     .role-title { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .role-desc { font-size: .85rem; color: var(--muted); line-height: 1.55; }
 
-    /* ── TAGS ──────────────────────────────────────────────────── */
-    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-
-    .tag {
-      font-size: 13px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-family: var(--mono);
-      letter-spacing: .03em;
-    }
-
-    .tag-marx     { background: #1a0808; color: var(--marx);     border: 1px solid var(--marx-dim); }
-    .tag-durkheim { background: #100c20; color: var(--durkheim); border: 1px solid var(--durkheim-dim); }
-    .tag-weber    { background: #1a1000; color: var(--weber);    border: 1px solid var(--weber-dim); }
-    .tag-teal     { background: #071418; color: var(--teal);     border: 1px solid #0a2a30; }
-    .tag-green    { background: #081408; color: var(--green);    border: 1px solid #0a2a10; }
-
-    /* ── STAT CARDS ────────────────────────────────────────────── */
-    .stat-row {
+    /* ── DIARY CARD ────────────────────────────────────────────── */
+    .diary-prompts {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
-      margin: 28px 0;
+      margin: 24px 0;
     }
 
-    .stat-card {
+    .diary-prompt {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 22px 20px;
-      text-align: center;
+      padding: 22px 24px;
     }
 
-    .stat-num {
-      font-size: 2.6rem;
-      font-weight: 800;
+    .dp-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       font-family: var(--mono);
-      line-height: 1;
-      margin-bottom: 6px;
+      color: var(--durkheim);
+      margin-bottom: 10px;
     }
 
-    .stat-label { font-size: .85rem; color: var(--muted); font-weight: 500; line-height: 1.4; }
+    .diary-prompt h4 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .diary-prompt p { font-size: .9rem; color: var(--muted); line-height: 1.6; margin: 0; }
 
     /* ── REFERENCES ────────────────────────────────────────────── */
     .ref-list { list-style: none; }
@@ -766,8 +936,8 @@
     .ref-list li {
       padding: 14px 0;
       border-bottom: 1px solid var(--border);
-      font-size: .97rem;
-      color: #b0b0cc;
+      font-size: .95rem;
+      color: #a8a8c0;
       line-height: 1.65;
     }
 
@@ -790,13 +960,13 @@
 
     /* ── CLOSING ───────────────────────────────────────────────── */
     .closing {
-      margin-top: 80px;
+      margin-top: 84px;
       text-align: center;
-      padding: 56px 32px;
-      background: linear-gradient(135deg, #130808 0%, #0e0c1a 50%, #120e04 100%);
+      padding: 60px 32px;
+      background: linear-gradient(135deg, #0e0c1c 0%, #160e0a 50%, #16080e 100%);
       border: 1px solid var(--border);
       border-top: 4px solid transparent;
-      border-image: linear-gradient(90deg, var(--marx), var(--durkheim), var(--weber)) 1 0 0 0;
+      border-image: linear-gradient(90deg, var(--durkheim), var(--bourdieu), var(--frankfurt)) 1 0 0 0;
       border-radius: 0 0 16px 16px;
     }
 
@@ -804,31 +974,32 @@
       font-size: 1.2rem;
       font-weight: 600;
       color: #d8d8f4;
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto 12px;
-      line-height: 1.65;
+      line-height: 1.68;
     }
 
-    .closing-attr { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-bottom: 32px; }
+    .closing-attr { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-bottom: 34px; }
     .closing-footer { font-size: 12px; color: var(--muted); font-family: var(--mono); }
 
     /* ── DIVIDER ───────────────────────────────────────────────── */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
 
     /* ── PROSE ─────────────────────────────────────────────────── */
     p { margin-bottom: 16px; }
     ul, ol { padding-left: 28px; margin-bottom: 16px; }
-    li { margin-bottom: 8px; font-size: 1rem; line-height: 1.7; }
+    li { margin-bottom: 8px; font-size: 1rem; line-height: 1.72; }
     h3 { font-size: 1.2rem; font-weight: 700; margin: 28px 0 14px; color: #fff; }
     strong { color: #e8e8ff; }
     code { font-family: var(--mono); font-size: .9em; color: var(--teal); background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
 
     @media (max-width: 700px) {
-      .wrapper { padding: 0 20px 80px; }
-      .hero { padding: 56px 20px 48px; }
+      .wrapper { padding: 0 18px 80px; }
+      .hero { padding: 56px 18px 48px; }
       .section-header { flex-wrap: wrap; }
       .duration { margin-left: 0; }
       .tc-header { flex-direction: column; }
+      .video-box, .theorist-card { padding: 24px 22px; }
     }
   </style>
 </head>
@@ -836,19 +1007,19 @@
 
 <!-- ═══════════════════════════ HERO ════════════════════════════ -->
 <header class="hero">
-  <div class="hero-badge">Fábrica de Conhecimento Sociológico · UFCG · AIOX v2.0</div>
-  <h1>A IA tem <span class="grad">Classe Social?</span></h1>
-  <p class="hero-sub">Uma análise sociológica do vídeo de reencontro familiar via inteligência artificial — três olhares clássicos sobre a mesma cena contemporânea.</p>
+  <div class="hero-badge">Fábrica de Conhecimento Sociológico · UFCG · Ticket #007 · Análise de Vídeo 01</div>
+  <h1>"Mãe, sou seu filho<br><span class="grad">e te perdoo"</span></h1>
+  <p class="hero-sub">Análise sociológica de um vídeo do TikTok (~500 mil visualizações, 8 minutos): um policial de 42 anos bate à porta da própria mãe biológica — e a perdoa.</p>
   <div class="meta-row">
-    <span class="meta-pill">Aula Síntese</span>
-    <span class="meta-pill">Sociologia Clássica</span>
-    <span class="meta-pill">IA e Sociedade</span>
+    <span class="meta-pill">Análise de Vídeo 01</span>
+    <span class="meta-pill">TikTok · ~500k views · 8 min</span>
+    <span class="meta-pill">Sociologia Clássica &amp; Crítica</span>
     <span class="meta-pill">120 min</span>
   </div>
   <div class="trio">
-    <span class="trio-badge trio-marx">⚒ Karl Marx</span>
-    <span class="trio-badge trio-durkheim">🔗 Émile Durkheim</span>
-    <span class="trio-badge trio-weber">⚖ Max Weber</span>
+    <span class="trio-badge trio-durkheim">🔗 Durkheim</span>
+    <span class="trio-badge trio-bourdieu">🎭 Bourdieu</span>
+    <span class="trio-badge trio-frankfurt">⚡ Escola de Frankfurt</span>
   </div>
 </header>
 
@@ -856,12 +1027,11 @@
 <nav class="toc" aria-label="Índice da aula">
   <div class="toc-inner">
     <a href="#video">O Vídeo</a>
-    <a href="#marx">Marx</a>
     <a href="#durkheim">Durkheim</a>
-    <a href="#weber">Weber</a>
-    <a href="#comparativo">Comparativo</a>
-    <a href="#atividade1">Atividade 1</a>
-    <a href="#atividade2">Debate</a>
+    <a href="#bourdieu">Bourdieu</a>
+    <a href="#frankfurt">Frankfurt</a>
+    <a href="#tiktok">TikTok</a>
+    <a href="#atividades">Atividades</a>
     <a href="#referencias">Referências</a>
   </div>
 </nav>
@@ -872,107 +1042,102 @@
   <!-- ────────────────── O VÍDEO ──────────────────────── -->
   <section class="section" id="video">
     <div class="section-header">
-      <div class="step-num step-teal">▶</div>
+      <div class="step-num step-tiktok">▶</div>
       <h2>O Vídeo-Gatilho</h2>
       <span class="duration">10 min</span>
     </div>
 
     <div class="video-box">
-      <div class="v-label">Material de Abertura</div>
-      <h3>"O reencontro" — vídeo viral de família reunida via IA</h3>
-      <p>Uma mulher vê, pela primeira vez, o rosto reconstruído de seu pai falecido — falecido antes dela nascer. Um sistema de inteligência artificial gerou uma animação realista a partir de fotografias antigas. O vídeo circula em redes sociais com milhões de visualizações, dividindo opiniões: emoção profunda ou exploração do luto?</p>
+      <div class="v-label">Material de Abertura · TikTok</div>
+      <h3>"Mãe, sou seu filho e te perdoo" — vídeo do policial e o reencontro nas redes</h3>
+      <p>Um policial de 42 anos, fardado, bate à porta de uma casa. A mulher que abre — também com 42 anos — não o reconhece. Em meio à conversa, ela conta que, quando jovem e pobre, foi forçada a entregar um filho para adoção. Chorando, confessa que nunca o esqueceu. O policial então revela: <strong>"Eu sou esse filho. E vim aqui para te dizer: eu te perdoo, mãe."</strong> A mulher desmaia. Ele a ampara. Quando ela se recupera, ele pede um café.</p>
+      <p>O vídeo, de aproximadamente 8 minutos, circula no TikTok com cerca de 500 mil visualizações e dezenas de milhares de comentários — muitos com relatos pessoais de abandono, adoção e reconciliação.</p>
       <div class="video-meta">
-        <span class="v-tag">Deepfake afetivo</span>
-        <span class="v-tag">Reconstituição facial</span>
-        <span class="v-tag">Luto tecnológico</span>
+        <span class="v-tag">Reencontro familiar</span>
+        <span class="v-tag">Abandono e adoção</span>
+        <span class="v-tag">Perdão dramático</span>
         <span class="v-tag">Viralização emocional</span>
+        <span class="v-tag">Autoridade e família</span>
       </div>
     </div>
 
-    <p>Este vídeo não é apenas uma curiosidade tecnológica. Ele é uma <strong>janela sociológica</strong>: revela quem tem acesso a que tipo de memória, quem lucra com o luto alheio, como a solidariedade coletiva é mobilizada digitalmente e que tipo de autoridade um algoritmo passa a exercer sobre relações humanas.</p>
-
-    <div class="callout">
+    <div class="callout callout-amber">
       <div class="callout-label">Pergunta-guia da aula</div>
-      <strong>Se a IA pode reconstruir seu pai morto — mas apenas para quem pode pagar — ela reproduz desigualdades sociais? Ou apenas amplifica o que a sociedade já é?</strong>
+      <strong>O que esse vídeo nos diz sobre sociedade, emoção, poder e plataformas digitais — além do que ele parece dizer na superfície?</strong>
+    </div>
+
+    <h3>O que acontece, cena a cena</h3>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time">0:00</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-label">Abertura</div>
+          <p>Câmera filma um policial fardado caminhando em direção a uma porta residencial. A câmera parece ser de um acompanhante. O enquadramento já sugere que algo significativo está prestes a acontecer.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time">0:45</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-label">Encontro</div>
+          <p>A mulher abre a porta. Ela não demonstra reconhecê-lo. O policial a cumprimenta com formalidade — o uniforme cria uma assimetria imediata: autoridade do Estado versus moradora comum.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time">2:30</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-label">Confissão</div>
+          <p>A conversa evolui. A mulher relata que, jovem e em situação de pobreza extrema, foi abandonada pelo companheiro e não teve condições de criar o filho. Entregou-o. <strong>Ela chora enquanto conta.</strong> A câmera fecha no rosto dela.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time">5:10</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-label">Revelação</div>
+          <p>O policial diz: <strong>"Eu sou esse filho. E vim aqui para te dizer: eu te perdoo, mãe."</strong> A mulher desmaia. Ele a ampara. O vídeo capta o momento do colapso.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time">7:30</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-label">O café</div>
+          <p>Quando ela se recupera, em meio ao choro e ao abraço, ele diz: <strong>"Pode me fazer um cafezinho?"</strong> O pedido cotidiano após o clímax emocional gera nos comentários reações entre o humor, o alívio e a comoção.</p>
+        </div>
+      </div>
     </div>
 
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-num" style="color: var(--red);">47M</div>
-        <div class="stat-label">visualizações do vídeo original em 72h</div>
+        <div class="stat-num" style="color: var(--tiktok-r);">500k</div>
+        <div class="stat-label">visualizações no TikTok</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color: var(--durkheim);">3</div>
-        <div class="stat-label">lentes sociológicas clássicas para analisá-lo</div>
+        <div class="stat-num" style="color: var(--durkheim);">8 min</div>
+        <div class="stat-label">duração incomum para o formato TikTok</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color: var(--weber);">$8k</div>
-        <div class="stat-label">custo médio de serviços premium de reconstituição facial via IA (2024)</div>
+        <div class="stat-num" style="color: var(--bourdieu);">42</div>
+        <div class="stat-label">anos de ambos — mãe e filho nasceram ao mesmo tempo</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color: var(--teal);">1</div>
-        <div class="stat-label">cena que três teorias interpretam de forma radicalmente diferente</div>
+        <div class="stat-num" style="color: var(--frankfurt);">3</div>
+        <div class="stat-label">teorias para analisar a mesma cena</div>
       </div>
-    </div>
-  </section>
-
-  <!-- ────────────────── MARX ──────────────────────────── -->
-  <section class="section" id="marx">
-    <div class="section-header">
-      <div class="step-num step-marx">⚒</div>
-      <h2>Marx: A IA como Mercadoria do Luto</h2>
-      <span class="duration">25 min</span>
-    </div>
-
-    <div class="theorist-card tc-marx">
-      <div class="tc-header">
-        <div class="tc-avatar tc-avatar-marx">⚒</div>
-        <div class="tc-meta tc-meta-marx">
-          <div class="tc-label">Karl Marx · 1818–1883</div>
-          <h3>Materialismo histórico &amp; luta de classes</h3>
-          <div class="tc-sub">O Capital (1867) · Manuscritos Econômico-Filosóficos (1844)</div>
-        </div>
-      </div>
-      <div class="tc-body">
-        <p>Para Marx, <strong>nenhuma tecnologia é neutra</strong>. Toda inovação técnica surge em condições históricas determinadas — e serve, antes de tudo, aos interesses da classe que a financia e controla. A IA não foge a essa regra: ela foi desenvolvida com capital de risco, opera em data centers de corporações e se monetiza vendendo serviços à quem pode pagar por eles.</p>
-        <p>No vídeo do reencontro, Marx enxergaria uma cena de <strong>mercantilização do luto</strong>: a dor privada de uma família foi transformada em produto. Há quem venda a reconstituição, quem distribua a plataforma, quem hospede o servidor — e quem apenas assista, sem poder jamais encomendá-la.</p>
-      </div>
-      <div class="tc-insight tc-insight-marx">
-        <div class="ins-label">Conceito-chave aplicado</div>
-        <p><strong>Fetichismo da mercadoria:</strong> quando a IA "devolve" o pai morto, a tecnologia parece ter poder mágico próprio — mas esse poder esconde as relações de trabalho, extração de dados e capital que o tornaram possível. O vídeo não mostra os trabalhadores que treinaram o modelo.</p>
-      </div>
-    </div>
-
-    <h3>Como Marx leria cada elemento do vídeo</h3>
-
-    <div class="concept">
-      <div class="concept-num">Conceito 01 · Mais-valia digital</div>
-      <h3>Quem trabalhou para produzir este "reencontro"?</h3>
-      <p>O modelo de IA foi treinado com <strong>bilhões de fotografias</strong>, a maioria capturada sem consentimento explícito dos fotografados ou de seus herdeiros. Trabalhadores mal pagos no Sul Global rotularam dados, identificaram rostos e corrigiram erros do modelo. Essa força de trabalho foi absorvida pelo capital e invisibilizada no produto final: uma animação "milagrosa".</p>
-      <div class="tags">
-        <span class="tag tag-marx">Trabalho alienado</span>
-        <span class="tag tag-marx">Extração de dados</span>
-        <span class="tag tag-teal">Colonialismo digital</span>
-      </div>
-    </div>
-
-    <div class="concept">
-      <div class="concept-num">Conceito 02 · Infraestrutura como relação de classe</div>
-      <h3>Quem pode acessar a IA para reconstituir um ente querido?</h3>
-      <p>Serviços de reconstituição facial de alta qualidade custam entre <code>$500</code> e <code>$8.000</code>. Os modelos gratuitos produzem resultados notoriamente piores. Isso significa que a <strong>qualidade da memória tecnológica</strong> é estratificada pela renda: a classe trabalhadora tem acesso ao deepfake borrado; a classe alta tem acesso à cena cinematográfica com sincronização de voz.</p>
-    </div>
-
-    <div class="callout-red">
-      <strong>A contradição marxista central:</strong> A IA é vendida como democratização da memória — mas a infraestrutura que a torna possível (servidores, GPUs, dados) está concentrada em seis corporações. A promessa de igualdade esconde uma nova forma de hierarquia de classe baseada em acesso algorítmico.
-    </div>
-
-    <blockquote>
-      "Os instrumentos de produção são ao mesmo tempo instrumentos de sujeição dos produtores."
-      <cite>— Karl Marx, O Capital, Livro I, Cap. XIII</cite>
-    </blockquote>
-
-    <div class="highlight">
-      <strong>Leitura do vídeo pela perspectiva marxista:</strong> A cena do reencontro é emocionalmente genuína — mas sua produção é estruturalmente desigual. A dor da filha foi transformada em conteúdo que gera tráfego para plataformas, que monetizam esse tráfego via publicidade. O luto virou produto; a memória, ativo digital.
     </div>
   </section>
 
@@ -980,7 +1145,7 @@
   <section class="section" id="durkheim">
     <div class="section-header">
       <div class="step-num step-durkheim">🔗</div>
-      <h2>Durkheim: A IA como Ritual Coletivo</h2>
+      <h2>Durkheim: Anomia, Efervescência e Laços Primários</h2>
       <span class="duration">25 min</span>
     </div>
 
@@ -989,176 +1154,310 @@
         <div class="tc-avatar tc-avatar-durkheim">🔗</div>
         <div class="tc-meta tc-meta-durkheim">
           <div class="tc-label">Émile Durkheim · 1858–1917</div>
-          <h3>Solidariedade, fatos sociais e coesão coletiva</h3>
-          <div class="tc-sub">As Formas Elementares da Vida Religiosa (1912) · O Suicídio (1897)</div>
+          <h3>Solidariedade, anomia e a força da sociedade sobre o indivíduo</h3>
+          <div class="tc-sub">O Suicídio (1897) · As Formas Elementares da Vida Religiosa (1912) · Da Divisão do Trabalho Social (1893)</div>
         </div>
       </div>
       <div class="tc-body">
-        <p>Durkheim se interessaria menos pelo custo do vídeo e mais pela <strong>reação coletiva que ele provoca</strong>. Para ele, o que define um fato social é ser exterior ao indivíduo e exercer coerção sobre ele — e a viralização emocional de um vídeo de luto é exatamente isso: uma força coletiva que arrasta o indivíduo para um estado emocional compartilhado.</p>
-        <p>A consciência coletiva durkheimiana encontra na IA um novo suporte ritual. Quando 47 milhões de pessoas choram juntas ao ver o "reencontro", elas estão participando de um <strong>ritual de efervescência coletiva digital</strong> — o mesmo mecanismo que nas sociedades tradicionais unia tribos em torno de cerimônias religiosas.</p>
+        <p>Para Durkheim, a sociedade não é a soma de indivíduos — ela é uma força que os precede, os envolve e os molda. Os <strong>laços sociais</strong> são o que mantém o ser humano integrado a um coletivo, e sua ruptura produz estados de desorientação que ele chamou de <em>anomia</em>: a ausência de normas que organizem a existência. A anomia não é apenas um estado social — ela se manifesta no corpo, na emoção, no colapso.</p>
+        <p>O vídeo do policial é, sob o olhar durkheimiano, a narrativa de um duplo rompimento e de uma tentativa de reparação: a mulher jovem que, por pobreza e abandono (ruptura da solidariedade social), rompe o laço primário mais fundamental — o vínculo entre mãe e filho. Décadas depois, o filho volta não para ferir, mas para restaurar. E essa restauração provoca, literalmente, o desmaiamento: o corpo reage ao peso do que a sociedade exige.</p>
       </div>
       <div class="tc-insight tc-insight-durkheim">
         <div class="ins-label">Conceito-chave aplicado</div>
-        <p><strong>Efervescência coletiva digital:</strong> o vídeo cria um momento de intensa carga emocional compartilhada que reforça laços sociais mesmo entre desconhecidos — a IA funcionou como o totem que mobilizou o sagrado coletivo em torno do tema universal da perda e do reencontro.</p>
+        <p><strong>Efervescência coletiva digital:</strong> os 500 mil espectadores que assistem ao vídeo e comentam em uníssono sobre abandono, perdão e família estão participando de um ritual coletivo contemporâneo — o equivalente digital das cerimônias tribais que Durkheim estudou em sociedades indígenas australianas. O sagrado contemporâneo migrou para as plataformas.</p>
       </div>
     </div>
 
-    <h3>Como Durkheim leria cada elemento do vídeo</h3>
+    <h3>Os três conceitos durkheimanos na cena</h3>
 
-    <div class="concept">
-      <div class="concept-num">Conceito 01 · Anomia tecnológica</div>
-      <h3>A IA introduz uma ruptura nas normas do luto</h3>
-      <p>As sociedades desenvolveram ao longo de milênios <strong>rituais normatizados do luto</strong>: o velório, o enterro, o período de reclusão, o aniversário de morte. Esses rituais organizam a dor, dão estrutura ao caos emocional e reintegram o enlutado à comunidade. A possibilidade de "ver" o morto a qualquer momento, mediada por IA, <strong>desestabiliza esse sistema normativo</strong>: quando termina o luto se nunca há despedida definitiva?</p>
+    <div class="concept c-durkheim">
+      <div class="concept-num">Conceito 01 · Anomia Social</div>
+      <h3>O abandono como produto da desordem normativa</h3>
+      <p>Durkheim desenvolveu o conceito de anomia para descrever situações em que os vínculos normativos da sociedade se afrouxam ou rompem — quando o indivíduo perde o chão regulatório que define o que é certo, possível, esperado. A jovem mãe do vídeo não abandona o filho por falta de amor, mas porque se encontrou em <strong>situação anômica</strong>: pobreza extrema + abandono do companheiro = ruptura simultânea de duas estruturas normativas (econômica e familiar).</p>
+      <p>A anomia aqui não é uma falha individual de caráter — é um <strong>diagnóstico social</strong>. A ausência de políticas de proteção à maternidade vulnerável, de redes comunitárias de amparo, de solidariedade institucional: esses vazios normativos produziram a cena 42 anos depois. O vídeo mostra o resultado de uma anomia que nunca foi nomeada como tal.</p>
       <div class="tags">
-        <span class="tag tag-durkheim">Anomia</span>
-        <span class="tag tag-durkheim">Normas do luto</span>
-        <span class="tag tag-teal">Ruptura ritual</span>
+        <span class="tag tag-dk">Anomia</span>
+        <span class="tag tag-dk">Ruptura normativa</span>
+        <span class="tag tag-tl">Vulnerabilidade estrutural</span>
       </div>
     </div>
 
-    <div class="concept">
-      <div class="concept-num">Conceito 02 · Solidariedade orgânica e algoritmos</div>
-      <h3>A IA como nova forma de interdependência social</h3>
-      <p>Na solidariedade orgânica das sociedades modernas, a coesão vem da <strong>interdependência funcional</strong> — cada parte do sistema depende das outras. O vídeo viral revela uma nova forma dessa interdependência: a mulher depende do programador que treinou o modelo, que depende do rotulador de dados que identificou rostos, que depende do fotógrafo que tirou a foto original — uma cadeia invisível de dependências que a IA materializa como "magia".</p>
+    <div class="concept c-durkheim">
+      <div class="concept-num">Conceito 02 · Efervescência Coletiva</div>
+      <h3>500 mil pessoas chorando juntas — um ritual moderno</h3>
+      <p>Durkheim estudou as cerimônias religiosas de sociedades "primitivas" e percebeu que o elemento central não era o conteúdo da crença, mas a <strong>intensidade emocional compartilhada</strong> que fortalecia os laços coletivos. Quando uma tribo dançava em torno de um totem até o transe, ela criava um estado de efervescência que reafirmava quem eram, o que valorizavam, a quê pertenciam.</p>
+      <p>O vídeo do policial produz o mesmo efeito em escala digital. Os comentários não são apenas reações individuais: eles são a <strong>vocalização coletiva de uma emoção compartilhada</strong> em torno de temas que transcendem os personagens — abandono, maternidade, pobreza, perdão, família. A câmera é o totem. O algoritmo é o tambor que convoca. E os espectadores participam de um ritual de efervescência sem precisar estar no mesmo espaço físico.</p>
+      <div class="tags">
+        <span class="tag tag-dk">Efervescência coletiva</span>
+        <span class="tag tag-dk">Rituais digitais</span>
+        <span class="tag tag-tl">Consciência coletiva</span>
+      </div>
     </div>
 
-    <blockquote>
-      "A sociedade não é apenas um objeto que a consciência coletiva contempla de fora; ela é uma força viva que nos penetra por todos os lados."
-      <cite>— Émile Durkheim, As Formas Elementares da Vida Religiosa, 1912</cite>
+    <div class="concept c-durkheim">
+      <div class="concept-num">Conceito 03 · Laços Primários</div>
+      <h3>O vínculo mãe-filho como fato social fundante</h3>
+      <p>Para Durkheim, existem formas de solidariedade que antecedem a divisão social do trabalho — laços que chamamos de <em>primários</em> justamente porque estruturam a vida social antes de qualquer outra instituição. O vínculo entre mãe e filho é, nesse sentido, o <strong>laço social mais fundamental</strong>: sua ruptura é sentida como violação da ordem natural, não apenas da ordem moral.</p>
+      <p>O desmaiamento da mãe é uma resposta física a uma sobrecarga que o organismo não consegue processar conscientemente: a irrupção simultânea de culpa acumulada por 42 anos, alívio, vergonha, gratidão e amor. Durkheim diria que o corpo colapsa porque a <strong>consciência coletiva</strong> — internalizada como norma — jamais deixou essa mulher em paz. O perdão não apaga a norma: ele a reafirma.</p>
+      <div class="tags">
+        <span class="tag tag-dk">Laços primários</span>
+        <span class="tag tag-dk">Solidariedade orgânica</span>
+        <span class="tag tag-tl">Norma social e culpa</span>
+      </div>
+    </div>
+
+    <blockquote class="bq-durkheim">
+      "O homem que se liberta dos obstáculos que o aprisionam não encontra por isso a liberdade — ele encontra o vazio."
+      <cite>— Émile Durkheim, O Suicídio, 1897</cite>
     </blockquote>
 
-    <div class="callout">
+    <div class="callout callout-durkheim">
       <div class="callout-label">Paradoxo durkheimiano</div>
-      <strong>A IA simula um reencontro individual, mas a viralização transforma essa cena privada em ritual coletivo.</strong> Durkheim diria que é justamente esse caráter coletivo — não a tecnologia em si — que explica o poder emocional do vídeo. O sagrado contemporâneo se abriga nos algoritmos.
+      <strong>O perdão do filho reintegra a mãe à norma social — mas também a condena.</strong> Ao perdoá-la, ele confirma que havia algo a ser perdoado. A efervescência coletiva dos espectadores reforça essa norma: a mãe que abandona é culpada; o perdão do filho é a graça. Durkheim nos lembraria que os rituais coletivos não apenas celebram — eles também punem e hierarquizam.
     </div>
 
     <div class="highlight">
-      <strong>Leitura do vídeo pela perspectiva durkheimiana:</strong> O vídeo não apenas emocionou uma filha — ele mobilizou uma consciência coletiva sobre morte, memória e família. A IA tornou-se um novo "objeto sagrado" ao redor do qual a sociedade projeta seus medos e esperanças mais profundas sobre a continuidade da vida humana.
+      <strong>Síntese durkheimiana:</strong> O vídeo não é apenas um reencontro pessoal — é um ritual coletivo de restauração de um laço primário rompido pela anomia social da pobreza. O desmaiamento é o corpo cedendo ao peso da consciência coletiva. Os 500 mil espectadores são a congregação que testemunha e reforça a norma: laços familiares devem ser honrados; quem os rompe carrega uma dívida; o perdão é redenção.
     </div>
   </section>
 
-  <!-- ────────────────── WEBER ──────────────────────────── -->
-  <section class="section" id="weber">
+  <!-- ────────────────── BOURDIEU ──────────────────────── -->
+  <section class="section" id="bourdieu">
     <div class="section-header">
-      <div class="step-num step-weber">⚖</div>
-      <h2>Weber: A IA como Nova Forma de Dominação</h2>
+      <div class="step-num step-bourdieu">🎭</div>
+      <h2>Bourdieu: Habitus, Capital e Violência Simbólica</h2>
       <span class="duration">25 min</span>
     </div>
 
-    <div class="theorist-card tc-weber">
+    <div class="theorist-card tc-bourdieu">
       <div class="tc-header">
-        <div class="tc-avatar tc-avatar-weber">⚖</div>
-        <div class="tc-meta tc-meta-weber">
-          <div class="tc-label">Max Weber · 1864–1920</div>
-          <h3>Racionalização, burocracia e tipos de dominação</h3>
-          <div class="tc-sub">Economia e Sociedade (1921) · A Ética Protestante (1904–05)</div>
+        <div class="tc-avatar tc-avatar-bourdieu">🎭</div>
+        <div class="tc-meta tc-meta-bourdieu">
+          <div class="tc-label">Pierre Bourdieu · 1930–2002</div>
+          <h3>Campos, habitus e a reprodução da dominação</h3>
+          <div class="tc-sub">A Distinção (1979) · O Poder Simbólico (1989) · A Reprodução (1970)</div>
         </div>
       </div>
       <div class="tc-body">
-        <p>Weber pensaria o vídeo a partir de sua teoria dos <strong>tipos de dominação</strong> e do processo de racionalização crescente do mundo moderno. A IA é, para Weber, a expressão mais perfeita da dominação racional-legal: ela opera segundo regras impessoais, produz resultados calculáveis e concentra poder em quem controla o código — sem que esse poder precise ser legitimado por tradição ou carisma.</p>
-        <p>Ao mesmo tempo, Weber notaria um elemento paradoxal: o vídeo produz uma experiência de <strong>dominação carismática algorítmica</strong>. O algoritmo parece ter poderes extraordinários de "ressurreição" — e quem o controla adquire uma aura quase mística perante o usuário enlutado.</p>
+        <p>Bourdieu desenvolveu uma sociologia que recusava tanto o determinismo estrutural quanto o voluntarismo individual. Para ele, os agentes sociais são formados por um <strong>habitus</strong> — um sistema de disposições incorporadas, adquiridas nas condições materiais da existência, que gera percepções, julgamentos e práticas sem que o agente precise deliberar conscientemente. O habitus é a sociedade impressa no corpo.</p>
+        <p>O que torna o vídeo do policial particularmente rico para Bourdieu é a <strong>multiplicidade de posições de poder</strong> em cena: o filho que era pobre e se tornou policial (capital social e simbólico ascendente); a mãe que permaneceu em situação de vulnerabilidade (capital econômico escasso); o uniforme que opera como capital institucional; e a câmera que converte tudo isso em capital midiático. Cada elemento é legível em termos de posição no campo social.</p>
       </div>
-      <div class="tc-insight tc-insight-weber">
+      <div class="tc-insight tc-insight-bourdieu">
         <div class="ins-label">Conceito-chave aplicado</div>
-        <p><strong>Racionalização do irracional:</strong> a IA aplica cálculo técnico (redes neurais, parâmetros estatísticos) a um fenômeno profundamente irracional — o luto e a saudade. Weber chamaria isso de "desencantamento do mundo": o mistério da morte é reduzido a um problema de engenharia de dados.</p>
+        <p><strong>Violência simbólica no perdão:</strong> quando o filho diz "eu te perdoo", ele não apenas perdoa — ele <em>posiciona</em>. O ato de perdoar pressupõe que há algo a ser perdoado, que o perdoador ocupa a posição moral superior e que o perdoado deve aceitar essa hierarquia. A mãe, ao desmaiar, capitula — e essa capitulação é a violência simbólica em sua forma mais nua: o dominado colabora ativamente com a sua própria dominação.</p>
       </div>
     </div>
 
-    <h3>Como Weber leria cada elemento do vídeo</h3>
+    <h3>Os três conceitos bourdieuanos na cena</h3>
 
-    <div class="concept">
-      <div class="concept-num">Conceito 01 · Dominação racional-legal algorítmica</div>
-      <h3>Quem tem autoridade sobre a memória dos mortos?</h3>
-      <p>Nas sociedades tradicionais, a autoridade sobre os mortos pertencia às <strong>famílias, à religião e ao Estado</strong> — através de rituais, documentos cartoriais e normas de herança. A IA introduce um novo agente de autoridade: a empresa de tecnologia que detém os modelos. Termos de serviço substituem direito canônico; EULA substitui testamento; o algoritmo, o padre.</p>
+    <div class="concept c-bourdieu">
+      <div class="concept-num">Conceito 01 · Habitus</div>
+      <h3>Dois habitus em colisão na porta da casa</h3>
+      <p>O policial chega com o habitus de quem aprendeu a agir no campo da ordem institucional: postura ereta, farda, vocabulário controlado, capacidade de regular a própria emoção em situações de alta carga. Esse habitus foi formado não apenas pelo treinamento policial, mas pela <strong>trajetória de alguém que foi adotado, que precisou construir a si mesmo</strong> em ausência da mãe biológica.</p>
+      <p>A mãe, por outro lado, carrega o habitus formado pela pobreza, pelo abandono, pela culpa e pela subordinação. Quando ela abre a porta e vê um policial, seu corpo já sabe como se comportar diante da autoridade estatal — <strong>com deferência</strong>. Bourdieu chamaria isso de <em>hexis corporal</em>: a posição social inscrita no corpo como postura, como gesto, como a forma de respirar diante do poder.</p>
       <div class="tags">
-        <span class="tag tag-weber">Dominação legal</span>
-        <span class="tag tag-weber">Burocratização</span>
-        <span class="tag tag-teal">Autoridade algorítmica</span>
+        <span class="tag tag-bo">Habitus</span>
+        <span class="tag tag-bo">Hexis corporal</span>
+        <span class="tag tag-tl">Trajetória social</span>
       </div>
     </div>
 
-    <div class="concept">
-      <div class="concept-num">Conceito 02 · Carisma e gaiola de ferro digital</div>
-      <h3>O algoritmo carismático e seus limites</h3>
-      <p>Weber definia o carisma como uma qualidade extraordinária que legitima o poder de uma pessoa sobre outras. A empresa que criou o "reencontro" adquire um <strong>carisma corporativo</strong>: a capacidade de "devolver" o morto é percebida como poder sobrenatural. Mas Weber também alertava que o carisma se institucionaliza — e quando isso acontece, vira <strong>gaiola de ferro</strong>: o usuário fica preso à plataforma, incapaz de acessar sua memória fora do sistema proprietário.</p>
+    <div class="concept c-bourdieu">
+      <div class="concept-num">Conceito 02 · Capital e Distinção</div>
+      <h3>A mobilidade social do filho como acusação tácita</h3>
+      <p>O vídeo encena uma assimetria de capital que não é neutra. O filho — que foi dado para adoção em condição de pobreza — tornou-se policial: adquiriu <strong>capital social</strong> (redes de pertencimento institucional), <strong>capital simbólico</strong> (prestígio do servidor público) e possivelmente <strong>capital econômico</strong> superior ao da mãe que o abandonou.</p>
+      <p>Essa inversão é crucial para Bourdieu: a pobreza que forçou o abandono produziu, paradoxalmente, um filho com mais capital do que a mãe que ficou. Mas esse capital não é apresentado como resultado de estruturas sociais — é apresentado como resultado do filho <em>apesar do</em> abandono. A narrativa do vídeo converte uma trajetória social em mérito individual, invisibilizando a análise de classe que explica como o filho ascendeu e por que a mãe não o pôde criar.</p>
+      <div class="tags">
+        <span class="tag tag-bo">Capital social</span>
+        <span class="tag tag-bo">Capital simbólico</span>
+        <span class="tag tag-bo">Distinção</span>
+      </div>
     </div>
 
-    <blockquote>
-      "O destino do nosso tempo é caracterizado pela racionalização, intelectualização e, acima de tudo, pelo desencantamento do mundo."
-      <cite>— Max Weber, A Ciência como Vocação, 1917</cite>
+    <div class="concept c-bourdieu">
+      <div class="concept-num">Conceito 03 · Violência Simbólica</div>
+      <h3>"Eu te perdoo" — a frase mais carregada do vídeo</h3>
+      <p>Bourdieu definiu a violência simbólica como uma forma de dominação que opera <em>com a cumplicidade dos dominados</em>, porque é exercida através de esquemas de percepção e apreciação que ambas as partes — dominador e dominado — compartilham e reconhecem como legítimos. Ela é invisível precisamente porque parece natural.</p>
+      <p>A frase "eu te perdoo" é um ato de <strong>violência simbólica estruturada</strong>: ela posiciona o filho como detentor do poder moral de absolver e a mãe como aquela que precisa ser absolvida. Esse poder de perdoar é legitimado por toda a ordem social que valoriza os filhos sobre as mães, a estabilidade sobre a pobreza, o fardamento sobre o avental. A mãe aceita essa posição — ela chora, agradece, desmaia — e ao fazê-lo, colabora com a própria subordinação. Isso é violência simbólica em sua forma mais perfeita: o dominado a pede, a recebe e a agradece.</p>
+      <div class="tags">
+        <span class="tag tag-bo">Violência simbólica</span>
+        <span class="tag tag-bo">Dominação legítima</span>
+        <span class="tag tag-tl">Poder e reconhecimento</span>
+      </div>
+    </div>
+
+    <blockquote class="bq-bourdieu">
+      "A violência simbólica é essa coerção que se institui por meio da adesão que o dominado não pode deixar de conceder ao dominante quando ele não dispõe, para pensá-lo e para se pensar, senão de instrumentos de conhecimento que ambos têm em comum."
+      <cite>— Pierre Bourdieu, Meditações Pascalianas, 1997</cite>
     </blockquote>
 
-    <div class="callout-red">
-      <strong>A ironia weberiana:</strong> A IA desencanta o mundo ao transformar o mistério da morte em problema técnico — mas, ao fazê-lo, cria um novo encantamento: a crença quase mágica nos poderes do algoritmo. Desencantamento e re-encantamento ocorrem simultaneamente.
+    <div class="callout callout-bourdieu">
+      <div class="callout-label">Pergunta bourdieuiana</div>
+      <strong>Quem definiu as regras desse jogo?</strong> O filho chegou com o uniforme da autoridade estatal para perdoar uma mulher pobre que chorava. Toda a cena pressupõe que ela errou ao dar o filho — mas nunca questiona por que uma mulher pobre e abandonada deveria ser capaz de criar um filho sozinha sem suporte algum. A estrutura que produziu o abandono nunca é posta em julgamento. Apenas a mulher é.
     </div>
 
     <div class="highlight">
-      <strong>Leitura do vídeo pela perspectiva weberiana:</strong> O "reencontro" mediado por IA não é apenas uma experiência emocional — é um ato de transferência de autoridade. A família renuncia ao controle sobre a memória do morto e o entrega a uma corporação que define as regras de acesso, propriedade e uso daquela memória.
+      <strong>Síntese bourdieuiana:</strong> O vídeo encena a reprodução da dominação através da emoção. O filho acumulou capital simbólico suficiente para se tornar o agente do perdão; a mãe permanece em posição de devedora moral. A câmera registra e amplifica essa hierarquia sem questioná-la. Os espectadores aplaudem — e ao fazê-lo, ratificam a ordem simbólica que tornou o abandono necessário e o perdão possível. O habitus dos dominados colabora com a sua própria dominação.
     </div>
   </section>
 
-  <!-- ────────────────── COMPARATIVO ──────────────────── -->
-  <section class="section" id="comparativo">
+  <!-- ────────────────── FRANKFURT ─────────────────────── -->
+  <section class="section" id="frankfurt">
     <div class="section-header">
-      <div class="step-num step-purple">≡</div>
-      <h2>Tabela Comparativa</h2>
-      <span class="duration">10 min</span>
+      <div class="step-num step-frankfurt">⚡</div>
+      <h2>Escola de Frankfurt: Indústria Cultural e Catarse sem Consciência</h2>
+      <span class="duration">25 min</span>
     </div>
 
-    <p>Os três teóricos observam o <em>mesmo</em> vídeo — e chegam a diagnósticos radicalmente distintos. Essa diferença não indica qual teoria é "mais verdadeira": indica que cada uma <strong>ilumina uma dimensão diferente da realidade social</strong>.</p>
+    <div class="theorist-card tc-frankfurt">
+      <div class="tc-header">
+        <div class="tc-avatar tc-avatar-frankfurt">⚡</div>
+        <div class="tc-meta tc-meta-frankfurt">
+          <div class="tc-label">Adorno, Horkheimer, Marcuse · Escola de Frankfurt</div>
+          <h3>Razão instrumental, indústria cultural e falsa consciência</h3>
+          <div class="tc-sub">Dialética do Esclarecimento (1947) · Homem Unidimensional (1964) · Teoria Crítica</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        <p>A Escola de Frankfurt nasceu de uma pergunta: por que a razão moderna, que prometia liberar os seres humanos, produziu Auschwitz? A resposta encontrada por Adorno e Horkheimer foi a tese da <strong>razão instrumental</strong>: a modernidade reduziu a razão ao cálculo de meios para fins, esvaziando toda capacidade de questionar os próprios fins. A cultura, nesse contexto, tornou-se uma <em>indústria</em> — produzindo produtos padronizados para consumo passivo que impedem o pensamento crítico.</p>
+        <p>O vídeo do policial é um produto perfeitamente calibrado da indústria cultural contemporânea. Ele fornece <strong>catarse</strong> — a purga emocional que Aristóteles identificou como função da tragédia — mas uma catarse que não gera consciência. O espectador chora, se emociona e segue rolando o feed. A emoção foi consumida, mas nenhuma pergunta estrutural foi feita: por que a mãe era tão pobre? Por que não havia rede de proteção? Quem lucra com esse conteúdo?</p>
+      </div>
+      <div class="tc-insight tc-insight-frankfurt">
+        <div class="ins-label">Conceito-chave aplicado</div>
+        <p><strong>Catarse sem consciência:</strong> o vídeo produz descarga emocional genuína — as lágrimas são reais — mas a emoção é estruturalmente desviada de sua função crítica. Em vez de gerar indignação com as condições sociais que produziram o abandono, ela é convertida em admiração pelo perdão individual do filho. A razão instrumental do algoritmo transforma sofrimento em engajamento mensurável.</p>
+      </div>
+    </div>
+
+    <h3>Os três conceitos frankfurtianos na cena</h3>
+
+    <div class="concept c-frankfurt">
+      <div class="concept-num">Conceito 01 · Indústria Cultural</div>
+      <h3>O sofrimento como formato de conteúdo</h3>
+      <p>Adorno e Horkheimer descreveram a indústria cultural como um sistema de produção de bens simbólicos padronizados que simulate diversidade enquanto entrega conformidade. O vídeo do TikTok não é um acidente — é um <strong>produto cultural com estrutura narrativa reconhecível</strong>: apresentação do personagem → confissão de falha → revelação dramática → resolução emocional → desfecho humanizador (o café). Essa estrutura poderia ser um roteiro de filme.</p>
+      <p>A produção de vídeos de "reencontros" e "perdões" é um gênero consolidado no TikTok e no YouTube. Há contas especializadas nisso. Há produtores que organizam os encontros para a câmera. Há monetização direta através de views, patrocínios e doações. O sofrimento real de uma mulher que entregou um filho torna-se, na lógica da indústria cultural, <strong>matéria-prima de um produto emocional</strong> — e ela pode nem saber disso.</p>
+      <div class="tags">
+        <span class="tag tag-fr">Indústria cultural</span>
+        <span class="tag tag-fr">Padronização emocional</span>
+        <span class="tag tag-tl">Mercantilização do afeto</span>
+      </div>
+    </div>
+
+    <div class="concept c-frankfurt">
+      <div class="concept-num">Conceito 02 · Catarse sem Consciência</div>
+      <h3>Chorar sem perguntar o porquê</h3>
+      <p>A catarse clássica — na tragédia grega — tinha função educativa: o espectador, ao se emocionar com o sofrimento do herói trágico, aprendia algo sobre a condição humana, sobre os limites do poder, sobre a hybris e suas consequências. Era emoção que produzia reflexão.</p>
+      <p>A Escola de Frankfurt identificou que a indústria cultural produzia uma <strong>catarse esvaziada</strong>: a emoção é fornecida sem o seu correlato reflexivo. O vídeo do policial faz o espectador chorar — mas a estrutura do conteúdo direciona a emoção para o perdão individual, não para a análise das condições estruturais que produziram o abandono. <strong>Por que ela era pobre?</strong> Nunca se pergunta. <strong>Quem a abandonou?</strong> O companheiro some da narrativa. A questão central — a falência das estruturas de proteção social — é completamente invisibilizada pela intensidade emocional da cena do perdão.</p>
+      <div class="tags">
+        <span class="tag tag-fr">Catarse esvaziada</span>
+        <span class="tag tag-fr">Falsa consciência</span>
+        <span class="tag tag-tl">Emoção vs. crítica</span>
+      </div>
+    </div>
+
+    <div class="concept c-frankfurt">
+      <div class="concept-num">Conceito 03 · Razão Instrumental</div>
+      <h3>O algoritmo como gestor do sofrimento humano</h3>
+      <p>Marcuse descreveu a razão instrumental como a lógica que reduz tudo — inclusive os seres humanos — a meios para fins. Na plataforma TikTok, essa razão opera com precisão matemática: cada segundo assistido, cada comentário, cada compartilhamento é um dado que o algoritmo usa para maximizar o tempo de exposição do usuário. A emoção humana é tratada como <strong>variável de otimização</strong>.</p>
+      <p>O desmaiamento da mãe, a revelação do filho, o pedido de café: cada momento é calculado — consciente ou inconscientemente — para manter o espectador preso à tela. O algoritmo do TikTok não sabe o que é sofrimento; ele sabe que certos padrões de conteúdo geram certos padrões de comportamento. A dor de uma mulher que entregou um filho é, para o sistema, <strong>um conjunto de features positivamente correlacionados com watch time</strong>. A razão instrumental não pergunta se é ético — pergunta apenas se funciona.</p>
+      <div class="tags">
+        <span class="tag tag-fr">Razão instrumental</span>
+        <span class="tag tag-fr">Reificação</span>
+        <span class="tag tag-tl">Algoritmo como sujeito</span>
+      </div>
+    </div>
+
+    <blockquote class="bq-frankfurt">
+      "A indústria cultural logra a catarse de forma que o impede de emergir. Ela fornece a descarga e subtrai ao mesmo tempo o material sobre o qual a descarga deveria se efetivar."
+      <cite>— Theodor Adorno &amp; Max Horkheimer, Dialética do Esclarecimento, 1947</cite>
+    </blockquote>
+
+    <div class="callout callout-red">
+      <div class="callout-label">A ironia frankfurtiana</div>
+      <strong>O vídeo parece subversivo — um filho que desafia a indiferença, que busca a mãe, que perdoa.</strong> Mas para a Escola de Frankfurt, essa aparência de subversão é precisamente o que torna o produto mais eficiente: ele dá ao espectador a sensação de ter vivenciado algo profundo sem precisar questionar nada. O sistema se perpetua exatamente porque parece emocionante o suficiente para ser real e inócuo o suficiente para não ameaçar nada.
+    </div>
+
+    <div class="highlight">
+      <strong>Síntese frankfurtiana:</strong> O vídeo é um produto da indústria cultural que usa o sofrimento real como matéria-prima, fornece catarse sem consciência crítica e opera sob a lógica da razão instrumental do algoritmo. O espectador chora — mas o sistema permanece intacto. A pobreza que produziu o abandono nunca é nomeada como problema político. O perdão individual substitui a análise estrutural. Isso é, para Frankfurt, a função central da cultura de massa: produzir conformidade emocional com a ordem existente.
+    </div>
+  </section>
+
+  <!-- ────────────────── TIKTOK ────────────────────────── -->
+  <section class="section" id="tiktok">
+    <div class="section-header">
+      <div class="step-num step-tiktok">♪</div>
+      <h2>TikTok como Máquina de Emoção</h2>
+      <span class="duration">15 min</span>
+    </div>
+
+    <div class="tiktok-card">
+      <div class="v-label">Análise de Plataforma</div>
+      <h3 style="font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:14px;">Por que esse vídeo existe nessa plataforma — e não em outra?</h3>
+      <p style="color:#c8c8d8;margin-bottom:0;">O TikTok não é um suporte neutro para conteúdo humano. Ele é uma arquitetura tecnológica que <strong>seleciona, amplifica e molda</strong> o tipo de conteúdo que circula. Entender o vídeo do policial exige entender a plataforma que o distribuiu.</p>
+    </div>
+
+    <div class="tiktok-feature">
+      <div class="tf-num">Feature 01 · O Algoritmo da Emoção</div>
+      <h3>TikTok não distribui conteúdo — distribui reações</h3>
+      <p>O sistema de recomendação do TikTok (For You Page) é treinado para maximizar métricas de engajamento: tempo assistido, compartilhamentos, comentários, saves. Conteúdos com alta carga emocional — choro, raiva, surpresa — geram mais dessas métricas do que conteúdo informativo neutro. O resultado é uma <strong>seleção algorítmica que favorece o extremo emocional</strong>. Um vídeo de uma mulher recebendo notícia de gravidez ou de um filho revelando sua identidade tem, estruturalmente, vantagem sobre um vídeo de análise política — não porque seja mais verdadeiro, mas porque ativa mais botões.</p>
+    </div>
+
+    <div class="tiktok-feature">
+      <div class="tf-num">Feature 02 · A Duração de 8 Minutos</div>
+      <h3>Quando a emoção vence o formato</h3>
+      <p>O TikTok foi construído sobre vídeos de 15 a 60 segundos. A maioria do conteúdo viral tem menos de 3 minutos. Um vídeo de 8 minutos que atinge 500 mil visualizações é, estatisticamente, <strong>uma anomalia que revela a força do conteúdo emocional</strong>. O espectador que assistiu 8 minutos estava preso — não pela plataforma, mas pela narrativa. Isso confirma a tese frankfurtiana: o produto emocional bem calibrado neutraliza até as barreiras de atenção criadas pela própria arquitetura da plataforma.</p>
+    </div>
+
+    <div class="tiktok-feature">
+      <div class="tf-num">Feature 03 · Os Comentários como Efervescência</div>
+      <h3>Durkheim encontra Zuckerberg</h3>
+      <p>A seção de comentários de vídeos emocionais é, sociologicamente, um espaço de <strong>efervescência coletiva digitalizada</strong>. Pessoas que nunca se encontraram partilham histórias de abandono, perdão, adoção — ativadas pelo gatilho emocional do vídeo. Cada comentário é simultaneamente um ato individual e um tijolo na construção de uma consciência coletiva temporária ao redor do tema. O TikTok monetiza esse fenômeno: mais comentários = mais engajamento = mais recomendação = mais audiência para anunciantes.</p>
+    </div>
+
+    <div class="tiktok-feature">
+      <div class="tf-num">Feature 04 · A Questão da Autenticidade</div>
+      <h3>O vídeo é real? — e por que isso importa</h3>
+      <p>Não é possível verificar a autenticidade do vídeo a partir das imagens. Pode ser completamente real, parcialmente encenado ou inteiramente produzido. Mas — e aqui está o insight frankfurtiano — <strong>isso é sociologicamente irrelevante</strong> para a análise do impacto. O que o vídeo produz (emoção, efervescência, catarse, habitus reforçado) ocorre independentemente de sua veracidade factual. A indústria cultural opera sobre o plano do verossímil, não do verdadeiro. O que parece real emociona como se fosse real — e o efeito social é o mesmo.</p>
+    </div>
+
+    <div class="callout callout-tiktok">
+      <div class="callout-label">Tensão central</div>
+      <strong>O TikTok é uma máquina de distribuição de emoção que não distingue entre o sofrimento real e o sofrimento encenado</strong> — porque para os fins do algoritmo, ambos produzem o mesmo resultado: engajamento. Isso não invalida o sofrimento real. Significa que o sofrimento real pode ser instrumentalizado pela mesma lógica que instrumentaliza o sofrimento falso. E que o espectador não tem, em geral, ferramentas para distinguir um do outro.
+    </div>
 
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th>Dimensão</th>
-            <th style="color: var(--marx);">⚒ Marx</th>
-            <th style="color: var(--durkheim);">🔗 Durkheim</th>
-            <th style="color: var(--weber);">⚖ Weber</th>
+            <th style="color:var(--durkheim)">🔗 Durkheim</th>
+            <th style="color:var(--bourdieu)">🎭 Bourdieu</th>
+            <th style="color:var(--frankfurt)">⚡ Frankfurt</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Pergunta central</td>
-            <td>Quem lucra com o luto alheio?</td>
-            <td>Que laços sociais o vídeo cria ou rompe?</td>
-            <td>Quem tem autoridade sobre a memória dos mortos?</td>
+            <td class="td-dim">O que é o TikTok?</td>
+            <td>Novo suporte para rituais coletivos e efervescência</td>
+            <td>Campo de produção cultural com suas próprias regras e capitais</td>
+            <td>Extensão da indústria cultural com razão instrumental algorítmica</td>
           </tr>
           <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Foco analítico</td>
-            <td>Relações de produção e propriedade</td>
-            <td>Coesão coletiva e normas sociais</td>
-            <td>Tipos de dominação e racionalização</td>
+            <td class="td-dim">O que faz o vídeo?</td>
+            <td>Cria consciência coletiva temporária ao redor de temas sagrados</td>
+            <td>Reproduz hierarquias simbólicas e distribui capital midiático</td>
+            <td>Fornece catarse sem reflexão; impede consciência crítica</td>
           </tr>
           <tr>
-            <td style="color: var(--muted); font-size:.9rem;">O que a IA representa</td>
-            <td>Nova forma de extração de valor (mais-valia digital)</td>
-            <td>Novo suporte para rituais coletivos</td>
-            <td>Expressão máxima da dominação racional-legal</td>
+            <td class="td-dim">Quem lucra?</td>
+            <td>A sociedade (coesão) — mas também os produtores do conteúdo</td>
+            <td>Quem tem o capital para produzir e distribuir o conteúdo</td>
+            <td>A plataforma e o sistema que se beneficia da passividade crítica</td>
           </tr>
           <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Problema detectado</td>
-            <td>Acesso desigual; mercantilização do luto</td>
-            <td>Anomia — ruptura das normas tradicionais do luto</td>
-            <td>Transferência de autoridade para corporações privadas</td>
-          </tr>
-          <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Quem "abandonou" quem?</td>
-            <td>O capital abandonou os trabalhadores que treinaram a IA</td>
-            <td>A modernidade abandonou os rituais que organizavam o luto</td>
-            <td>O Estado abandonou a regulação da memória privada</td>
-          </tr>
-          <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Solução proposta</td>
-            <td>Controle coletivo dos meios de produção da IA</td>
-            <td>Criação de novas normas coletivas para o luto digital</td>
-            <td>Regulação burocrática e legal da autoridade algorítmica</td>
-          </tr>
-          <tr>
-            <td style="color: var(--muted); font-size:.9rem;">Metáfora central</td>
-            <td>A IA é uma fábrica invisível</td>
-            <td>A IA é um novo totem</td>
-            <td>A IA é uma nova burocracia sem rosto</td>
+            <td class="td-dim">O que falta?</td>
+            <td>Normas coletivas sobre privacidade e dignidade no conteúdo</td>
+            <td>Reflexão sobre as condições de classe que produziram a cena</td>
+            <td>Qualquer análise da estrutura social que tornou o abandono necessário</td>
           </tr>
         </tbody>
       </table>
@@ -1166,112 +1465,101 @@
 
     <div class="central-question">
       <div class="q-label">Síntese Provisória</div>
-      <h3>A IA não tem classe social —<br>mas opera dentro de relações de classe.</h3>
-      <p>Ela reproduz desigualdades (Marx), fragiliza laços normativos (Durkheim) e concentra autoridade em novos agentes (Weber). As três dimensões ocorrem simultaneamente — e nenhuma teoria sozinha captura o fenômeno inteiro.</p>
+      <h3>O TikTok não criou o abandono —<br>mas lucra com ele.</h3>
+      <p>A plataforma amplifica o sofrimento estrutural sem nomeá-lo como tal. O espectador chora, o algoritmo ganha, a estrutura permanece. Isso é a indústria cultural no século XXI: não mais cinema de Hollywood, mas um feed que cabe no bolso.</p>
     </div>
   </section>
 
-  <!-- ────────────────── ATIVIDADE 1 ──────────────────── -->
-  <section class="section" id="atividade1">
+  <!-- ────────────────── ATIVIDADES ────────────────────── -->
+  <section class="section" id="atividades">
     <div class="section-header">
-      <div class="step-num step-green">①</div>
-      <h2>Atividade 1 — Quem Abandonou Quem?</h2>
-      <span class="duration">20 min</span>
+      <div class="step-num step-green">✍</div>
+      <h2>Atividades</h2>
+      <span class="duration">45 min</span>
     </div>
 
-    <div class="activity green">
+    <!-- Atividade 1 -->
+    <div class="activity act-teal">
       <div class="activity-header">
-        <div class="activity-icon green">🎯</div>
-        <h3>Diagnóstico pela lente clássica</h3>
-        <span class="time">Individual · 8 min + partilha 12 min</span>
+        <div class="activity-icon">📝</div>
+        <h3>Atividade 1 — Análise Escrita Individual</h3>
+        <span class="time">15 min · Individual</span>
       </div>
-      <p><strong>Instrução:</strong> Releia a descrição do vídeo. Em seguida, responda à pergunta abaixo escolhendo <em>um dos três teóricos</em> como sua perspectiva. Use os conceitos da teoria escolhida para construir seu argumento. Não há resposta certa — há respostas mais ou menos fundamentadas teoricamente.</p>
+      <p><strong>Instrução:</strong> Escolha <em>um</em> dos três teóricos estudados (Durkheim, Bourdieu ou Escola de Frankfurt) e responda à pergunta abaixo com, no mínimo, um parágrafo fundamentado. Você deve usar pelo menos <strong>dois conceitos</strong> da teoria escolhida com precisão — não apenas citar os nomes, mas aplicá-los à cena concreta do vídeo.</p>
     </div>
 
-    <div class="callout">
-      <div class="callout-label">Pergunta da atividade</div>
-      <strong>"Neste vídeo de reencontro familiar mediado por IA, quem — ou o quê — foi o verdadeiro abandono? Quem deixou quem para trás?"</strong>
+    <div class="callout callout-amber">
+      <div class="callout-label">Pergunta central da atividade 1</div>
+      <strong>"A mulher que desmaiou ao ouvir 'eu te perdoo' — o que esse desmaiamento nos diz sobre a sociedade brasileira? Responda pela perspectiva do teórico que você escolheu."</strong>
     </div>
 
-    <p>Abaixo, o que cada teoria responderia. Compare com sua própria resposta e identifique convergências e diferenças:</p>
+    <p>Para ajudar a organizar a resposta, veja o que cada teoria sugere como ponto de entrada:</p>
 
     <div class="answer-grid">
-      <div class="answer-card answer-marx">
-        <div class="a-label">⚒ Pela lente de Marx</div>
-        <div class="a-title">O capital abandonou os subalternos</div>
-        <p>O sistema capitalista de desenvolvimento de IA apropriou-se do trabalho não-remunerado de milhões (seus dados, suas fotografias, suas expressões) e devolveu o produto — precificado — apenas para quem pode pagar. Os trabalhadores que rotularam os dados que "devolveram" o pai morto nunca poderão contratar o mesmo serviço para si. O abandono é estrutural: a classe trabalhadora produz a tecnologia que só serve à classe que a financia.</p>
+      <div class="answer-card answer-dk">
+        <div class="a-label">🔗 Ponto de entrada — Durkheim</div>
+        <div class="a-title">O corpo cede ao peso da norma coletiva</div>
+        <p>O desmaiamento é a resposta física de um ser formado pela consciência coletiva ao encontrar, de uma vez, o peso de 42 anos de culpa acumulada e a possibilidade de reintegração à ordem normativa. A sociedade cobrou, no corpo dela, tudo o que havia exigido em silêncio. O perdão do filho não é o fim — é o momento em que a norma, finalmente, se satisfaz.</p>
       </div>
-      <div class="answer-card answer-durkheim">
-        <div class="a-label">🔗 Pela lente de Durkheim</div>
-        <div class="a-title">A modernidade abandonou os rituais</div>
-        <p>A IA não abandonou ninguém — mas ela chegou num vácuo deixado pelo enfraquecimento dos rituais coletivos do luto. Quando a religião e a comunidade deixaram de oferecer estrutura suficiente para processar a morte, o mercado preencheu o espaço. O "abandono" foi social, não tecnológico: a sociedade moderna perdeu a capacidade de acolher o enlutado, e a IA virou um substituto imperfeito para o que as cerimônias coletivas já fizeram melhor.</p>
+      <div class="answer-card answer-bo">
+        <div class="a-label">🎭 Ponto de entrada — Bourdieu</div>
+        <div class="a-title">O habitus colapsa diante da inversão de posições</div>
+        <p>Seu habitus a preparou para abrir a porta com deferência diante de um policial. Seu habitus a preparou para carregar a culpa do abandono. Mas nenhum habitus a preparou para a inversão: o filho que ela havia abandonado agora a perdoa de cima, com uniforme e autoridade simbólica. O colapso é a falência temporária do habitus diante de uma situação que não havia sido incorporada — o impossível aconteceu.</p>
       </div>
-      <div class="answer-card answer-weber">
-        <div class="a-label">⚖ Pela lente de Weber</div>
-        <div class="a-title">O Estado abandonou a regulação</div>
-        <p>A autoridade sobre a memória dos mortos foi entregue a corporações privadas sem que o Estado impusesse qualquer limite racional-legal. Não há lei que defina quem pode "ressuscitar" um morto digitalmente, em que condições, com que limitações. O abandono foi regulatório: num mundo crescentemente racionalizado, justamente a dimensão mais íntima — a memória dos que amamos — ficou fora do alcance das instituições de controle democrático.</p>
+      <div class="answer-card answer-fr">
+        <div class="a-label">⚡ Ponto de entrada — Frankfurt</div>
+        <div class="a-title">A catarse perfeita para o produto perfeito</div>
+        <p>O desmaiamento é o climax emocional que o produto cultural precisava para funcionar. Sem ele, o vídeo seria apenas uma conversa emocionante. Com ele, torna-se uma narrativa de colapso e redenção que produz a descarga emocional máxima — e ao produzi-la, esgota no espectador qualquer energia crítica que pudesse ser direcionada para as condições estruturais que tornaram o abandono necessário.</p>
       </div>
     </div>
 
-    <div class="activity teal">
+    <div class="activity act-teal" style="margin-top:8px;">
       <div class="activity-header">
-        <div class="activity-icon teal">💬</div>
-        <h3>Partilha em plenário</h3>
-        <span class="time">12 min</span>
+        <div class="activity-icon">💬</div>
+        <h3>Compartilhamento em plenário</h3>
+        <span class="time">5 min</span>
       </div>
       <ul>
-        <li>Qual teoria pareceu mais convincente para você? Por quê?</li>
-        <li>Alguma das três respostas pareceu incompleta ou parcial? O que ficou de fora?</li>
-        <li>É possível combinar as três respostas numa explicação unificada?</li>
-        <li>Sua resposta pessoal coincidiu com alguma das três? Ou você propôs um quarto "abandono"?</li>
+        <li>Qual teoria pareceu mais poderosa para explicar o desmaiamento? Por quê?</li>
+        <li>Algum aluno escolheu perspectivas diferentes para o mesmo fenômeno? O que divergiu?</li>
       </ul>
     </div>
-  </section>
 
-  <!-- ────────────────── ATIVIDADE 2 ──────────────────── -->
-  <section class="section" id="atividade2">
-    <div class="section-header">
-      <div class="step-num step-amber">②</div>
-      <h2>Atividade 2 — Debate Estruturado</h2>
-      <span class="duration">30 min</span>
-    </div>
-
-    <div class="activity amber">
+    <!-- Atividade 2 -->
+    <div class="activity act-amber" style="margin-top:36px;">
       <div class="activity-header">
-        <div class="activity-icon amber">⚡</div>
-        <h3>A IA do reencontro deve ser regulada, proibida ou liberada?</h3>
-        <span class="time">Grupos · 30 min total</span>
+        <div class="activity-icon">⚡</div>
+        <h3>Atividade 2 — Debate em Grupos: Quem julgamos nesse vídeo?</h3>
+        <span class="time">20 min · Grupos de 4–5</span>
       </div>
-      <p><strong>Formato:</strong> A turma se divide em três grupos. Cada grupo defende uma posição — independentemente da opinião pessoal dos participantes. O objetivo é praticar argumentação teórica fundamentada.</p>
+      <p><strong>Formato:</strong> A turma se divide em três grupos. Cada grupo defende uma posição. O objetivo é praticar argumentação teórica — não a opinião pessoal dos participantes, mas o argumento mais rigoroso para a posição atribuída.</p>
     </div>
-
-    <h3>As três posições em disputa</h3>
 
     <div class="debate-grid">
-      <div class="debate-card" style="border-color: var(--marx);">
-        <div class="vs" style="color: var(--marx);">⚒ Posição A · Marx</div>
-        <div class="pos">Regulação socializada ou proibição comercial</div>
-        <p>A tecnologia de reconstituição facial deve ser retirada do mercado privado. Se ela existir, deve ser pública, gratuita e gerida pelo Estado ou por entidades sem fins lucrativos. Nenhuma empresa deve lucrar com o luto alheio. Argumentos: mais-valia digital, exploração do trabalho de rotulagem, desigualdade de acesso, mercantilização da intimidade.</p>
-      </div>
       <div class="debate-card" style="border-color: var(--durkheim);">
-        <div class="vs" style="color: var(--durkheim);">🔗 Posição B · Durkheim</div>
-        <div class="pos">Regulação normativa — mas não proibição</div>
-        <p>A tecnologia em si não é o problema — o problema é a ausência de normas coletivas que orientem seu uso. A sociedade precisa construir consensos sobre quando, como e por quem a IA pode "recriar" um morto. Isso exige debate público amplo, não proibição. A anomia é mais perigosa que a tecnologia. Argumentos: solidariedade social, integração normativa, rituais coletivos de adaptação.</p>
+        <div class="vs" style="color:var(--durkheim);">🔗 Posição A — Durkheim</div>
+        <div class="pos">Ninguém deve ser julgado — a sociedade falhou</div>
+        <p>A mulher não tinha escolha diante das condições anômicas em que estava: abandonada pelo companheiro, sem renda, sem suporte institucional, sem rede de solidariedade. O abandono foi um ato de sobrevivência dentro de um sistema que falhou em criar os vínculos necessários para sustentá-la. O julgamento deve recair sobre a ausência de solidariedade social — não sobre o indivíduo.</p>
       </div>
-      <div class="debate-card" style="border-color: var(--weber);">
-        <div class="vs" style="color: var(--weber);">⚖ Posição C · Weber</div>
-        <div class="pos">Regulação burocrático-legal rigorosa</div>
-        <p>A tecnologia deve existir, mas sob regras racionais claras: consentimento em vida, direitos de herdeiros, limites de uso comercial, responsabilização legal por danos. O Estado deve criar uma burocracia especializada para regular o "patrimônio digital pós-morte". A falta de regulação é mais perigosa que a regulação excessiva. Argumentos: dominação legal, racionalização, autoridade impessoal.</p>
+      <div class="debate-card" style="border-color: var(--bourdieu);">
+        <div class="vs" style="color:var(--bourdieu);">🎭 Posição B — Bourdieu</div>
+        <div class="pos">O verdadeiro problema é quem definiu as regras do julgamento</div>
+        <p>O vídeo não apenas conta uma história — ele estabelece quem tem o poder de perdoar e quem precisa ser perdoado. Isso é um problema de poder e dominação simbólica, não de moralidade individual. A questão não é se a mãe errou, mas por que o filho — fardado, com capital simbólico acumulado — detém o poder de absolvê-la. O campo determina quem julga e quem é julgado.</p>
+      </div>
+      <div class="debate-card" style="border-color: var(--frankfurt);">
+        <div class="vs" style="color:var(--frankfurt);">⚡ Posição C — Frankfurt</div>
+        <div class="pos">O vídeo em si é o problema — não os personagens</div>
+        <p>Julgamos os personagens enquanto deveríamos julgar a estrutura que produziu tanto o abandono quanto o vídeo. A indústria cultural direciona nossa indignação para o individual (a mãe que abandonou) e nossa admiração para o individual (o filho que perdoou), impedindo que perguntemos: por que uma mulher pobre e abandonada é responsável por criar um filho sozinha? A câmera não filma essa pergunta.</p>
       </div>
     </div>
 
-    <h3>Papéis dentro de cada grupo</h3>
+    <h3>Papéis no debate</h3>
 
     <div class="role-grid">
       <div class="role-card">
         <div class="role-icon">🎤</div>
         <div class="role-title">Porta-voz</div>
-        <div class="role-desc">Apresenta a posição do grupo (2 min). Deve usar pelo menos dois conceitos do teórico.</div>
+        <div class="role-desc">Apresenta a posição do grupo (2 min). Obrigatório: usar pelo menos dois conceitos do teórico.</div>
       </div>
       <div class="role-card">
         <div class="role-icon">🛡</div>
@@ -1281,68 +1569,75 @@
       <div class="role-card">
         <div class="role-icon">🗡</div>
         <div class="role-title">Crítico</div>
-        <div class="role-desc">Ataca os pontos fracos das outras duas posições com base na própria teoria.</div>
+        <div class="role-desc">Identifica os pontos cegos das outras posições usando os conceitos da própria teoria.</div>
       </div>
       <div class="role-card">
-        <div class="role-icon">📝</div>
+        <div class="role-icon">📋</div>
         <div class="role-title">Relator</div>
-        <div class="role-desc">Anota os principais argumentos e sínteses para apresentação final ao plenário.</div>
+        <div class="role-desc">Anota o que o grupo concedeu e o que manteve para a síntese final.</div>
       </div>
     </div>
 
-    <h3>Roteiro do debate (30 min)</h3>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Fase</th>
-            <th>Tempo</th>
-            <th>Dinâmica</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="color: var(--teal); font-weight: 600;">1 · Preparação</td>
-            <td class="td-dim">8 min</td>
-            <td>Cada grupo revisa a teoria e elabora 3 argumentos centrais + 1 ponto fraco para defender</td>
-          </tr>
-          <tr>
-            <td style="color: var(--teal); font-weight: 600;">2 · Abertura</td>
-            <td class="td-dim">6 min</td>
-            <td>Cada porta-voz apresenta a posição do grupo (2 min cada)</td>
-          </tr>
-          <tr>
-            <td style="color: var(--teal); font-weight: 600;">3 · Confronto</td>
-            <td class="td-dim">10 min</td>
-            <td>Rodada livre: críticos atacam, defensores respondem — mediação do professor</td>
-          </tr>
-          <tr>
-            <td style="color: var(--teal); font-weight: 600;">4 · Síntese</td>
-            <td class="td-dim">6 min</td>
-            <td>Cada relator apresenta o que o grupo concedeu e o que manteve (1,5 min cada)</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Atividade 3 -->
+    <div class="activity act-frankfurt" style="margin-top:36px;">
+      <div class="activity-header">
+        <div class="activity-icon">📱</div>
+        <h3>Atividade 3 — Análise de Plataforma</h3>
+        <span class="time">10 min · Duplas</span>
+      </div>
+      <p><strong>Instrução:</strong> Em dupla, respondam às perguntas abaixo por escrito (não é necessário entregar — serve como roteiro para a discussão). O objetivo é aplicar a análise frankfurtiana ao funcionamento concreto da plataforma.</p>
     </div>
 
-    <div class="callout">
-      <div class="callout-label">Critérios de avaliação do debate</div>
-      <ul>
-        <li><strong>Fundamentação teórica:</strong> os argumentos usam conceitos do teórico escolhido com precisão?</li>
-        <li><strong>Aplicação ao caso:</strong> os argumentos estão conectados ao vídeo concreto, não apenas à teoria abstrata?</li>
-        <li><strong>Capacidade de resposta:</strong> o grupo consegue responder às críticas sem abandonar sua base teórica?</li>
-        <li><strong>Honestidade intelectual:</strong> o grupo reconhece os limites da própria posição?</li>
+    <div class="callout callout-red">
+      <div class="callout-label">Roteiro de análise — TikTok e razão instrumental</div>
+      <ul style="margin:0;padding-left:20px;">
+        <li><strong>Quem são os agentes econômicos</strong> que se beneficiam da circulação desse vídeo? (criador, plataforma, anunciantes)</li>
+        <li><strong>Que informações estruturais</strong> o vídeo omite? (nível de renda da mãe, ausência de políticas públicas, papel do pai biológico)</li>
+        <li><strong>Como o formato da plataforma</strong> (loop, autoplay, comentários, duetos) molda a recepção do conteúdo?</li>
+        <li><strong>Se você fosse Adorno</strong> assistindo ao vídeo em 2026, o que ele diria nos comentários? (Sim, essa é a pergunta.)</li>
       </ul>
     </div>
 
-    <div class="activity purple">
+    <!-- Atividade 4 -->
+    <div class="activity act-durkheim" style="margin-top:36px;">
       <div class="activity-header">
-        <div class="activity-icon purple">🔮</div>
-        <h3>Fechamento pelo professor/mediador</h3>
+        <div class="activity-icon">📔</div>
+        <h3>Atividade 4 — Diário Sociológico Pós-Aula</h3>
+        <span class="time">Para casa · Individual</span>
+      </div>
+      <p><strong>Instrução:</strong> Nas próximas 48 horas, ao assistir qualquer vídeo em redes sociais que provoque emoção forte, registre no seu diário respondendo aos prompts abaixo. Não é necessário compartilhar com ninguém — o objetivo é treinar o olhar sociológico sobre o cotidiano digital.</p>
+    </div>
+
+    <div class="diary-prompts">
+      <div class="diary-prompt">
+        <div class="dp-num">Prompt 01 · Durkheim</div>
+        <h4>Qual laço social esse vídeo mobiliza?</h4>
+        <p>Família, amizade, pertencimento nacional, solidariedade com estranhos? Há efervescência coletiva nos comentários? O vídeo fortalece ou enfraquece normas sociais existentes?</p>
+      </div>
+      <div class="diary-prompt">
+        <div class="dp-num">Prompt 02 · Bourdieu</div>
+        <h4>Quem tem poder nessa cena?</h4>
+        <p>Quem fala e quem é falado? Quais capitais (econômico, cultural, social, simbólico) estão em jogo? Há violência simbólica em operação? Quem precisa ser perdoado ou aprovado por quem?</p>
+      </div>
+      <div class="diary-prompt">
+        <div class="dp-num">Prompt 03 · Frankfurt</div>
+        <h4>Que perguntas esse vídeo não faz?</h4>
+        <p>Quais condições estruturais produziram a situação mostrada? Quem lucra com esse conteúdo? Minha emoção foi "consumida" — ou ela me levou a alguma ação ou reflexão concreta?</p>
+      </div>
+      <div class="diary-prompt">
+        <div class="dp-num">Prompt 04 · Síntese</div>
+        <h4>O que esse vídeo me fez sentir — e o que ele me fez <em>não</em> pensar?</h4>
+        <p>Essa é a pergunta mais difícil: identificar o que a emoção bloqueou, não apenas o que ela ativou. O que ficou fora do frame? O que eu não perguntei porque estava emocionado?</p>
+      </div>
+    </div>
+
+    <div class="activity act-bourdieu" style="margin-top:8px;">
+      <div class="activity-header">
+        <div class="activity-icon">🔮</div>
+        <h3>Fechamento pelo professor</h3>
         <span class="time">5 min</span>
       </div>
-      <p>Após o debate, o mediador conduz a turma a uma síntese: <em>nenhuma das três posições "venceu"</em> — cada uma capturou uma dimensão real do problema. A riqueza da sociologia clássica está precisamente em manter essas tensões abertas, recusando respostas simples para perguntas complexas. A IA não tem classe social — mas a sociedade que a produz e usa, tem.</p>
+      <p>As três teorias analisaram o mesmo vídeo e chegaram a diagnósticos distintos — não porque alguma esteja errada, mas porque cada uma <em>ilumina uma dimensão diferente da realidade social</em>. Durkheim nos mostrou o ritual; Bourdieu, o poder; Frankfurt, a armadilha da emoção. A sociologia não existe para tirar a beleza da experiência humana — ela existe para impedir que a beleza nos impeça de ver o mundo como ele é. O café que o filho pediu ao final pode ser lido como humanidade, como classe ou como catarse. Talvez seja os três.</p>
     </div>
   </section>
 
@@ -1357,13 +1652,7 @@
 
     <ul class="ref-list">
       <li>
-        <strong>MARX, Karl; ENGELS, Friedrich.</strong> O Manifesto do Partido Comunista. São Paulo: Boitempo, 2010. <span class="ref-tag">Marx</span>
-      </li>
-      <li>
-        <strong>MARX, Karl.</strong> O Capital: Crítica da Economia Política — Livro I. São Paulo: Boitempo, 2013. <span class="ref-tag">Marx</span>
-      </li>
-      <li>
-        <strong>MARX, Karl.</strong> Manuscritos Econômico-Filosóficos. São Paulo: Boitempo, 2004. <span class="ref-tag">Marx</span>
+        <strong>DURKHEIM, Émile.</strong> O Suicídio: estudo de sociologia. São Paulo: Martins Fontes, 2000. <span class="ref-tag">Durkheim</span>
       </li>
       <li>
         <strong>DURKHEIM, Émile.</strong> As Formas Elementares da Vida Religiosa. São Paulo: Martins Fontes, 1996. <span class="ref-tag">Durkheim</span>
@@ -1372,22 +1661,31 @@
         <strong>DURKHEIM, Émile.</strong> Da Divisão do Trabalho Social. São Paulo: Martins Fontes, 1999. <span class="ref-tag">Durkheim</span>
       </li>
       <li>
-        <strong>DURKHEIM, Émile.</strong> O Suicídio. São Paulo: Martins Fontes, 2000. <span class="ref-tag">Durkheim</span>
+        <strong>BOURDIEU, Pierre.</strong> A Distinção: crítica social do julgamento. São Paulo: Edusp/Zouk, 2007. <span class="ref-tag">Bourdieu</span>
       </li>
       <li>
-        <strong>WEBER, Max.</strong> Economia e Sociedade (Vol. 1 e 2). Brasília: UnB, 1999. <span class="ref-tag">Weber</span>
+        <strong>BOURDIEU, Pierre.</strong> O Poder Simbólico. Rio de Janeiro: Bertrand Brasil, 1989. <span class="ref-tag">Bourdieu</span>
       </li>
       <li>
-        <strong>WEBER, Max.</strong> A Ética Protestante e o Espírito do Capitalismo. São Paulo: Companhia das Letras, 2004. <span class="ref-tag">Weber</span>
+        <strong>BOURDIEU, Pierre.</strong> Meditações Pascalianas. Rio de Janeiro: Bertrand Brasil, 2001. <span class="ref-tag">Bourdieu</span>
       </li>
       <li>
-        <strong>ZUBOFF, Shoshana.</strong> A Era do Capitalismo de Vigilância. Rio de Janeiro: Intrínseca, 2021. <span class="ref-tag">Contemporâneo</span>
+        <strong>BOURDIEU, Pierre; PASSERON, Jean-Claude.</strong> A Reprodução: elementos para uma teoria do sistema de ensino. Rio de Janeiro: Francisco Alves, 1992. <span class="ref-tag">Bourdieu</span>
       </li>
       <li>
-        <strong>NOBLE, Safiya Umoja.</strong> Algorithms of Oppression. New York: NYU Press, 2018. <span class="ref-tag">IA e Classe</span>
+        <strong>ADORNO, Theodor W.; HORKHEIMER, Max.</strong> Dialética do Esclarecimento: fragmentos filosóficos. Rio de Janeiro: Zahar, 1985. <span class="ref-tag">Frankfurt</span>
       </li>
       <li>
-        <strong>BENJAMIN, Ruha.</strong> Race After Technology. Cambridge: Polity Press, 2019. <span class="ref-tag">IA e Classe</span>
+        <strong>MARCUSE, Herbert.</strong> Homem Unidimensional: estudos da ideologia da sociedade industrial avançada. São Paulo: Edipro, 2015. <span class="ref-tag">Frankfurt</span>
+      </li>
+      <li>
+        <strong>ADORNO, Theodor W.</strong> Indústria cultural e sociedade. São Paulo: Paz e Terra, 2002. <span class="ref-tag">Frankfurt</span>
+      </li>
+      <li>
+        <strong>ZUBOFF, Shoshana.</strong> A Era do Capitalismo de Vigilância. Rio de Janeiro: Intrínseca, 2021. <span class="ref-tag">Plataformas</span>
+      </li>
+      <li>
+        <strong>BYUNG-CHUL HAN.</strong> No Enxame: perspectivas do digital. Petrópolis: Vozes, 2018. <span class="ref-tag">Plataformas</span>
       </li>
     </ul>
   </section>
@@ -1395,11 +1693,11 @@
   <!-- ────────────────── CLOSING ───────────────────────── -->
   <div class="closing">
     <div class="closing-quote">
-      "A questão não é se a IA reproduz desigualdades — ela claramente o faz. A questão é saber <em>que tipo</em> de desigualdade, em que dimensão, e o que isso nos diz sobre a sociedade que a criou."
+      "O café que o filho pediu ao final pode ser lido como humanidade, como um ato de classe ou como a catarse perfeita de um produto cultural. A sociologia não existe para escolher uma dessas leituras — existe para recusar a ideia de que apenas uma delas é suficiente."
     </div>
     <div class="closing-attr">— síntese da aula</div>
     <div class="closing-footer">
-      Fábrica de Conhecimento Sociológico · UFCG · AIOX v2.0 · Ticket #007
+      Fábrica de Conhecimento Sociológico · UFCG · AIOX v2.0 · Ticket #007 · Análise de Vídeo 01
     </div>
   </div>
 
